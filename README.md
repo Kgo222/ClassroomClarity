@@ -6,5 +6,5 @@ Team Members:
 - Kaitlin Gowens
 - Jesse Gruber
 
-  #Results
+  # Results
   *TBD: Project still in progress*
