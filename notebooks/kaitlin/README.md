@@ -16,8 +16,8 @@ Features we want to include in the app design:
   - "sign in as student" will ask them to input name and then password to the hub they select
   - "sign in as teacher" will ask them to input a password for teacher specifically
   - Features on hub teacher could change: font size, allow anonymous questions or not
-### Visual Aid of Current Idea
-
+### Visual Aid of Student Only App - didn't add Teacher side yet
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/app%20Design%20flow.jpg)
 ## 2/12/2025 Team Meeting
 - Worked on proposal and team contract
 - Discussed the basic plan for division of work and areas people feel most comfortable executing 
