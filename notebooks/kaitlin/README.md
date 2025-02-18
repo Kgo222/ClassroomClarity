@@ -18,6 +18,8 @@ Features we want to include in the app design:
   - Features on hub teacher could change: font size, allow anonymous questions or not
 ### Visual Aid of Student Only App - didn't add Teacher side yet
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/app%20Design%20flow.jpg)
+
+# Team Meeting Notes
 ## 2/12/2025 Team Meeting
 - Worked on proposal and team contract
 - Discussed the basic plan for division of work and areas people feel most comfortable executing 
@@ -26,13 +28,13 @@ Features we want to include in the app design:
 2. Team Contract
 
 ## 2/18/2025 Team Meeting
-What we did in the meeting: 
+### What we did in the meeting: 
 1. Divided up tasks
 2. Finalized Component Choice + got links for any we need to order
 4. Got rough estimate of minimum budget
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/ComponentList.png)
-For next meeting:
+### For next meeting:
 1. Jesse →  control & physical casing, Look into what programmer we need for the microcontroller
 2. Kait → App and coding + Work on Schedule for Design Document
-3, Maddie → Power and PCB (Idea for power PCB design) 
+3. Maddie → Power and PCB (Idea for power PCB design) 
 
