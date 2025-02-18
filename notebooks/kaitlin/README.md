@@ -30,7 +30,7 @@ What we did in the meeting:
 1. Divided up tasks
 2. Finalized Component Choice + got links for any we need to order
 4. Got rough estimate of minimum budget
-
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/ComponentList.png)
 For next meeting:
 1. Jesse →  control & physical casing, Look into what programmer we need for the microcontroller
 2. Kait → App and coding + Work on Schedule for Design Document
