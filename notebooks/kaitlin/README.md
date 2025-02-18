@@ -23,4 +23,16 @@ Features we want to include in the app design:
 - Discussed the basic plan for division of work and areas people feel most comfortable executing 
 ### To Do
 1. Pick OLED screen --> will determine if need another voltage regulator + battery size
-2. Team Contract 
+2. Team Contract
+
+## 2/18/2025 Team Meeting
+What we did in the meeting: 
+1. Divided up tasks
+2. Finalized Component Choice + got links for any we need to order
+4. Got rough estimate of minimum budget
+
+For next meeting:
+1. Jesse →  control & physical casing, Look into what programmer we need for the microcontroller
+2. Kait → App and coding + Work on Schedule for Design Document
+3, Maddie → Power and PCB (Idea for power PCB design) 
+
