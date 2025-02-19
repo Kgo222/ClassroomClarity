@@ -1,1 +1,1 @@
-This notebook containes the united work of the group
+This notebook contains the united work of the group
