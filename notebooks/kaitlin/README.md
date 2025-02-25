@@ -38,3 +38,6 @@ Features we want to include in the app design:
 2. Kait → App and coding + Work on Schedule for Design Document
 3. Maddie → Power and PCB (Idea for power PCB design) 
 
+## 2/25/2025 Team Meeting
+### Important Decisions:
+- Swapped to a ESP32-S3-WROOM-1-N16: Has the correct amount of GPIO and SPI functionally pins for what we need + it is in the Electronic Services Shop
