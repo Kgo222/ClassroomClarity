@@ -15,5 +15,6 @@
 ## Team Meeting 2/18/2025
 - Updated team on my plan for the week via group chat
 ## Team Meeting 2/25/2025
+- Visited supply shop to determine what parts need ordered
 - Chose new microcontroller because of the number of GPIO pins on the ESP32-PICO-V3
   - ESP32-S3-WROOM-1
