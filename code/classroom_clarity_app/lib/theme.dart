@@ -24,14 +24,13 @@ class AppColors {
   static const red1 = Color(0xfff48474);
   static const red2 = Color(0xfffb957c);
   static const red3 = Color(0xfffcb382);
-  static const yellow1 = Color(0xfffcc784);
-  static const yellow2 = Color(0xfff4e586);
-  static const yellow3 = Color(0xffdfee79);
-  static const green1 = Color(0xffdcec74);
-  static const green2 = Color(0xffccec6d);
-  static const green3 = Color(0xffaef35b);
-  static const green4 = Color(0xff9cf44c);
-  static const green5 = Color(0xff8df347);
+  static const red4 = Color(0xfffcc784);
+  static const yellow1 = Color(0xfff4e586);
+  static const yellow2 = Color(0xffdfee79);
+  static const yellow3 = Color(0xffccec6d);
+  static const green1 = Color(0xffaef35b);
+  static const green2 = Color(0xff9cf44c);
+  static const green3 = Color(0xff8df347);
 
 }
 
