@@ -4,7 +4,7 @@
 ### 2/22/2025
 - Began assigning pins for system functionality
 #### 2/27/2025
-- Assigned pins for system functionality for new chip (ESP32-PICO-V3)
+- Assigned pins for system functionality for new chip (ESP32-S3-WROOM-1)
 - Introduced debouncer circuits for programming buttons and rotary encoder
 
 # Team Meetings
