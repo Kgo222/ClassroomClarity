@@ -42,8 +42,35 @@ Hardware Cons: more components, more space on PCB
 ### Design Rough Drafts:
 *Note: GPIO numbers don't correlate to the actual ESP 32 connections, they are just used for differentiation between connections
 #### Rotary Encoder
-When contact is open = need pull ups (pink) to ensure GPIO reads HIGH
-When contact is closed = need pull down to ensure GPIO reads LOW
+- When contact is open = need pull ups (pink) to ensure GPIO reads HIGH
+- When contact is closed = need pull down to ensure GPIO reads LOW
+- Added capacitors for debounce
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Rotary_draft1.jpg)
+#### Push Button
+- When pressed = GPIO LOW
+- When pressed = GPIO HIGH
+- Debounce can be done in software or add a cap between button and GND
+#### Screen
+- Don't need to hook up the touch screen or SD since we aren't using those
+- Screen can run on 3.3V/5V --> run on 3.3V because microcontroller is 3.3V = signal consistency 
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Screen_draft1.jpg)
+#### Vibration Motor
+- Requires more tham 20mA of current, so must pull directly from 3.3V, 1.5A source.
+- Use a MOSFET to control the signal and motor interaction: GPIO connects to gate so that when GPIO HIGH, FET closes and motor runs.
+- Need to add a flyback diode to protect MOSFET from the motors sudden start and stops (potential voltage spikes)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Motor_draft1.jpg)
+#### LEDs
+##### 1) Single LED for question notification:
+- Could add a current limiting resistor between the GPIO and LED, however that might limit current too much
+- LED needs 20mA to run at optimal conditions, and the peak current is 30mA. The GPIO only gives 20mA and any current spikes will likely be less than peak current
+- LED has forward voltage of ~3.3V, so we need the full 3.3V from microcontroller for LED to work, so best to leave resistor off
+  ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/LEDsingle_draft1.jpg)
+##### 2) LED array for engagement rating display (x3):
+- Each individual LED array needs ~10mA to run at optimal conditions. We can run 2 LED in parellel with 1 GPIO.
+- LED peak current is 30mA so we don't need to current limiting resistor
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/LEDarray_draft1.jpg)
+### Full Design Draft
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/fullCircuit_draft1.jpg)
 
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
