@@ -19,6 +19,32 @@ Features we want to include in the app design:
 ### Visual Aid of Student Only App - didn't add Teacher side yet
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/app%20Design%20flow.jpg)
 
+## 2/28/2025: Circuit Design
+### Research:
+#### 1) Screen
+- Can use 3.3V --> might impact the brightness
+- Reviews on product say that if using it with a 3.3V microcontroller, you should also power screen with 3.3V otherwise need to consider a level shifter to do voltage differences
+- Level Shifter: microcontroller connected to low side and Screen to high side
+#### 2) ESP 32
+- Can provide up to 20mA of current per GPIO --> If want to run something >20mA need to consider different power method
+#### 3) Software vs Hardware pullup resistor
+Software Pros: less components, easier to implement
+Software Cons: Less noise immunity, weaker pullup 
+Good with things that don't require very specific signals (Ex. buttons)
+Hardware Pros: stronger pullup, less voltage drop
+Hardware Cons: more components, more space, harder to implement
+Good with things that need specific signals (ex. rotary encorder)
+#### 4) Software vs Hardware debouncer
+Software Pros: Easier to implement, less components
+Software Cons: MCU has to continuously check for interrupts
+Hardware Pros: more reliable
+Hardware Cons: more components, more space on PCB
+### Design Rough Drafts:
+*Note: GPIO numbers don't correlate to the actual ESP 32 connections, they are just used for differentiation between connections
+#### Rotary Encoder
+When contact is open = need pull ups (pink) to ensure GPIO reads HIGH
+When contact is closed = need pull down to ensure GPIO reads LOW
+
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
 - Worked on proposal and team contract
