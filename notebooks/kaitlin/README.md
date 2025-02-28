@@ -28,17 +28,22 @@ Features we want to include in the app design:
 #### 2) ESP 32
 - Can provide up to 20mA of current per GPIO --> If want to run something >20mA need to consider different power method
 #### 3) Software vs Hardware pullup resistor
-Software Pros: less components, easier to implement
-Software Cons: Less noise immunity, weaker pullup 
-Good with things that don't require very specific signals (Ex. buttons)
-Hardware Pros: stronger pullup, less voltage drop
-Hardware Cons: more components, more space, harder to implement
-Good with things that need specific signals (ex. rotary encorder)
+- Software Pros: less components, easier to implement  
+- Software Cons: Less noise immunity, weaker pullup  
+Good with things that don't require very specific signals (Ex. buttons)  
+- Hardware Pros: stronger pullup, less voltage drop  
+- Hardware Cons: more components, more space, harder to implement  
+Good with things that need specific signals (ex. rotary encorder)  
 #### 4) Software vs Hardware debouncer
-Software Pros: Easier to implement, less components
-Software Cons: MCU has to continuously check for interrupts
-Hardware Pros: more reliable
-Hardware Cons: more components, more space on PCB
+- Software Pros: Easier to implement, less components  
+- Software Cons: MCU has to continuously check for interrupts  
+- Hardware Pros: more reliable  
+- Hardware Cons: more components, more space on PCB  
+#### 5) Current Measurements
+Based off of current measurements:  
+Microcontroller + rotary encoder + motor + Screen $= 800mA + 1mA + 80mA + 50mA = 931 mA$ --> 1.5A source works
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/current%20measures.png)
+
 ### Design Rough Drafts:
 *Note: GPIO numbers don't correlate to the actual ESP 32 connections, they are just used for differentiation between connections
 #### Rotary Encoder
