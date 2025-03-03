@@ -1,0 +1,2 @@
+This week we made the decision to change the microcontroller we are using due to the ESP32-PICO not having enough GPIO pins for functionality of our project. We are now using the ESP32-S3-WROOM-1.
+After this choice, I began assigning functions to GPIOs and created a signal list of what we need for functionality. 
