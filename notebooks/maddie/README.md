@@ -12,7 +12,7 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - connected the Vout pin (3.3V) to the dev board and the screen
 - set up the clear button and it's debouncing components and connected to the microcontroller
 - wired the SPI connections between the screen and the dev board
-- Tested that the converter outputs 3.3V --> Passed! (pictures of multimeter in PowerVerification3Test)
+- tested that the converter outputs 3.3V +/- 0.3V given 5V --> Passed! (pictures of multimeter in PowerVerification3Test)
 
 
 
