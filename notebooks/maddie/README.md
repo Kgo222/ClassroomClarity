@@ -9,7 +9,7 @@
 
 
 
-##Team Meeting Notes
+## Team Meeting Notes
 
 ## 3/4/2025: Team meeting 
 Discussed how the physical deisign of the hub casing should look. 
