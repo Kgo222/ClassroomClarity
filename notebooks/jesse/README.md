@@ -8,6 +8,9 @@
 - Introduced debouncer circuits for programming buttons and rotary encoder
 ## 3/5/2025 - 3/6/2025
 - Worked on design document
+## 3/8/2025
+- Worked on breadboard demo
+- Tested rotary encoder circuit
 
 # Team Meetings
 ## Team Meeting 2/12/2025
