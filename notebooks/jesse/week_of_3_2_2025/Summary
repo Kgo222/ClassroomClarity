@@ -1,2 +1,4 @@
-During our team meeting, we discussed the physical design of our hub.
-We also worked on the design document.
+During our team meeting, we discussed the physical design of our hub. We also worked on the design document.
+
+Over the weekend, we worked on our breadboard demo. I confirmed the operation of the rotary encoder circuit but determined that a 3.3V pull-up will need to replace the current 5V due to the maximum input voltage to the GPIOs.
+Additionally, the LEDs were tested. One array had problems lighting a couple LEDs, but this array will be replaced regardless because this array is one of two red arrays that we have. The green array was functional, but we need a yellow array as well.
