@@ -2,8 +2,17 @@
 
 ## Research and Progress
 
-### Week of 2/23/2025: Work on version 1 of PCB
-The first draft of the ClassroomClarity PCB was created during the week of 2/23 to be able to order the first version on Monday 3/3.
+### 2/13/2025: Power conversion research
+- looked into different LDOs and voltage regulators to step down 5V adapter input
+- did math to figure out resister values for LDO (power conversion considerations.pdf)
+
+
+### 2/26/2025: Power Conversion Reconsiderations 
+- regular regulators have to high voltage drop --> look for LDOs
+- looked for LDOs within the needs for our circuit --> could not find with high enough current
+- Looked for DC to DC conversion modules --> found the TPSM84203EAB
+
+### 2/26/2025: PCB Version 1 Schematic and Layout
 
 #### The Schematic 
 - started with the power management subsytem
