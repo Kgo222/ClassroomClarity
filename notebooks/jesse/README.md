@@ -6,6 +6,8 @@
 ## 2/26/2025
 - Assigned pins for system functionality for new chip (ESP32-S3-WROOM-1)
 - Introduced debouncer circuits for programming buttons and rotary encoder
+## 3/5/2025 - 3/6/2025
+- Worked on design document
 
 # Team Meetings
 ## Team Meeting 2/12/2025
@@ -18,3 +20,5 @@
 - Visited supply shop to determine what parts need ordered
 - Chose new microcontroller because of the number of GPIO pins on the ESP32-PICO-V3
   - ESP32-S3-WROOM-1
+## Team Meeting 3/4/2025
+- Discussed physical design of the hub
