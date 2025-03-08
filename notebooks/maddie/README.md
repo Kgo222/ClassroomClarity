@@ -3,6 +3,14 @@
 ## Research and Progress
 
 ### Week of 2/23/2025: Work on version 1 of PCB
+The first draft of the ClassroomClarity PCB was created during the week of 2/23 to be able to order the first version on Monday 3/3.
+
+#### The Schematic 
+- started with the power management subsytem
+- 
+
+#### The Layout
+
 
 ### 3/8/2025: Breadboard Demo Preperations
 Came into the lab with Jesse and Kait to prepare for the breadboard demo on Monday. My task was to construct the physical breadboard layout while Jesse tested the rotary encoder and LED indicators and Kait worked on the microcontroller code. Our goal is to display the functionality of the power conversion subsystem, and parts of the control and feedback sub systems. We will be powering the microcontroller and screen with the converter and displaying a message on the screen wich can be interacted with with a button. 
@@ -18,7 +26,23 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 
 ## Team Meeting Notes
 
-### 3/4/2025: Team meeting 
+### 2/12/2025 Team meeting 
+- Completed team contract together
+- Discussed everyone's strengths and divided up tasks accordingly
+      - Maddie --> Power management and PCB design
+      - Jesse --> Control Signals
+      - Kait --> App Design
+- Started project proposal
+
+### 2/18/2025 Team meeting
+- Researched and ordered preliminary parts
+- Created a budget sheet to track money spent and parts ordered
+
+### 2/25/2025 Team meeting
+- Researched GPIOs for the microcontroller
+- Switched from ESP32-PICO to ESP32-WROOM to better line up with our GPIO requirements 
+
+### 3/4/2025 Team meeting 
 Discussed how the physical deisign of the hub casing should look. 
 -Wanted to prioritize flexibility in user placement of the hub while also keeping portability in mind
 - Presented the idea of using an ipad case as a basis for the design
