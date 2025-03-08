@@ -2,6 +2,8 @@
 
 ## Research and Progress
 
+### Week of 2/23/2025: Work on version 1 of PCB
+
 ### 3/8/2025: Breadboard Demo Preperations
 Came into the lab with Jesse and Kait to prepare for the breadboard demo on Monday. My task was to construct the physical breadboard layout while Jesse tested the rotary encoder and Kait worked on the microcontroller code. Our goal is to display the functionality of the power conversion subsystem, and parts of the control and feedback sub systems. We will be powering the microcontroller and screen with the converter and displaying a message on the screen wich can be interacted with with a button. 
 
@@ -10,12 +12,6 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - connected the Vout pin (3.3V) to the dev board and the screen
 - set up the clear button and it's debouncing components and connected to the microcontroller
 - wired the SPI connections between the screen and the dev board
-
-### Week of 2/23/2025: Work on version 1 of PCB
-
-
-
-
 
 
 
