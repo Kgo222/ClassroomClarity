@@ -3,6 +3,7 @@ import 'theme.dart';
 import 'globals.dart';
 import 'login.dart';
 import 'homepage_instructor.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class InstructorLoginPage extends StatefulWidget {
   const InstructorLoginPage({Key? key}) : super(key: key);

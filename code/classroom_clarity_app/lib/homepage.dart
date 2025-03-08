@@ -4,6 +4,7 @@ import 'theme.dart';
 import 'globals.dart';
 import 'buttons.dart';
 import 'login.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);

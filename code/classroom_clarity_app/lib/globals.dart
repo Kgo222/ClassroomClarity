@@ -1,6 +1,7 @@
 // Global variables
 import "homepage.dart";
 import 'homepage_instructor.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 int engagementLevel = 10;
 

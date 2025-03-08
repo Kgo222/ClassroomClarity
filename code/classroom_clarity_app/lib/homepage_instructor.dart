@@ -3,6 +3,7 @@ import 'dart:async';
 import 'theme.dart';
 import 'globals.dart';
 import 'login.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class HomePageInstructor extends StatefulWidget {
   const HomePageInstructor({Key? key}) : super(key: key);
