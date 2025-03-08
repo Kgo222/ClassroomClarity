@@ -3,6 +3,7 @@ import 'dart:async';
 import 'theme.dart';
 import 'globals.dart';
 import 'buttons.dart';
+import 'login.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -22,6 +23,8 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text(widget.title),
           backgroundColor: AppColors.denim,
+          leading:null,
+            automaticallyImplyLeading: false,
         ),
         body: Center(
             child: Column(
@@ -170,6 +173,33 @@ class _HomePageState extends State<HomePage> {
                           fillColor: AppColors.grey,
                           ),
                       ),
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children:[
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.yellow1,
+                            alignment: Alignment.center,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          onPressed:(){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const LoginPage();
+                              }),
+                            );
+                          },
+                          child: const Text(
+                              "Sign Out",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: AppColors.black, fontSize:20)
+                          ),
+                        ),
+                      ]
                   ),
                 ] // Column children
             )

@@ -13,6 +13,7 @@ class AppColors {
   static const Color grey = Color(0xFFCED3DC);
   static const Color dullPurple = Color(0xFFABA9C3);
   static const Color denim = Color(0xFF275DAD);
+  static const Color lightBlue = Color(0xFF7e9dcc);
   static const Color darkGrey = Color(0xFF5B616A);
   static const Color darkRed = Color(0xFF64113F);
 
