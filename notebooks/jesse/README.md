@@ -11,6 +11,7 @@
 ## 3/8/2025
 - Worked on breadboard demo
 - Tested rotary encoder circuit
+- Assisted in debugging SPI communication with the LCD
 
 # Team Meetings
 ## Team Meeting 2/12/2025
