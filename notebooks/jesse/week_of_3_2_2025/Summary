@@ -1,0 +1,5 @@
+During our team meeting, we discussed the physical design of our hub. We also worked on the design document.
+
+Over the weekend, we worked on our breadboard demo. I confirmed the operation of the rotary encoder circuit but determined that a 3.3V pull-up will need to replace the current 5V due to the maximum input voltage to the GPIOs.
+Additionally, the LEDs were tested. One array (Kingbright, DC-10EWA) had problems lighting a couple LEDs, but this array will be replaced regardless because this array is one of two red arrays that we have. The green array was functional, but we need a yellow array as well.
+It was also decided that the blue diffused single LED can be used as the indicator light at GPIO output voltage. It simply is less bright, which is adequate because the blue LEDs are very bright, and draws 0.528mA at 2.6V.
