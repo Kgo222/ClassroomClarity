@@ -1,3 +1,3 @@
 This week, we completed the breadboard demo for our project. We were able to incorporate the LDO, the question indicator LED, the rotary encoder, the clear button, and the LCD with the ESP32. For the demo, we preloaded questions to be displayed on the screen. The encoder allowed the questions to be scrolled through, and the clear button allowed the questions to be erased from the list. The LED indicator light was lit while there was at least one question present and shut off after all questions were cleared. 
 
-During the weekly team meeting, we discussed our goals to be accomplished by the week after break. 
+During the weekly team meeting, we discussed our goals to be accomplished by the week after break and ordered surface mount parts to prepare for our PCB to be delivered.
