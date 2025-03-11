@@ -71,6 +71,7 @@ Discussed how the physical deisign of the hub casing should look.
       -Jesse - GPIO configurations
       -Maddie - assemble and test PCB
       -All - find headers and specific LED array
-- Submitted order for microcontroller to TA 
+- Submitted order for microcontroller, resistors, and caps from the electronic services shop to TA
+- Submitted order for caps and resistors that we cant get from the sevices shop from digikey
 
 
