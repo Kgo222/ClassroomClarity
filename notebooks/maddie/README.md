@@ -28,6 +28,7 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - started with the DC DC converter module and hooked up the Vin pin to the lab's DC power supply through the bannana jacks on the proto board
 - connected the Vout pin (3.3V) to the dev board and the screen
 - set up the clear button and it's debouncing components and connected to the microcontroller
+- set up rotary controller circuit 
 - wired the SPI connections between the screen and the dev board
 - tested that the converter outputs 3.3V +/- 0.3V given 5V --> Passed! (pictures of multimeter in PowerVerification3Test)
 
@@ -61,3 +62,15 @@ Discussed how the physical deisign of the hub casing should look.
     - wanted to keep seperate from main hub to avoid vibrating the PCB
     - need to design a seperate casing for the motor itself
     - need to figure out how to fit the motor and casing into the hub for transport
+      
+### 3/11/2025 Team meeting 
+- Discussed buying an android phone for ease of debugging for app development and demo
+    - decided to get the phone using our own money
+- Goals for the week we get back
+      -Kait - bluetooth
+      -Jesse - GPIO configurations
+      -Maddie - assemble and test PCB
+      -All - find headers and specific LED array
+- Submitted order for microcontroller to TA 
+
+
