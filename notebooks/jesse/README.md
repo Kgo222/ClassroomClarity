@@ -26,3 +26,6 @@
   - ESP32-S3-WROOM-1
 ## Team Meeting 3/4/2025
 - Discussed physical design of the hub
+## Team Meeting 3/11/2025
+- Set tasks to be achieved over spring break
+- - I will be determining the GPIO configurations
