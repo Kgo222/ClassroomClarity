@@ -32,7 +32,12 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - wired the SPI connections between the screen and the dev board
 - tested that the converter outputs 3.3V +/- 0.3V given 5V --> Passed! (pictures of multimeter in PowerVerification3Test)
 
-
+### 3/24/2025: Autodesk set up 
+- taking over 3D modeling from Kait so she can focus on app and bluetooth
+- Fusion licence expired -> unsure why this occured
+- Found new student license through the webstore
+- tranfered prototype file from Kait to my laptop
+- watched some fusion tutorials
 
 ## Team Meeting Notes
 
