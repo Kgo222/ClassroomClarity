@@ -74,4 +74,10 @@ Discussed how the physical deisign of the hub casing should look.
 - Submitted order for microcontroller, resistors, and caps from the electronic services shop to TA
 - Submitted order for caps and resistors that we cant get from the sevices shop from digikey
 
+### 3/24/2025 TA meeting 
+- PCB arrived!
+- Need to see why my AutoDesk access expired
+- Will solder and test PCB this week
+- All supplies have arrived
+- Next PCB order is on Monday
 
