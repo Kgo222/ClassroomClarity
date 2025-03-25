@@ -86,3 +86,9 @@ Discussed how the physical deisign of the hub casing should look.
 - All supplies have arrived
 - Next PCB order is on Monday
 
+### 3/25/2005 Team meeting 
+- Discussed lighting scheme for class engagement meeter --> assigned Jesse to polish it 
+- Discussed when I would have the PCB soldered and ready to test --> Wednesday at 2PM
+- Figured out how to tranfer Fusion 360 file from Kait to me
+- Kait recieved pixel phone and is starting bluetooth configuration 
+
