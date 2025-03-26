@@ -77,6 +77,16 @@ Microcontroller + rotary encoder + motor + Screen $= 800mA + 1mA + 80mA + 50mA =
 ### Full Design Draft
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/fullCircuit_draft1.jpg)
 
+## 3/8/2025: Breadboard Demo
+- Goals: Get screen to display questions, have rotary encoder flip through questions on the screen, have button clear the question on the screen, and an LED indicate if there are still questions in queue
+- Screen: Use TFT library in Arduino, had to edit the library file to work with specific screen type and pin assignments, but worked after that
+- Rotary Encoder: having trouble with bi-directionly switching. It can decrease just fine but trying to increase position has a bug that it increases the immediately decreases so it looks like there is no change. Since the actual position doesn't matter, I added some logic in the code to filter this so rotary encoder works as intended
+
+## 3/25/2025: Bluetooth Dev
+- USE BLE not classic Bluetooth
+- Currently testing with flutter_blue_plus --> loads onto the app without errors, but doesn't currently pick up on ESP32 BLE
+- ESP32 is setup with Arduino to service BLE and it is confirmed to be working via a Bluetooth scanner which can pick it up and connect to it, therefore the connection problem likely lies in the flutter_blue_plus application 
+
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
 - Worked on proposal and team contract
