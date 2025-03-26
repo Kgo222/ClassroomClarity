@@ -24,8 +24,9 @@ android {
         applicationId = "com.example.classroom_clarity_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        //minSdk = flutter.minSdkVersion
-        minSdkVersion: 21
+        ndkVersion = "27.0.12077973"
+        minSdk = flutter.minSdkVersion
+        //minSdkVersion 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
