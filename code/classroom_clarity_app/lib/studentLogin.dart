@@ -17,30 +17,34 @@ class StudentLoginPage extends StatefulWidget {
 class _StudentLoginPageState extends State<StudentLoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); //for the text submission box
   final TextEditingController _controller = TextEditingController(); //for the text submission box
-
-  @override
+  //bluetooth
+  final List<ScanResult> _recordList = [];
   //Bluetooth functions start
-  void initState() {
-    super.initState();
-    bleHandler = BLEHandler(setStateCallback);
-    //TODO run at startup
+  void searchForDevices() async {
+    if (await FlutterBluePlus.isSupported == false) {
+      debugPrint("Bluetooth not supported by this device");
+      return;
+    } else {
+      startScanning();
+    }
   }
-  void setStateCallback() {
-    setState(() {});
-  }
-  void connectDevicePrompt() {
-    // Show prompt for connecting a device
-    showModalBottomSheet<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return const BluetoothConnectScreen();
-        });
-  }
-  void disconnectDevice() {
-    setState(() {
-      bleHandler.disconnect();
+  void startScanning() async {
+    _recordList.clear();
+
+    await FlutterBluePlus.startScan(timeout: Duration(seconds: 5));
+
+    FlutterBluePlus.scanResults.listen((results) {
+      for (ScanResult result in results) {
+        if (!_recordList.contains(result)) {
+          _recordList.add(result);
+          debugPrint(result.device.advName);
+        }
+      }
+
+      setState(() {});
     });
   }
+
   void goStudentHomePage(){
     // Navigate to the HomePage once the device is connected
     Navigator.pushReplacement(
@@ -51,6 +55,14 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
     );
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    FlutterBluePlus.stopScan();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
