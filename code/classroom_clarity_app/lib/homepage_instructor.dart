@@ -37,19 +37,19 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                       )
                   ),
                   Slider(
-                    value: _currentSliderVal,
-                    max:max_font_size,
-                    min:min_font_size,
-                    divisions: (max_font_size-min_font_size).toInt(),
-                    label:_currentSliderVal.round().toString(),
-                    activeColor: AppColors.darkRed,
-                    inactiveColor: AppColors.dullPurple,
-                    onChanged: (double value){
-                      setState((){
-                        _currentSliderVal = value;
-                        font_size = value;
-                      });
-                    }
+                      value: _currentSliderVal,
+                      max:max_font_size,
+                      min:min_font_size,
+                      divisions: (max_font_size-min_font_size).toInt(),
+                      label:_currentSliderVal.round().toString(),
+                      activeColor: AppColors.darkRed,
+                      inactiveColor: AppColors.dullPurple,
+                      onChanged: (double value){
+                        setState((){
+                          _currentSliderVal = value;
+                          font_size = value;
+                        });
+                      }
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -61,46 +61,46 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                         style: TextStyle(color: AppColors.black, fontSize: 25),
                       ),
                       Switch(
-                        value: switchVal,
-                        activeColor: AppColors.darkRed,
-                        activeTrackColor: AppColors.red1,
-                        inactiveThumbColor: AppColors.black,
-                        inactiveTrackColor: AppColors.dullPurple,
-                        onChanged: (bool value){
-                          setState((){
-                            switchVal = value;
-                            silent_mode = value;
-                          });
-                        }
+                          value: switchVal,
+                          activeColor: AppColors.darkRed,
+                          activeTrackColor: AppColors.red1,
+                          inactiveThumbColor: AppColors.black,
+                          inactiveTrackColor: AppColors.dullPurple,
+                          onChanged: (bool value){
+                            setState((){
+                              switchVal = value;
+                              silent_mode = value;
+                            });
+                          }
                       )
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children:[
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.yellow1,
-                          alignment: Alignment.center,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children:[
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.yellow1,
+                            alignment: Alignment.center,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          onPressed:(){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const LoginPage();
+                              }),
+                            );
+                          },
+                          child: const Text(
+                              "Sign Out",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: AppColors.black, fontSize:20)
                           ),
                         ),
-                        onPressed:(){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) {
-                              return const LoginPage();
-                            }),
-                          );
-                        },
-                        child: const Text(
-                            "Sign Out",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: AppColors.black, fontSize:20)
-                        ),
-                      ),
-                    ]
+                      ]
                   ),
                 ] // Column children
             )

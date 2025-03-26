@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
           title: Text(widget.title),
           backgroundColor: AppColors.denim,
           leading:null,
-            automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
         ),
         body: Center(
             child: Column(
@@ -157,22 +157,22 @@ class _HomePageState extends State<HomePage> {
                       maxLines: 10, // When user presses enter it will adapt to it
                       obscureText: false,
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: AppColors.denim, width:4)
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColors.denim, width: 4), // Border color when focused
-                          ),
-                          label: Text.rich(
-                            TextSpan(
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: AppColors.denim, width:4)
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.denim, width: 4), // Border color when focused
+                        ),
+                        label: Text.rich(
+                          TextSpan(
                               text: 'Ask your Question Here:',
                               style: TextStyle(color:AppColors.black)
-                            ),
                           ),
-                          filled: true,
-                          fillColor: AppColors.grey,
-                          ),
+                        ),
+                        filled: true,
+                        fillColor: AppColors.grey,
                       ),
+                    ),
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.start,

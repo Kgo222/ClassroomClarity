@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
-import 'homepage.dart';
-import 'main.dart';
 
 class EngagementButton extends StatefulWidget {
   final int level;
@@ -26,8 +24,10 @@ class _EngagementButtonState extends State<EngagementButton> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.all(2),
+        //margin: EdgeInsets.all(1),
         alignment: Alignment.center,
+        width: 5,
+        height: 100,
         decoration: BoxDecoration(
           border: widget.isSelected ? Border.all(color: AppColors.darkRed, width: 2) : null,
         ),

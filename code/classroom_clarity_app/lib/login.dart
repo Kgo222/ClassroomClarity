@@ -3,6 +3,8 @@ import 'theme.dart';
 import 'globals.dart';
 import 'studentLogin.dart';
 import 'instructorLogin.dart';
+import 'bluetooth_handler.dart';
+import 'bluetooth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,25 +14,33 @@ class LoginPage extends StatefulWidget {
 }
 class _LoginPageState extends State<LoginPage> {
   @override
+  //Bluetooth Functions start
+  void initState() {
+    super.initState();
+    bleHandler = BLEHandler(setStateCallback);
+    //TODO run at startup
+  }
+  void setStateCallback() {
+    setState(() {});
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
         backgroundColor: AppColors.denim,
-        leading:null,
-        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 50),
-              child: const Text(
-                'WELCOME\nTO\nCLASSROOM CLARITY',
-                textAlign: TextAlign.center,
-                softWrap: true,
-                style: TextStyle(color: AppColors.black, fontSize: 45),
+                padding: EdgeInsets.only(top: 50),
+                child: const Text(
+                  'WELCOME\nTO\nCLASSROOM CLARITY',
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                  style: TextStyle(color: AppColors.black, fontSize: 45),
                 )
             ),
             Padding(
