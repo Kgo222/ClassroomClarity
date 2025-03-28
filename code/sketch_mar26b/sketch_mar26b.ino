@@ -12,7 +12,9 @@ void setup() {
 void loop() {
   // Check for new data
   if(ble.isDataAvailable()) {
-    Serial.println(ble.getData().c_str());
+    DataReceived data = ble.getData();
+    Serial.print("Received Data: ");
+    Serial.println(data.data.c_str());
   }
 
 }
