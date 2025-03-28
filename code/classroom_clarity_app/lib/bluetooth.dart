@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+//import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart';
 
@@ -13,7 +14,6 @@ class BluetoothConnectScreen extends StatefulWidget {
 }
 
 class _BluetoothConnectScreen extends State<BluetoothConnectScreen> {
-  final flutterBlue = FlutterBlue.instance;
   List<BluetoothDevice> deviceList = [];
 
   @override
@@ -26,7 +26,7 @@ class _BluetoothConnectScreen extends State<BluetoothConnectScreen> {
 
   Future<void> updateDeviceList() async {
     try {
-      await flutterBlue.startScan(timeout: const Duration(seconds: 4));
+      await FlutterBluePlus.startScan(timeout: const Duration(seconds: 4));
     } on Exception catch(e) {
       if(e.toString() == "Exception: Another scan is already in progress.") {
         return;
@@ -36,26 +36,22 @@ class _BluetoothConnectScreen extends State<BluetoothConnectScreen> {
     }
 
     List<BluetoothDevice> temp = [];
-    flutterBlue.connectedDevices
-        .asStream()
-        .listen((List<BluetoothDevice> devices) {
-      for (BluetoothDevice device in devices) {
-        if (!temp.contains(device)) {
-          temp.add(device);
-        }
-      }
-    });
-    flutterBlue.scanResults.listen((List<ScanResult> results) {
+    // Listen for connected devices
+    List<BluetoothDevice> connectedDevices = await FlutterBluePlus.connectedDevices;
+    temp.addAll(connectedDevices);
+
+    // Listen for scan results
+    FlutterBluePlus.scanResults.listen((results) {
       for (ScanResult result in results) {
-        if (!temp.contains(result.device)) {
+        if (!temp.any((d) => d.remoteId == result.device.remoteId)) {
           temp.add(result.device);
         }
       }
-    });
-    setState(() {
-      deviceList = temp;
-    });
-  }
+        setState(() {
+          deviceList = temp;
+        });
+      });
+    }
 
   Future<void> connectDevice(BluetoothDevice device) async {
     await bleHandler.connect(device);
@@ -82,7 +78,7 @@ class _BluetoothConnectScreen extends State<BluetoothConnectScreen> {
           children: deviceList.map((device) {
             return Card(
               child: ListTile(
-                title: Text(device.name + " (" + device.id.toString() + ")"
+                title: Text(device.platformName + " (" + device.remoteId.toString() + ")"
                   ,style: TextStyle(fontSize: 15,color: Color.fromARGB(255, 4, 6, 4)),),
                 trailing: TextButton(
                   onPressed: () => connectDevice(device),

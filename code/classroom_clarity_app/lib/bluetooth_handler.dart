@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'constants.dart';
 import 'dart:io' show Platform;
-import "package:flutter_blue/flutter_blue.dart";
+//import "package:flutter_blue/flutter_blue.dart";
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class BLEHandler {
   late StreamSubscription notificationSubscription;
@@ -17,20 +18,15 @@ class BLEHandler {
 
   Future<void> connect(BluetoothDevice device) async {
     try {
-      await device.connect();
-      //reset robot to original state
-    } on PlatformException catch(e) {
-      if (e.code == 'already_connected') {
-        // We really shouldn't end up here
-        return;
-      } else {
+      await device.connect(autoConnect: false);
+    } on PlatformException catch (e) {
+      if (e.code != 'already_connected') {
         rethrow;
       }
     }
-
     // Listen for (externally initiated) device disconnect and update UI accordingly
     connectionStateSubscription = device.state.listen((s) {
-      if(s == BluetoothDeviceState.disconnected) {
+      if(s ==  BluetoothConnectionState.disconnected) {
         // Accessing the deviceScreenHandler here is a little awkward, but it gets the job done
         // Equivalent to disconnectDevice in homepage.dart
         disconnect(); // Cancel subscription streams
@@ -94,7 +90,7 @@ class BLEHandler {
       for (BluetoothCharacteristic characteristic in service.characteristics) {
         if(characteristic.properties.notify) {
           await characteristic.setNotifyValue(true);
-          notificationSubscription = characteristic.value.listen((value) async {
+          notificationSubscription = characteristic.lastValueStream.listen((value) async {
             String s = String.fromCharCodes(value);
           });
           await Future.delayed(const Duration(milliseconds: 500));
