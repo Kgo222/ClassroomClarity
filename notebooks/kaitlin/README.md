@@ -1,5 +1,8 @@
+#Kaitlin Notebook:
+#_Table of Contents:_
+1. [Worklog](https://github.com/Kgo222/ClassroomClarity/edit/main/notebooks/kaitlin/README.md#kaitlin-worklog)
+2. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/edit/main/notebooks/kaitlin/README.md#team-meeting-notes)
 # Kaitlin Worklog
-
 ## 2/17/2025: App Design
 Features we want to include in the app design:
 - scaled rating where students can input what level of understanding they have of the current topic
@@ -85,7 +88,15 @@ Microcontroller + rotary encoder + motor + Screen $= 800mA + 1mA + 80mA + 50mA =
 ## 3/25/2025: Bluetooth Dev
 - USE BLE not classic Bluetooth
 - Currently testing with flutter_blue_plus --> loads onto the app without errors, but doesn't currently pick up on ESP32 BLE
-- ESP32 is setup with Arduino to service BLE and it is confirmed to be working via a Bluetooth scanner which can pick it up and connect to it, therefore the connection problem likely lies in the flutter_blue_plus application 
+- ESP32 is setup with Arduino to service BLE and it is confirmed to be working via a Bluetooth scanner which can pick it up and connect to it, therefore the connection problem likely lies in the flutter_blue_plus application
+
+## 3/28/2025: Bluetooth Dev Cont.
+- Confirmed through Serial monitor print outs that the ESP32 Dev board is correctly connecting and disconnecting from app when prompted by the app
+- Through Android Studio terminal, it looks like the question data is sending however on the Arduino side, the serial monitor isn't indicating any recieved data
+To do:
+1. Debug sending/recieving data: likely because of flutter side bluetooth_handler write method --> check UUIDs match correctly
+2. Debug the back arrow problem on the starting login screen: when user signs out a back arrow appears on login screen that goes back to homepage (not intended functionality)
+3. Try sending the engagement level rating data through bluetooth 
 
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
