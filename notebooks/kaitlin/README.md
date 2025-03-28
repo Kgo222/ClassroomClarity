@@ -1,6 +1,11 @@
 #Kaitlin Notebook:
 #_Table of Contents:_
-1. [Worklog](https://github.com/Kgo222/ClassroomClarity/edit/main/notebooks/kaitlin/README.md#kaitlin-worklog)
+1. [Worklog](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/README.md#kaitlin-worklog)
+   - [2/17/2025: App Design](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/README.md#2172025-app-design)
+   - [2/28/2025: Circuit Design](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/README.md#2282025-circuit-design)
+   - [3/8/2025: Breadboard Demo](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/README.md#382025-breadboard-demo)
+   - [3/25/2025: Bluetooth Dev](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/README.md#3252025-bluetooth-dev)
+   - [3/28/2025: Bluetooth Dev Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/README.md#3282025-bluetooth-dev-cont)
 2. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/README.md#team-meeting-notes)
 # Kaitlin Worklog
 ## 2/17/2025: App Design
