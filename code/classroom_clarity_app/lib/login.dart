@@ -14,15 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 class _LoginPageState extends State<LoginPage> {
   @override
-  //Bluetooth Functions start
-  void initState() {
-    super.initState();
-    bleHandler = BLEHandler(setStateCallback);
-    //TODO run at startup
-  }
-  void setStateCallback() {
-    setState(() {});
-  }
 
   Widget build(BuildContext context) {
     return Scaffold(

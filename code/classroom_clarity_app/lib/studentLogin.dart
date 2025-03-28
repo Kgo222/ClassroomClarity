@@ -17,6 +17,9 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); //for the text submission box
   final TextEditingController _controller = TextEditingController(); //for the text submission box
 
+
+  //Bluetooth functions start
+
   void goStudentHomePage(){
     // Navigate to the HomePage once the device is connected
     Navigator.pushReplacement(
@@ -27,9 +30,6 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
     );
   }
   //Bluetooth Methods
-  void setStateCallback() {
-    setState(() {});
-  }
   void connectDevicePrompt() {
     // Show prompt for connecting a device
     /*
