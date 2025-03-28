@@ -1,7 +1,7 @@
 #Kaitlin Notebook:
 #_Table of Contents:_
 1. [Worklog](https://github.com/Kgo222/ClassroomClarity/edit/main/notebooks/kaitlin/README.md#kaitlin-worklog)
-2. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/edit/main/notebooks/kaitlin/README.md#team-meeting-notes)
+2. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/README.md#team-meeting-notes)
 # Kaitlin Worklog
 ## 2/17/2025: App Design
 Features we want to include in the app design:
