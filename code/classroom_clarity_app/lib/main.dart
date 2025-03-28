@@ -3,11 +3,14 @@ import 'theme.dart';
 import 'constants.dart';
 import 'login.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-void main() => runApp(const MyApp());
+void main() => runApp( MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+   MyApp({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class MyApp extends StatelessWidget {
       // Currently the main screen is the default from Flutter, but we will
       // edit the screens and screen routes as needed.
       home: const LoginPage(),
+      navigatorKey: navigatorKey,
     );
   }
 }

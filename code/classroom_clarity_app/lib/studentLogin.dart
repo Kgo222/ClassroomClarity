@@ -27,13 +27,28 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
     );
   }
   //Bluetooth Methods
+  void setStateCallback() {
+    setState(() {});
+  }
   void connectDevicePrompt() {
     // Show prompt for connecting a device
+    /*
     showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
           return const BluetoothConnectScreen();
         });
+     */
+    // Show prompt for connecting a device
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const BluetoothConnectScreen();
+      },
+    ).then((_) {
+      // After closing the modal, check if the device is connected and update the UI.
+      setState(() {});
+    });
   }
   void disconnectDevice() {
     setState(() {
@@ -120,6 +135,19 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                   onPressed: connectDevicePrompt,
                   child: Text(
                     "Connect",
+                    style: TextStyle(fontSize: 28,color: AppColors.black),
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(left:20),
+                child:ElevatedButton(
+                  onPressed:() {
+                    print("Connected Device: ${bleHandler.connectedDevice}");
+                  },
+                  child: Text(
+                    "Debug Test",
                     style: TextStyle(fontSize: 28,color: AppColors.black),
                   ),
                 ),

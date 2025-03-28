@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart';
+import 'main.dart';
 
 // Bluetooth connection screen
 class BluetoothConnectScreen extends StatefulWidget {
@@ -47,19 +48,30 @@ class _BluetoothConnectScreen extends State<BluetoothConnectScreen> {
           temp.add(result.device);
         }
       }
+      /*
         setState(() {
           deviceList = temp;
         });
       });
+    */
+    if (mounted) {
+      setState(() {
+        deviceList = temp; // Update device list in the UI
+      });
     }
 
-  Future<void> connectDevice(BluetoothDevice device) async {
+    // Check if the widget is still mounted before calling setState(
+    });
+  }
+
+  Future<void> connectDevice(BuildContext context, BluetoothDevice device) async {
     await bleHandler.connect(device);
     // Start waiting for notifications
     bleHandler.subscribeNotifications();
 
     // Exit screen
-    Navigator.pop(context);
+    //Navigator.pop(context);
+    navigatorKey.currentState?.pop();
   }
 
   @override
@@ -81,7 +93,7 @@ class _BluetoothConnectScreen extends State<BluetoothConnectScreen> {
                 title: Text(device.platformName + " (" + device.remoteId.toString() + ")"
                   ,style: TextStyle(fontSize: 15,color: Color.fromARGB(255, 4, 6, 4)),),
                 trailing: TextButton(
-                  onPressed: () => connectDevice(device),
+                  onPressed: () => connectDevice(context, device),
                   child: const Text("Connect"),
                 ),
               ),
@@ -92,5 +104,6 @@ class _BluetoothConnectScreen extends State<BluetoothConnectScreen> {
     );
   }
 }
+
 
 

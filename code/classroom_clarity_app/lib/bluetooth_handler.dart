@@ -30,14 +30,17 @@ class BLEHandler {
         // Accessing the deviceScreenHandler here is a little awkward, but it gets the job done
         // Equivalent to disconnectDevice in homepage.dart
         disconnect(); // Cancel subscription streams
-        setState(); // Update UI
+        setState(() {}); // Update UI when device disconnects
       }
     });
 
     connectedDevice = device;
-    setState();
+    print("Connected Device: $connectedDevice");
 
     services = await device.discoverServices();
+    print("Discovered Services: $services");
+
+    //setState(() {}); // Update UI when device disconnects
 
   }
 

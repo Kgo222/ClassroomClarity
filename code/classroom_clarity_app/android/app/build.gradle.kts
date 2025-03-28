@@ -9,7 +9,7 @@ android {
     namespace ="com.pauldemarco.flutter_blue"
     namespace = "com.example.classroom_clarity_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"//flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

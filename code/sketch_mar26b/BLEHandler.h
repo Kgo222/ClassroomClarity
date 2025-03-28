@@ -10,7 +10,6 @@
 
 #include <Arduino.h>
 
-#include "ScreenHandler.h"
 #define SERVICE_UUID        "0000ffe0-0000-1000-8000-00805f9b34fb"
 #define CHARACTERISTIC_UUID_Q "1afd084a-db39-4805-9075-4cde8b10d07a"
 #define CHARACTERISTIC_UUID_R "0b9e8c81-39d7-4b86-8d34-4c192b6e3926"
@@ -21,7 +20,8 @@
 class BLEHandler {
   private:
     BLEServer* pServer = NULL;
-    BLECharacteristic* pCharacteristic = NULL;
+    BLECharacteristic* pCharacteristicR = NULL;
+    BLECharacteristic* pCharacteristicQ = NULL;
     BLEAdvertising *pAdvertising = NULL;
     
     bool deviceConnected = false;
@@ -86,11 +86,14 @@ class BLEHandler {
       return dataReceived;
     }
     
-    void notify(std::string s) {
-      pCharacteristic->setValue(s.c_str());
-      pCharacteristic->notify();
+    void notifyR(std::string s) {
+      pCharacteristicR->setValue(s.c_str());
+      pCharacteristicR->notify();
     }
-
+    void notifyQ(std::string s) {
+      pCharacteristicQ->setValue(s.c_str());
+      pCharacteristicQ->notify();
+    }
     void init() {      
       // Create device
       BLEDevice::init(DEVICE_NAME);
@@ -102,17 +105,27 @@ class BLEHandler {
       // Create service
       BLEService *pService = pServer->createService(SERVICE_UUID);
     
-      pCharacteristic = pService->createCharacteristic(
+      pCharacteristicQ = pService->createCharacteristic(
                                  CHARACTERISTIC_UUID_R,
                                  BLECharacteristic::PROPERTY_READ |
                                  BLECharacteristic::PROPERTY_WRITE |
                                  BLECharacteristic::PROPERTY_NOTIFY |
                                  BLECharacteristic::PROPERTY_INDICATE
                                );
-      pCharacteristic->setCallbacks(new CharacteristicCallbacks(*this));
+      pCharacteristicQ->setCallbacks(new CharacteristicCallbacks(*this));
+
+      pCharacteristicR = pService->createCharacteristic(
+                                 CHARACTERISTIC_UUID_Q,
+                                 BLECharacteristic::PROPERTY_READ |
+                                 BLECharacteristic::PROPERTY_WRITE |
+                                 BLECharacteristic::PROPERTY_NOTIFY |
+                                 BLECharacteristic::PROPERTY_INDICATE
+                               );
+      pCharacteristicR->setCallbacks(new CharacteristicCallbacks(*this));
 
       // Create a BLE Descriptor
-      pCharacteristic->addDescriptor(new BLE2902());
+      pCharacteristicQ->addDescriptor(new BLE2902());
+      pCharacteristicR->addDescriptor(new BLE2902());
   
       pService->start();
       
