@@ -4,6 +4,7 @@ import 'theme.dart';
 import 'globals.dart';
 import 'buttons.dart';
 import 'login.dart';
+import 'bluetooth_handler.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -14,8 +15,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
-  final TextEditingController _controller = TextEditingController();
-  String _submittedText = ''; // Variable to hold submitted text
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); //for the text submission box
+  final TextEditingController _controller = TextEditingController(); //for the text submission box
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           leading:null,
           automaticallyImplyLeading: false,
         ),
-        body: Center(
+        body: SingleChildScrollView(
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
@@ -150,42 +151,74 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: EdgeInsets.all(30.0),
-                    child: TextField(
-                      keyboardType: TextInputType.multiline,
-                      style: TextStyle(color: Colors.black), // Set the text color to black
-                      minLines: 6, // Makes a larger textbox
-                      maxLines: 10, // When user presses enter it will adapt to it
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColors.denim, width:4)
+                    child: Form(
+                      key: _formKey, //attach form key
+                      child: TextFormField(
+                        controller: _controller,
+                        //attaches the controller
+                        style: TextStyle(color: Colors.black),
+                        // Set the text color to black
+                        minLines: 5, // Makes a larger textbox
+                        maxLines: 7, // When user presses enter it will adapt to it
+                        obscureText: false,
+                        decoration: const InputDecoration(
+                            hintText: 'Type your Question Here',
+                            hintStyle: TextStyle(color: AppColors.denim),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.denim, width:4)
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: AppColors.denim, width: 4), // Border color when focused
+                            ),
+                            filled: true,
+                            fillColor: AppColors.blueGrey,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.denim, width: 4), // Border color when focused
-                        ),
-                        label: Text.rich(
-                          TextSpan(
-                              text: 'Ask your Question Here:',
-                              style: TextStyle(color:AppColors.black)
-                          ),
-                        ),
-                        filled: true,
-                        fillColor: AppColors.grey,
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a Question';
+                          }
+                          return null;
+                        },
                       ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        //Validate form
+                        if (_formKey.currentState!.validate()) {
+                          // save name from the controller
+                          setState(() {
+                            question = _controller.text; // Save the entered name
+                          });
+                          print("Question: $question"); //Debug Purposes
+                          bleHandler.bluetoothWriteQ(question);
+                          _controller.clear(); //Reset TextField
+                        }
+                      },
+                      child: const Text('Submit'),
                     ),
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children:[
+                        //SIGN OUT BUTTON
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.yellow1,
+                            backgroundColor: AppColors.dullPink,
                             alignment: Alignment.center,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                           onPressed:(){
+                            //Reset variables
+                            name = 'Student';
+                            question = "";
+                            engagementLevel = 10;
+                            bleHandler.disconnect();
+                            //Go back to login page
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {

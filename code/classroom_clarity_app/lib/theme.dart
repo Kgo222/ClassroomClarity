@@ -11,11 +11,13 @@ class AppColors {
   //LOGO colors
   static const Color snow = Color(0xFFFCF7F8);
   static const Color grey = Color(0xFFCED3DC);
+  static const Color blueGrey = Color(0xfff1f4fd);
   static const Color dullPurple = Color(0xFFABA9C3);
   static const Color denim = Color(0xFF275DAD);
   static const Color lightBlue = Color(0xFF7e9dcc);
   static const Color darkGrey = Color(0xFF5B616A);
-  static const Color darkRed = Color(0xFF64113F);
+  static const Color darkRed = Color(0xB564113F);
+  static const Color dullPink = Color(0xB5DF93BF);
 
   //extras
   static const Color white = Color(0xFFFFFFFF);

@@ -11,8 +11,6 @@ bool silent_mode = false;
 
 //other data
 String name = 'Student';
-String hub = "";
-bool connected = false;
 
 //Sent Data
 String question = "";

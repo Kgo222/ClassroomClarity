@@ -20,6 +20,8 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text("Login"),
         backgroundColor: AppColors.denim,
+        leading:null, //Remove back arrow
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(

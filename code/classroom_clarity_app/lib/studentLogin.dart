@@ -76,6 +76,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                   style: TextStyle(color: AppColors.black, fontSize: 45),
                 )
             ),
+            //GET STUDENT NAME
             if(name == "Student")...[
               Padding(
                 padding: EdgeInsets.all(30.0),
@@ -119,6 +120,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                 ),
               ),
             ], //if statement
+            // CONNECT TO HUB
             if(name != "Student" && bleHandler.connectedDevice == null)...[
               Container(
                 alignment: Alignment.center,
@@ -132,6 +134,13 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(left:20),
                 child:ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.lightBlue,
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
                   onPressed: connectDevicePrompt,
                   child: Text(
                     "Connect",
@@ -139,64 +148,58 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                   ),
                 ),
               ),
-              Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(left:20),
-                child:ElevatedButton(
-                  onPressed:() {
-                    print("Connected Device: ${bleHandler.connectedDevice}");
-                  },
-                  child: Text(
-                    "Debug Test",
-                    style: TextStyle(fontSize: 28,color: AppColors.black),
-                  ),
-                ),
-              ),
-            ],
+            ], //end of if statement
             if(name != "Student" && bleHandler.connectedDevice != null)...[
               Padding(
                   padding: EdgeInsets.only(top: 25),
                   child: Text(
-                    'Press Continue to Enter $hub Hub or Disconnect',
+                    'Press Continue to Enter ${bleHandler.connectedDevice!.name} Hub or Disconnect',
                     textAlign: TextAlign.center,
                     softWrap: true,
-                    style: TextStyle(color: AppColors.black, fontSize: 45),
+                    style: TextStyle(color: AppColors.black, fontSize: 25),
                   )
               ),
-
-              //TEMPORARY to access next screen
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.yellow1,
-                  alignment: Alignment.center,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
+              Padding(
+                padding: EdgeInsets.only(top: 25),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.denim,
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
                   ),
-                ),
-                onPressed:(){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return const HomePage(title: Constants.appName);
-                    }),
-                  );
-                },
-                child: const Text(
+                  onPressed:(){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const HomePage(title: Constants.appName);
+                        }),
+                    );
+                  },
+                  child: const Text(
                     "CONTINUE",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.black, fontSize:15)
-                ),
+                    style: TextStyle(color: AppColors.black, fontSize:20)
+                    ),
+                  ),
               ),
-
               Container(
                 alignment: Alignment.center,
-                margin: const EdgeInsets.only(left:20),
+                //margin: const EdgeInsets.only(left:20),
                 // Change button text when clicked.
                 child:ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.lightBlue,
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
                   onPressed: disconnectDevice,
                   child: Text(
-                    "Disconnect: ${bleHandler.connectedDevice!.name}",
-                    style: const TextStyle(fontSize: 15,color: AppColors.black),
+                    "Disconnect",
+                    style: const TextStyle(fontSize: 20,color: AppColors.black),
                   ),
                 ),
               ),

@@ -67,13 +67,34 @@ class BLEHandler {
     }
   }*/
 
-  void bluetoothWrite(direction) async {
+  void bluetoothWriteQ(question) async {
+    for (BluetoothService service in services) {
+      for (BluetoothCharacteristic characteristic in service.characteristics) {
+        if (characteristic.uuid.toString() == Constants.question_uuid) {
+          // Format data
+          String data = question + "%";
+          print("Sending Data $data"); //For debug purposes only
+          if (Platform.isAndroid)
+          {
+            await characteristic.write(utf8.encode(data), withoutResponse: true);
+          }
+          else if (Platform.isIOS)
+          {
+            await characteristic.write(utf8.encode(data));
+          }
+          return;
+        }
+      }
+    }
+  }
+
+  void bluetoothWriteR(rating) async {
     for (BluetoothService service in services) {
       for (BluetoothCharacteristic characteristic in service.characteristics) {
         if (characteristic.uuid.toString() == Constants.rating_uuid) {
           // Format data
-          String data = direction + "%";
-          print(data); //For debug purposes only
+          String data = rating + "%";
+          print("Sending Data $data"); //For debug purposes only
           if (Platform.isAndroid)
           {
             await characteristic.write(utf8.encode(data), withoutResponse: true);
