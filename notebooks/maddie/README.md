@@ -50,7 +50,8 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 #### Changes for Next PCB Version
 - 5V on the rotary encoder circuit needs to become 3.3V
 - Change some GPIOs for the screen
-- Fix button footprint 
+- Fix button footprint
+- Remove extra 0.1uF cap on button debounce → unnecessary complexity
 
 
 ## Team Meeting Notes
