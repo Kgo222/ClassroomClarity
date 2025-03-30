@@ -39,6 +39,20 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - tranfered prototype file from Kait to my laptop
 - watched some fusion tutorials
 
+### 3/26/2025: PCB soldering 
+- used reflow oven to solder surfacemount parts and microcontroller chip
+
+### 3/30/2025: PCB soldering & Testing 
+- soldered through hole components
+- programmed microcontroller with breadboard demo test code
+- ensured function and measured some important signals 
+
+#### Changes for Next PCB Version
+- 5V on the rotary encoder circuit needs to become 3.3V
+- Change some GPIOs for the screen
+- Fix button footprint 
+
+
 ## Team Meeting Notes
 
 ### 2/12/2025 Team meeting 
