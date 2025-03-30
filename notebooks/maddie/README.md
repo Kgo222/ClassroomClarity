@@ -52,7 +52,6 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - Change some GPIOs for the screen
 - Fix button footprint
 - Remove extra 0.1uF cap on button debounce → unnecessary complexity
-- Can make the rotary encoder caps just 1uF too
 
 
 ## Team Meeting Notes
