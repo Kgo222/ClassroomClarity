@@ -55,6 +55,21 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - pull up clear button to be consistent with programming buttons
 - change clear button cap to 1uF
 
+### 3/31/2025 PCB Debugging
+- Barrel jack is not providing the correct input voltage 
+- used multimeter to check voltage at various test points on pcb
+      - DC DC converter is not recieving power
+- Used a spare barrel jack to test AC adapter away from PCB --> functioned correctly
+- Placed this new barrel jack onto pcb --> back to incorrect function
+      - conclusion is that there is a wiring issue on the board
+- Checked resistance to ground for different points
+      - checked resistance btwn 3v3 and gnd test points --> in the mega ohms (good)
+      - checked resistance between Vo and gnd pins on the DC DC converter itself --> in the kilo ohms (bad -should match test points)
+      - checked resistance btwn grounds --> 1.5 mega ohms (bad - should be almost zero)
+      - conclusion --> bad connection on DC DC converter ground pin
+      - solution --> resoldered pin to pad
+      - outcome --> Power management subsystem now functions
+
 
 ## Team Meeting Notes
 
