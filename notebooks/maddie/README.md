@@ -52,6 +52,7 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - Change some GPIOs for the screen
 - Fix button footprint
 - Remove extra 0.1uF cap on button debounce → unnecessary complexity
+- pull up clear button to be consistent with programming buttons 
 
 
 ## Team Meeting Notes
