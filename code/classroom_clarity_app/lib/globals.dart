@@ -14,5 +14,6 @@ String name = 'Student';
 
 //Sent Data
 String question = "";
-int engagementLevel = 5;
+int curr_engagementLevel = 5;
+int prev_engagementLevel = 5;
 

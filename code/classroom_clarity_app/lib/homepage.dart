@@ -40,55 +40,65 @@ class _HomePageState extends State<HomePage> {
                           EngagementButton(
                             level: 1,
                             color: AppColors.red1,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 1,
+                            isSelected: curr_engagementLevel == 1,
                             onPressed: () {
                               setState(() {
-                                engagementLevel = 1;
+                                prev_engagementLevel = curr_engagementLevel;
+                                curr_engagementLevel = 1;
                               });
+                              bleHandler.bluetoothWriteR(prev_engagementLevel, curr_engagementLevel);
                             },
                           ),
                           //ENGAGEMENT BUTTON 2
                           EngagementButton(
                             level: 2,
                             color: AppColors.red2,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 2,
+                            isSelected: curr_engagementLevel == 2,
                             onPressed: () {
                               setState(() {
-                                engagementLevel = 2;
+                                prev_engagementLevel = curr_engagementLevel;
+                                curr_engagementLevel = 2;
                               });
+                              bleHandler.bluetoothWriteR(prev_engagementLevel, curr_engagementLevel);
                             },
                           ),
                           //ENGAGEMENT BUTTON 3
                           EngagementButton(
                             level: 3,
                             color: AppColors.yellow1,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 3,
+                            isSelected: curr_engagementLevel == 3,
                             onPressed: () {
                               setState(() {
-                                engagementLevel = 3;
+                                prev_engagementLevel = curr_engagementLevel;
+                                curr_engagementLevel = 3;
                               });
+                              bleHandler.bluetoothWriteR(prev_engagementLevel, curr_engagementLevel);
                             },
                           ),
                           //ENGAGEMENT BUTTON 4
                           EngagementButton(
                             level: 4,
                             color: AppColors.green1,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 4,
+                            isSelected: curr_engagementLevel == 4,
                             onPressed: () {
                               setState(() {
-                                engagementLevel = 4;
+                                prev_engagementLevel = curr_engagementLevel;
+                                curr_engagementLevel = 4;
                               });
+                              bleHandler.bluetoothWriteR(prev_engagementLevel, curr_engagementLevel);
                             },
                           ),
                           //ENGAGEMENT BUTTON 5
                           EngagementButton(
                             level: 5,
                             color: AppColors.green2,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 5,
+                            isSelected: curr_engagementLevel == 5,
                             onPressed: () {
                               setState(() {
-                                engagementLevel = 5;
+                                prev_engagementLevel = curr_engagementLevel;
+                                curr_engagementLevel = 5;
                               });
+                              bleHandler.bluetoothWriteR(prev_engagementLevel, curr_engagementLevel);
                             },
                           ),
                         ] // Engagement Row Children
@@ -161,7 +171,9 @@ class _HomePageState extends State<HomePage> {
                             //Reset variables
                             name = 'Student';
                             question = "";
-                            engagementLevel = 10;
+                            bleHandler.bluetoothWriteR(curr_engagementLevel, -1); // When sign out we want to remove their rating from the avg, -1 is the indicator of sign out
+                            curr_engagementLevel = 10;
+                            prev_engagementLevel = 10;
                             bleHandler.disconnect();
                             //Go back to login page
                             Navigator.push(
