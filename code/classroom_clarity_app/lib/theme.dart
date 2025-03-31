@@ -26,14 +26,9 @@ class AppColors {
   // RYG Gradient
   static const Color red1 = Color(0xfff48474);
   static const Color red2 = Color(0xfffb957c);
-  static const Color red3 = Color(0xfffcb382);
-  static const Color red4 = Color(0xfffcc784);
   static const Color yellow1 = Color(0xfff4e586);
-  static const Color yellow2 = Color(0xffdfee79);
-  static const Color yellow3 = Color(0xffccec6d);
   static const Color green1 = Color(0xffaef35b);
-  static const Color green2 = Color(0xff9cf44c);
-  static const Color green3 = Color(0xff8df347);
+  static const Color green2 = Color(0xff8df347);
 
 }
 

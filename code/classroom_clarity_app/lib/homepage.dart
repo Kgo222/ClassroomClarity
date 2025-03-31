@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                           //ENGAGEMENT BUTTON 3
                           EngagementButton(
                             level: 3,
-                            color: AppColors.red3,  // Assign specific color from AppColors
+                            color: AppColors.yellow1,  // Assign specific color from AppColors
                             isSelected: engagementLevel == 3,
                             onPressed: () {
                               setState(() {
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                           //ENGAGEMENT BUTTON 4
                           EngagementButton(
                             level: 4,
-                            color: AppColors.red4,  // Assign specific color from AppColors
+                            color: AppColors.green1,  // Assign specific color from AppColors
                             isSelected: engagementLevel == 4,
                             onPressed: () {
                               setState(() {
@@ -83,66 +83,11 @@ class _HomePageState extends State<HomePage> {
                           //ENGAGEMENT BUTTON 5
                           EngagementButton(
                             level: 5,
-                            color: AppColors.yellow1,  // Assign specific color from AppColors
+                            color: AppColors.green2,  // Assign specific color from AppColors
                             isSelected: engagementLevel == 5,
                             onPressed: () {
                               setState(() {
                                 engagementLevel = 5;
-                              });
-                            },
-                          ),
-                          //ENGAGEMENT BUTTON 6
-                          EngagementButton(
-                            level: 6,
-                            color: AppColors.yellow2,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 6,
-                            onPressed: () {
-                              setState(() {
-                                engagementLevel = 6;
-                              });
-                            },
-                          ),
-                          //ENGAGEMENT BUTTON 7
-                          EngagementButton(
-                            level: 7,
-                            color: AppColors.yellow3,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 7,
-                            onPressed: () {
-                              setState(() {
-                                engagementLevel = 7;
-                              });
-                            },
-                          ),
-                          //ENGAGEMENT BUTTON 8
-                          EngagementButton(
-                            level: 8,
-                            color: AppColors.green1,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 8,
-                            onPressed: () {
-                              setState(() {
-                                engagementLevel = 8;
-                              });
-                            },
-                          ),
-                          //ENGAGEMENT BUTTON 9
-                          EngagementButton(
-                            level: 9,
-                            color: AppColors.green2,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 9,
-                            onPressed: () {
-                              setState(() {
-                                engagementLevel = 9;
-                              });
-                            },
-                          ),
-                          //ENGAGEMENT BUTTON 10
-                          EngagementButton(
-                            level: 10,
-                            color: AppColors.green3,  // Assign specific color from AppColors
-                            isSelected: engagementLevel == 10,
-                            onPressed: () {
-                              setState(() {
-                                engagementLevel = 10;
                               });
                             },
                           ),
