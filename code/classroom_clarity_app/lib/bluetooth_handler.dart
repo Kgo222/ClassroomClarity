@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'constants.dart';
 import 'dart:io' show Platform;
-//import "package:flutter_blue/flutter_blue.dart";
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class BLEHandler {
@@ -44,29 +43,7 @@ class BLEHandler {
 
   }
 
-
-
-  /*void bluetoothWrite(motorNum, direction) async {
-    for (BluetoothService service in services) {
-      for (BluetoothCharacteristic characteristic in service.characteristics) {
-        if (characteristic.uuid.toString() == Constants.uuid) {
-          // Format data
-          String data = motorNum+ "|" + direction + "%";
-          print(data); //For debug purposes only
-          if (Platform.isAndroid)
-          {
-            await characteristic.write(utf8.encode(data), withoutResponse: true);
-          }
-          else if (Platform.isIOS)
-          {
-            await characteristic.write(utf8.encode(data));
-          }
-          return;
-        }
-      }
-    }
-  }*/
-
+  /*
   void bluetoothWriteQ(question) async {
     for (BluetoothService service in services) {
       for (BluetoothCharacteristic characteristic in service.characteristics) {
@@ -81,6 +58,32 @@ class BLEHandler {
           else if (Platform.isIOS)
           {
             await characteristic.write(utf8.encode(data));
+          }
+          return;
+        }
+      }
+    }
+  }
+   */
+  void bluetoothWriteQ(question) async {
+    for (BluetoothService service in services) {
+      for (BluetoothCharacteristic characteristic in service.characteristics) {
+        if (characteristic.uuid.toString() == Constants.question_uuid) {
+          // Format data
+          String data = question + "%";
+          print("Sending Data: $data"); //For debug purposes only
+          print("Characteristic Properties: ${characteristic.properties}"); // debug
+          try {
+            if(characteristic.properties.write){
+              await characteristic.write(utf8.encode(data));
+            } else if (characteristic.properties.writeWithoutResponse) {
+              // Use write without response if supported
+              await characteristic.write(utf8.encode(data), withoutResponse: true);
+            } else {
+              print("Error: Characteristic does not support writing.");
+            }
+          } catch (e) {
+            print("Write Error: $e");
           }
           return;
         }

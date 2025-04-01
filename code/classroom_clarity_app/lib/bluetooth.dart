@@ -5,6 +5,7 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart';
 import 'main.dart';
+import "bluetooth_handler.dart";
 
 // Bluetooth connection screen
 class BluetoothConnectScreen extends StatefulWidget {
