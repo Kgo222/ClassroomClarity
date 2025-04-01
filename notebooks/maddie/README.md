@@ -51,24 +51,34 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - 5V on the rotary encoder circuit needs to become 3.3V
 - Change some GPIOs for the screen
 - Fix button footprint
+- Fix test point footprint
 - Remove extra 0.1uF cap on button debounce → unnecessary complexity
 - pull up clear button to be consistent with programming buttons
 - change clear button cap to 1uF
 
 ### 3/31/2025 PCB Debugging
-- Barrel jack is not providing the correct input voltage 
-- used multimeter to check voltage at various test points on pcb
-      - DC DC converter is not recieving power
-- Used a spare barrel jack to test AC adapter away from PCB --> functioned correctly
-- Placed this new barrel jack onto pcb --> back to incorrect function
-      - conclusion is that there is a wiring issue on the board
-- Checked resistance to ground for different points
-      - checked resistance btwn 3v3 and gnd test points --> in the mega ohms (good)
-      - checked resistance between Vo and gnd pins on the DC DC converter itself --> in the kilo ohms (bad -should match test points)
-      - checked resistance btwn grounds --> 1.5 mega ohms (bad - should be almost zero)
-      - conclusion --> bad connection on DC DC converter ground pin
-      - solution --> resoldered pin to pad
-      - outcome --> Power management subsystem now functions
+####Power management system 
+- Problem: Barrel jack is not providing the correct input voltage
+      - Used multimeter to check voltage at various test points on pcb → DC DC converter not receiving power
+      - Used a spare barrel jack to test AC adapter  away from the pcb → functioned correctly (+5V)
+      - Placed new barrel jack onto pcb → back to incorrect function 
+            - Most likely a wiring issue on the board 
+      - Checked resistance to ground using multimeter for different points
+            -Between 3v3 test point and GND test point → in megaohms (good)
+            - Between Vo and GND pins of DC DC converter → in kiloohms (bad → should be same as test points)
+            - Between testpoint GND and GND pin → 1.5 megaohms (bad → should be almost zero) 
+            - Conclusion: bad connection between GND pin on DC DC converter and ground plane
+      - Resoldered pad → resistance issues fixed 
+
+- Problem: Barrel jack still is not providing correct input 
+      - Disconnected AC adapter and used DC power supply to provide +5V  by soldering wires to barrel jack pins 
+      - DC supply provides correct voltage 
+      - DC DC converter functioning properly 
+      - Conclusion → problem with AC adapter 
+
+- Problem: AC Adapter not Supplying Power 
+      - Hypothesis: current spike at plug in is triggering overcurrent protection 
+
 
 
 ## Team Meeting Notes
