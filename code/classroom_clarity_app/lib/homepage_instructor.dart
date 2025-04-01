@@ -49,6 +49,9 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                           _currentSliderVal = value;
                           font_size = value;
                         });
+                      },
+                      onChangeEnd: (double value){
+                        bleHandler.bluetoothWriteS(font_size, silent_mode);
                       }
                   ),
                   Row(
@@ -71,7 +74,8 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                               switchVal = value;
                               silent_mode = value;
                             });
-                          }
+                            bleHandler.bluetoothWriteS(font_size, silent_mode);
+                          },
                       )
                     ],
                   ),

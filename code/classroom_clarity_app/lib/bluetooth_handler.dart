@@ -94,6 +94,31 @@ class BLEHandler {
     }
   }
 
+  void bluetoothWriteS(fontSize, silentMode) async {
+    for (BluetoothService service in services) {
+      for (BluetoothCharacteristic characteristic in service.characteristics) {
+        if (characteristic.uuid.toString() == Constants.settings_uuid) {
+          // Format data
+          String data = fontSize.toString() + "/" + silentMode.toString() + "%";
+          print("Sending Data: $data"); //For debug purposes only
+          try {
+            if(characteristic.properties.write){// Normal write mode
+              await characteristic.write(utf8.encode(data));
+            } else if (characteristic.properties.writeWithoutResponse) { // no response write mode
+              // Use write without response if supported
+              await characteristic.write(utf8.encode(data), withoutResponse: true);
+            } else {
+              print("Error: Characteristic does not support writing.");
+            }
+          } catch (e) {
+            print("Write Error: $e");
+          }
+          return;
+        }
+      }
+    }
+  }
+
   void subscribeNotifications() async { //notify when something returns from arduino
     for (BluetoothService service in services) {
       for (BluetoothCharacteristic characteristic in service.characteristics) {

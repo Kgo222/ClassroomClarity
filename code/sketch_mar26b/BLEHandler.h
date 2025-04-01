@@ -13,12 +13,13 @@
 #define SERVICE_UUID        "0000ffe0-0000-1000-8000-00805f9b34fb"
 #define CHARACTERISTIC_UUID_Q "1afd084a-db39-4805-9075-4cde8b10d07a"
 #define CHARACTERISTIC_UUID_R "0b9e8c81-39d7-4b86-8d34-4c192b6e3926"
+#define CHARACTERISTIC_UUID_S "d909a0e1-c07e-44bf-9e71-53028482688d"
 
 #define DEVICE_NAME "Hub_1"
 //struct that holds recieved data as well as type of data it is (rating or question)
 struct DataReceived {
     std::string data;
-    std::string source; // "Q" or "R"
+    std::string source; // "Q" or "R" or "S"
 };
 
 // Entire class definition shouldn't really be in header file, but this is fine for now.
@@ -27,6 +28,7 @@ class BLEHandler {
     BLEServer* pServer = NULL;
     BLECharacteristic* pCharacteristicR = NULL;
     BLECharacteristic* pCharacteristicQ = NULL;
+    BLECharacteristic* pCharacteristicS = NULL;
     BLEAdvertising *pAdvertising = NULL;
     
     bool deviceConnected = false;
@@ -74,6 +76,8 @@ class BLEHandler {
             outer.dataReceived.source = "Q"; // It's from characteristic Q
         } else if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_R) {
             outer.dataReceived.source = "R"; // It's from characteristic R
+        } else if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_S) {
+            outer.dataReceived.source = "S"; // It's from characteristic s
         }
         outer.dataReceived.data = std::string(pCharacteristic->getValue().c_str());
         outer.dataAvailable = true;
@@ -102,6 +106,10 @@ class BLEHandler {
     void notifyQ(std::string s) {
       pCharacteristicQ->setValue(s.c_str());
       pCharacteristicQ->notify();
+    }
+    void notifyS(std::string s) {
+      pCharacteristicS->setValue(s.c_str());
+      pCharacteristicS->notify();
     }
     void init() {      
       // Create device
@@ -132,9 +140,19 @@ class BLEHandler {
                                );
       pCharacteristicR->setCallbacks(new CharacteristicCallbacks(*this));
 
+      pCharacteristicS = pService->createCharacteristic(
+                                 CHARACTERISTIC_UUID_S,
+                                 BLECharacteristic::PROPERTY_READ |
+                                 BLECharacteristic::PROPERTY_WRITE |
+                                 BLECharacteristic::PROPERTY_NOTIFY |
+                                 BLECharacteristic::PROPERTY_INDICATE
+                               );
+      pCharacteristicS->setCallbacks(new CharacteristicCallbacks(*this));
+
       // Create a BLE Descriptor
       pCharacteristicQ->addDescriptor(new BLE2902());
       pCharacteristicR->addDescriptor(new BLE2902());
+      pCharacteristicS->addDescriptor(new BLE2902());
   
       pService->start();
       
