@@ -15,6 +15,8 @@ void loop() {
     DataReceived data = ble.getData();
     Serial.print("Received Data: ");
     Serial.println(data.data.c_str());
+    Serial.print("Type of Received Data: ");
+    Serial.println(data.source.c_str());
   }
 
 }

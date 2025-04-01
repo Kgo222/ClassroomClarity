@@ -43,7 +43,6 @@ class BLEHandler {
 
   }
 
-  /*
   void bluetoothWriteQ(question) async {
     for (BluetoothService service in services) {
       for (BluetoothCharacteristic characteristic in service.characteristics) {
@@ -51,32 +50,11 @@ class BLEHandler {
           // Format data
           String data = question + "%";
           print("Sending Data: $data"); //For debug purposes only
-          if (Platform.isAndroid)
-          {
-            await characteristic.write(utf8.encode(data), withoutResponse: true);
-          }
-          else if (Platform.isIOS)
-          {
-            await characteristic.write(utf8.encode(data));
-          }
-          return;
-        }
-      }
-    }
-  }
-   */
-  void bluetoothWriteQ(question) async {
-    for (BluetoothService service in services) {
-      for (BluetoothCharacteristic characteristic in service.characteristics) {
-        if (characteristic.uuid.toString() == Constants.question_uuid) {
-          // Format data
-          String data = question + "%";
-          print("Sending Data: $data"); //For debug purposes only
-          print("Characteristic Properties: ${characteristic.properties}"); // debug
+          //print("Characteristic Properties: ${characteristic.properties}"); // debug
           try {
-            if(characteristic.properties.write){
+            if(characteristic.properties.write){// Normal write mode
               await characteristic.write(utf8.encode(data));
-            } else if (characteristic.properties.writeWithoutResponse) {
+            } else if (characteristic.properties.writeWithoutResponse) { // no response write mode
               // Use write without response if supported
               await characteristic.write(utf8.encode(data), withoutResponse: true);
             } else {
@@ -96,15 +74,19 @@ class BLEHandler {
       for (BluetoothCharacteristic characteristic in service.characteristics) {
         if (characteristic.uuid.toString() == Constants.rating_uuid) {
           // Format data
-          String data = prevRating + "/" + currRating + "%";
+          String data = prevRating.toString() + "/" + currRating.toString() + "%";
           print("Sending Data: $data"); //For debug purposes only
-          if (Platform.isAndroid)
-          {
-            await characteristic.write(utf8.encode(data), withoutResponse: true);
-          }
-          else if (Platform.isIOS)
-          {
-            await characteristic.write(utf8.encode(data));
+          try {
+            if(characteristic.properties.write){// Normal write mode
+              await characteristic.write(utf8.encode(data));
+            } else if (characteristic.properties.writeWithoutResponse) { // no response write mode
+              // Use write without response if supported
+              await characteristic.write(utf8.encode(data), withoutResponse: true);
+            } else {
+              print("Error: Characteristic does not support writing.");
+            }
+          } catch (e) {
+            print("Write Error: $e");
           }
           return;
         }
