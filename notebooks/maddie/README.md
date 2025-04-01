@@ -59,25 +59,25 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 ### 3/31/2025 PCB Debugging
 #### Power management system 
 - Problem: Barrel jack is not providing the correct input voltage
-      - Used multimeter to check voltage at various test points on pcb → DC DC converter not receiving power
-      - Used a spare barrel jack to test AC adapter  away from the pcb → functioned correctly (+5V)
-      - Placed new barrel jack onto pcb → back to incorrect function 
-            - Most likely a wiring issue on the board 
-      - Checked resistance to ground using multimeter for different points
-            -Between 3v3 test point and GND test point → in megaohms (good)
-            - Between Vo and GND pins of DC DC converter → in kiloohms (bad → should be same as test points)
-            - Between testpoint GND and GND pin → 1.5 megaohms (bad → should be almost zero) 
-            - Conclusion: bad connection between GND pin on DC DC converter and ground plane
-      - Resoldered pad → resistance issues fixed 
+    - Used multimeter to check voltage at various test points on pcb → DC DC converter not receiving power
+    - Used a spare barrel jack to test AC adapter  away from the pcb → functioned correctly (+5V)
+    - Placed new barrel jack onto pcb → back to incorrect function 
+        - Most likely a wiring issue on the board 
+    - Checked resistance to ground using multimeter for different points
+        -Between 3v3 test point and GND test point → in megaohms (good)
+        - Between Vo and GND pins of DC DC converter → in kiloohms (bad → should be same as test points)
+        - Between testpoint GND and GND pin → 1.5 megaohms (bad → should be almost zero) 
+        - Conclusion: bad connection between GND pin on DC DC converter and ground plane
+    - Resoldered pad → resistance issues fixed 
 
 - Problem: Barrel jack still is not providing correct input 
-      - Disconnected AC adapter and used DC power supply to provide +5V  by soldering wires to barrel jack pins 
-      - DC supply provides correct voltage 
-      - DC DC converter functioning properly 
-      - Conclusion → problem with AC adapter 
+    - Disconnected AC adapter and used DC power supply to provide +5V  by soldering wires to barrel jack pins
+    - DC supply provides correct voltage
+    - DC DC converter functioning properly
+    - Conclusion → problem with AC adapter 
 
 - Problem: AC Adapter not Supplying Power 
-      - Hypothesis: current spike at plug in is triggering overcurrent protection 
+    - Hypothesis: current spike at plug in is triggering overcurrent protection 
 
 
 
@@ -86,9 +86,9 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 ### 2/12/2025 Team meeting 
 - Completed team contract together
 - Discussed everyone's strengths and divided up tasks accordingly
-      - Maddie --> Power management and PCB design
-      - Jesse --> Control Signals
-      - Kait --> App Design
+    - Maddie --> Power management and PCB design
+    - Jesse --> Control Signals
+    - Kait --> App Design
 - Started project proposal
 
 ### 2/18/2025 Team meeting
@@ -101,7 +101,7 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 
 ### 3/4/2025 Team meeting 
 Discussed how the physical deisign of the hub casing should look. 
--Wanted to prioritize flexibility in user placement of the hub while also keeping portability in mind
+- Wanted to prioritize flexibility in user placement of the hub while also keeping portability in mind
 - Presented the idea of using an ipad case as a basis for the design
     - gives ability to change angle of the screen
     - allows to fold into a less intrusive size for transport
@@ -114,10 +114,10 @@ Discussed how the physical deisign of the hub casing should look.
 - Discussed buying an android phone for ease of debugging for app development and demo
     - decided to get the phone using our own money
 - Goals for the week we get back
-      -Kait - bluetooth
-      -Jesse - GPIO configurations
-      -Maddie - assemble and test PCB
-      -All - find headers and specific LED array
+    - Kait - bluetooth
+    - Jesse - GPIO configurations
+    - Maddie - assemble and test PCB
+    - All - find headers and specific LED array
 - Submitted order for microcontroller, resistors, and caps from the electronic services shop to TA
 - Submitted order for caps and resistors that we cant get from the sevices shop from digikey
 
