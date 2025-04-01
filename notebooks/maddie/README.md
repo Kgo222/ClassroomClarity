@@ -57,7 +57,7 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - change clear button cap to 1uF
 
 ### 3/31/2025 PCB Debugging
-####Power management system 
+#### Power management system 
 - Problem: Barrel jack is not providing the correct input voltage
       - Used multimeter to check voltage at various test points on pcb → DC DC converter not receiving power
       - Used a spare barrel jack to test AC adapter  away from the pcb → functioned correctly (+5V)
