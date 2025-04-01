@@ -134,3 +134,8 @@ Discussed how the physical deisign of the hub casing should look.
 - Figured out how to tranfer Fusion 360 file from Kait to me
 - Kait recieved pixel phone and is starting bluetooth configuration 
 
+### 4/1/2025 Team meeting
+- Tried to view current spike on oscilloscope --> current probe did not function
+- moved on to programming microcontroller
+- the microcontroller will program but a werid override issue is stopping us from using some pins
+- figuring out why IO and pins don't seem to be matching 
