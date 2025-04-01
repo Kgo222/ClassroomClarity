@@ -1,8 +1,11 @@
 #include <TFT_eSPI.h>  // Include TFT library
 #include <SPI.h>       // Include SPI library
 #include <vector>
+#include <string>
+
 //My classes
-#include <screenControl.h>
+#include "BLEHandler.h"
+#include "screenControl.h"
 
 TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define SCREEN_WIDTH  420
@@ -13,13 +16,18 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define ROT_A 33
 #define ROT_B 27
 #define LED_NOTIF 21
-
+//Settings
+int fontSize = 3      // Set screen font size
+bool silentMode = false; //set hub silent mode
+//Bluetooth 
+BLEHandler ble; //Create a bluetooth handler object 
+bool newData = false;
+//Encoder 
 int counter = 0; //Tracks encoders current position
 int prevCounter = 0;
 int aState;     //Tracks the current state of A
 int aLastState; //Tracks the previous state of A
 int bState;
-
 int cwCount = 0;
 int ccwCount = 0;
 
@@ -35,13 +43,13 @@ void setup() {
   tft.setRotation(1);  // Set screen rotation (0-3)
   tft.fillScreen(TFT_WHITE); // Clear screen
   tft.setTextColor(TFT_BLACK);  
-  tft.setTextSize(3);  
+  tft.setTextSize(fontSize);  
 
   pinMode(CLR_BUTTON_PIN, INPUT_PULLUP);    //Set clear button at input
   pinMode(ROT_A, INPUT);                  // Set encoder A pin as input
   pinMode(ROT_B, INPUT);                  //Set encoder B pin as input
   pinMode(LED_NOTIF,OUTPUT);              //Set LED at output
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.print("Basic Encoder Test:");
   //Set initial Conditionns
   aLastState = digitalRead(ROT_A);        //Get initial value of rot A pin
@@ -52,11 +60,49 @@ void setup() {
     drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
     digitalWrite(LED_NOTIF,HIGH);
   }
+  ble.init();
   
 }
 
 void loop() {
-    //CLEAR BUTTON
+  //BLUETOOTH DATA CHECK
+  if(ble.isDataAvailable()) {
+    DataReceived data = ble.getData();
+    Serial.print("Received Data: ");
+    Serial.println(data.data.c_str());
+    Serial.print("Type of Received Data: ");
+    Serial.println(data.source.c_str());
+    newData = true;
+  }
+  /*
+  if(!dataIn.equals("")){
+    if(dataIn.endsWith("%")){ // check it is full instruction
+        //Process incoming data
+         Serial.print("dataIn: ");
+         Serial.println(dataIn);
+         location = dataIn.indexOf("%");
+         direct = dataIn.substring(0,location);  //gets only direction from data
+         Serial.print("direction:");
+         Serial.println(direct);
+         if(direct.equals("manual")){mode = "manual";}
+         else if(direct.equals("auto")){mode = "auto";}
+         Serial.print("mode:");
+         Serial.println(mode);
+         //usedData = false;
+    } 
+  }*/
+  if(newData){
+    if(newData.source == "S"){ //check if it is a setting change: data = fontSize.toString() + "/" + silentMode.toString() + "%";
+      fontSize = data.data.substring(0,data.data.indexOf("/"));
+      silentMode = data.data.substring(data.data.indexOf("/")+1,data.data.indexOf("%"));
+      tft.setTextSize(3);
+    } else if(newData.source == "Q"){  //String data = question + "%";
+
+    } else if(newData.source == "R"){ //String data = prevRating.toString() + "/" + currRating.toString() + "%";
+
+    }
+  }
+  //CLEAR BUTTON
   int CLRbuttonState = digitalRead(CLR_BUTTON_PIN);  // Read the state of the button
   if (CLRbuttonState == LOW) {  // Button is pressed (because the internal pull-up resistor pulls it HIGH when not pressed)
       Serial.println("Button Pressed!");
@@ -163,7 +209,9 @@ void loop() {
       digitalWrite(LED_NOTIF,LOW); //LED OFF
     }
 
-    encoderChange = false; //reset variable 
+    //reset variables
+    newData = false;
+    encoderChange = false;  
     buttonPressed = false;
     if(cwCount >= 2 || ccwCount >= 2){
       cwCount = 0;
