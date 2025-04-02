@@ -30,8 +30,15 @@ int aLastState; //Tracks the previous state of A
 int bState;
 int cwCount = 0;
 int ccwCount = 0;
+//LED math
+float N = 1.0; //Tracks the total number of students in the class, e.g. 1 for demo
+int L = 15; //Tracks number of LED pairs that should be lit (range 0-15)
+int prevR = 0; //helper splice var
+int currR = 0;  //helper splice var
+int ratingSum = 0; //tracks the total student engagement level
+float averageRating = 0; //tracks the average student engagement level 
 
-std::vector<String> questions = {"Why is the voltage assumed to be 5V?", "How does the diode help rectify AC?", "Why do we use Fourier Transform in signal processing?"};  
+std::vector<String> questions = {};  
 int q_idx = 0;
 int next_idx = 0;
 bool encoderChange = false;
@@ -74,32 +81,20 @@ void loop() {
     Serial.println(data.source.c_str());
     newData = true;
   }
-  /*
-  if(!dataIn.equals("")){
-    if(dataIn.endsWith("%")){ // check it is full instruction
-        //Process incoming data
-         Serial.print("dataIn: ");
-         Serial.println(dataIn);
-         location = dataIn.indexOf("%");
-         direct = dataIn.substring(0,location);  //gets only direction from data
-         Serial.print("direction:");
-         Serial.println(direct);
-         if(direct.equals("manual")){mode = "manual";}
-         else if(direct.equals("auto")){mode = "auto";}
-         Serial.print("mode:");
-         Serial.println(mode);
-         //usedData = false;
-    } 
-  }*/
   if(newData){
     if(newData.source == "S"){ //check if it is a setting change: data = fontSize.toString() + "/" + silentMode.toString() + "%";
-      fontSize = data.data.substring(0,data.data.indexOf("/"));
-      silentMode = data.data.substring(data.data.indexOf("/")+1,data.data.indexOf("%"));
-      tft.setTextSize(3);
+      silentMode = data.data.substring(data.data.indexOf("/")+1,data.data.indexOf("%")); //update silent mode
+      fontSize = data.data.substring(0,data.data.indexOf("/")); //Update fontsize
+      tft.setTextSize(fontSize);
     } else if(newData.source == "Q"){  //String data = question + "%";
-
+      questions.append(data.data.substring(0,data.data.indexOf("%"))); // Add new question to the quesiton queue 
     } else if(newData.source == "R"){ //String data = prevRating.toString() + "/" + currRating.toString() + "%";
-
+      prevR = data.data.substring(0,data.data.indexOf("/"));
+      currR = data.data.substring(data.data.indexOf("/")+1,data.data.indexOf("%")); 
+      //LED ARRAY CALCULATIONS
+      ratingSum = (ratingSum - prevR) + currR;
+      avgRating = ratingSum/N; //Calculate the updated average rating
+      L = (int)((3*avgRating) + 0.5); //Calculate the amount of LED to light
     }
   }
   //CLEAR BUTTON
