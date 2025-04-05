@@ -6,9 +6,15 @@ void setup() {
   pinMode(LED_NOTIF,OUTPUT);              //Set LED at output
   Serial.begin(9600);
   digitalWrite(LED_NOTIF,HIGH);
+  Serial.println("LED ON");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  // Turn LED on and off every 1s
+  delay(1000);
+  digitalWrite(LED_NOTIF,LOW);
+  Serial.println("LED OFF");
+  delay(1000);
+  digitalWrite(LED_NOTIF,HIGH);
+  Serial.println("LED ON");
 }
