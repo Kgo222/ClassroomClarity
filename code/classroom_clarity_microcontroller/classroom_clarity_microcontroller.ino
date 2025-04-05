@@ -10,9 +10,9 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define TEXT_MARGIN 10
 
 #define CLR_BUTTON_PIN 16 //Clear button pin 
-#define ROT_A 33
+#define ROT_A 33 
 #define ROT_B 27
-#define LED_NOTIF 21
+#define LED_NOTIF 21 //
 
 int counter = 0; //Tracks encoders current position
 int prevCounter = 0;
