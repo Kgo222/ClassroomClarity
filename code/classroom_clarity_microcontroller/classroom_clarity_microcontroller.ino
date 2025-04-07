@@ -28,7 +28,7 @@ DataReceived dataReceived;
 int counter = 0; //Tracks encoders current position
 int prevCounter = 0;
 int aState;     //Tracks the current state of A
-int aLastState; //Tracks the previous state of A
+int bLastState; //Tracks the previous state of b
 int bState;
 int cwCount = 0;
 int ccwCount = 0;
@@ -63,7 +63,7 @@ void setup() {
   Serial.begin(115200);
   Serial.print("Basic Encoder Test:");
   //Set initial Conditionns
-  aLastState = digitalRead(ROT_A);        //Get initial value of rot A pin
+  bLastState = digitalRead(ROT_B);        //Get initial value of rot A pin
   if(questions.size() == 0){
     drawWrappedText("No Active Questions", TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
     digitalWrite(LED_NOTIF,LOW);
@@ -103,7 +103,6 @@ void loop() {
       } else{
         questions.push_back(dataReceived.data.substr(0,endQIdx)); // Just add new question to the quesiton queue 
       }
-      
     } else if(dataReceived.source == "R"){ //String data = prevRating.toString() + "/" + currRating.toString() + "%";
       int endprevIdx = dataReceived.data.find("/");
       int endcurrIdx = dataReceived.data.find("%");
@@ -113,6 +112,7 @@ void loop() {
       ratingSum = (ratingSum - prevR) + currR;
       avgRating = ratingSum/N; //Calculate the updated average rating
       L = (int)((3*avgRating) + 0.5); //Calculate the amount of LED to light
+      }
     }
   }
   //CLEAR BUTTON
@@ -122,114 +122,114 @@ void loop() {
       buttonPressed = true;
     } 
 
-    // ROTARY ENCORDER
-    aState = digitalRead(ROT_A); //Get current A state
-    bState = digitalRead(ROT_B);
-    if(aState != aLastState){ //Check if on rising edge
-      if(bState != aState){ //Clockwise Turn
-        prevCounter = counter;
-        counter++;
-        encoderChange = true;
-        cwCount++;
-      } else{ //CounterClockwise Turn
-        prevCounter = counter;
-        counter--;
-        encoderChange = true;
-        ccwCount++;
-      }
-      Serial.print("Encoder Position: ");
-      Serial.println(counter);
-      Serial.print("ccwCount: ");
-      Serial.println(ccwCount);
-      Serial.print("cwCount: ");
-      Serial.println(cwCount);
-
+  // ROTARY ENCORDER
+  aState = digitalRead(ROT_A); //Get current A state
+  bState = digitalRead(ROT_B);
+  if(bState != bLastState){ //Check if on rising edge
+    if(bState != aState){ //Clockwise Turn
+      prevCounter = counter;
+      counter++;
+      encoderChange = true;
+      cwCount++;
+    } else{ //CounterClockwise Turn
+      prevCounter = counter;
+      counter--;
+      encoderChange = true;
+      ccwCount++;
     }
-    aLastState = aState;
+    Serial.print("Encoder Position: ");
+    Serial.println(counter);
+    Serial.print("ccwCount: ");
+    Serial.println(ccwCount);
+    Serial.print("cwCount: ");
+    Serial.println(cwCount);
 
-    //QUESTION LOGIC
-    if(questions.size() != 0){ //check if question queue empty
-      if(encoderChange){
-        //if(counter < prevCounter){ //turned counterclockwise = go decrease index pos
-        if(ccwCount >= 2){ //turned in CCW dorection= go decrease index pos
-          next_idx = q_idx-1;
+  }
+  bLastState = bState;
+
+  //QUESTION LOGIC
+  if(questions.size() != 0){ //check if question queue empty
+    if(encoderChange){
+      //if(counter < prevCounter){ //turned counterclockwise = go decrease index pos
+      if(ccwCount >= 2){ //turned in CCW dorection= go decrease index pos
+        next_idx = q_idx-1;
+        if(next_idx >= 0 && next_idx < questions.size()){ //still without bounds 
+          tft.fillScreen(TFT_WHITE);
+          tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+          //tft.println(questions[next_idx]);
+          q_idx = next_idx;
+          drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
+        } else{ //loop back around to last index
+          tft.fillScreen(TFT_WHITE);
+          tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+          q_idx = questions.size()-1;
+          //tft.println(questions[q_idx]);
+          drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
+        }
+      }
+      //if(counter > prevCounter){ // turned clockwise = go increase index pos
+      else{
+        if(cwCount >=2){
+          next_idx = q_idx+1;
           if(next_idx >= 0 && next_idx < questions.size()){ //still without bounds 
             tft.fillScreen(TFT_WHITE);
             tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
             //tft.println(questions[next_idx]);
             q_idx = next_idx;
             drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
-          } else{ //loop back around to last index
+          } else{ //loop back around to 0 index
             tft.fillScreen(TFT_WHITE);
             tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
-            q_idx = questions.size()-1;
+            q_idx = 0;
             //tft.println(questions[q_idx]);
             drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
           }
         }
-        //if(counter > prevCounter){ // turned clockwise = go increase index pos
-        else{
-          if(cwCount >=2){
-            next_idx = q_idx+1;
-            if(next_idx >= 0 && next_idx < questions.size()){ //still without bounds 
-              tft.fillScreen(TFT_WHITE);
-              tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
-              //tft.println(questions[next_idx]);
-              q_idx = next_idx;
-              drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
-            } else{ //loop back around to 0 index
-              tft.fillScreen(TFT_WHITE);
-              tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
-              q_idx = 0;
-              //tft.println(questions[q_idx]);
-              drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
-            }
-          }
-        }
       }
-      if(buttonPressed){ //clear button was pressed
-        if(q_idx >=0 && q_idx <questions.size()){
-          questions.erase(questions.begin()+q_idx);
-          if(q_idx >=0 && q_idx <questions.size()){ // removed questions from middle of queue 
+    }
+    if(buttonPressed){ //clear button was pressed
+      if(q_idx >=0 && q_idx <questions.size()){
+        questions.erase(questions.begin()+q_idx);
+        if(q_idx >=0 && q_idx <questions.size()){ // removed questions from middle of queue 
+          tft.fillScreen(TFT_WHITE);
+          tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+          drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
+        }
+        else{
+          if(questions.size() == 0){ //removed all questions from queue
             tft.fillScreen(TFT_WHITE);
             tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
-            drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
+            drawWrappedText("No Active Questions", TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
           }
-          else{
-            if(questions.size() == 0){ //removed all questions from queue
+          else{ //removed last question in queue
+            q_idx--;
+            if(q_idx >=0 && q_idx <questions.size()){ 
               tft.fillScreen(TFT_WHITE);
               tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
-              drawWrappedText("No Active Questions", TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
-            }
-            else{ //removed last question in queue
-              q_idx--;
-              if(q_idx >=0 && q_idx <questions.size()){ 
-                tft.fillScreen(TFT_WHITE);
-                tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
-                drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
-              } 
-            }
+              drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
+            } 
           }
         }
       }
-    } 
+    }
+  } 
 
-    //NOTIFICATION SYSTEM
-    if(questions.size() > 0){
-      digitalWrite(LED_NOTIF, HIGH); //LED ON
-    }
-    else{
-      digitalWrite(LED_NOTIF,LOW); //LED OFF
-    }
+  //NOTIFICATION SYSTEM
+  if(questions.size() > 0){
+    digitalWrite(LED_NOTIF, HIGH); //LED ON
+  }
+  else{
+    digitalWrite(LED_NOTIF,LOW); //LED OFF
+  }
 
-    //reset variables
-    newData = false;
-    encoderChange = false;  
-    buttonPressed = false;
-    if(cwCount >= 2 || ccwCount >= 2){
-      cwCount = 0;
-      ccwCount = 0;
-    }
+  //reset variables
+  newData = false;
+  encoderChange = false;  
+  buttonPressed = false;
+  if(cwCount >= 2 || ccwCount >= 2){
+    cwCount = 0;
+    ccwCount = 0;
+  }
 }
 
 
