@@ -77,7 +77,14 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
     - Conclusion → problem with AC adapter 
 
 - Problem: AC Adapter not Supplying Power 
-    - Hypothesis: current spike at plug in is triggering overcurrent protection 
+    - Hypothesis: current spike at plug in is triggering overcurrent protection
+ 
+### 4/7/2025 PCB Testing and Debugging 
+- Attempted to add capacitor across input to fix adapter issue --> did not work
+    - Putting this to the side for now to focus on the rest of the board
+- Tested voltage across motor, seemed a bit off
+    - Programmed a test to have motor on for 30 seconds, off for 30s
+    - was successful, strange voltage was from floating pin in the code
 
 
 
@@ -139,3 +146,7 @@ Discussed how the physical deisign of the hub casing should look.
 - moved on to programming microcontroller
 - the microcontroller will program but a werid override issue is stopping us from using some pins
 - figuring out why IO and pins don't seem to be matching 
+
+### 4/7/2025 TA Meeting 
+- updated TA on overall progress
+- She says we are on time, if even a bit ahead of schedule
