@@ -4,7 +4,15 @@
 
 BLEHandler ble;
 
+int instructor_password;
+int student_password;
+
+String entered_password = "";
+
 void setup() {
+  //Set new access password
+  instructor_password = random(100000, 999999);  // Random 6 digit number
+  student_password = random(100000, 999999); // Random 6 digit number
   Serial.begin(115200); // Printing for debugging/logging
   ble.init();
 }

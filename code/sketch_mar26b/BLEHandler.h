@@ -11,15 +11,18 @@
 #include <Arduino.h>
 
 #define SERVICE_UUID        "0000ffe0-0000-1000-8000-00805f9b34fb"
-#define CHARACTERISTIC_UUID_Q "1afd084a-db39-4805-9075-4cde8b10d07a"
-#define CHARACTERISTIC_UUID_R "0b9e8c81-39d7-4b86-8d34-4c192b6e3926"
-#define CHARACTERISTIC_UUID_S "d909a0e1-c07e-44bf-9e71-53028482688d"
+#define CHARACTERISTIC_UUID_Q "1afd084a-db39-4805-9075-4cde8b10d07a" //unique question id
+#define CHARACTERISTIC_UUID_R "0b9e8c81-39d7-4b86-8d34-4c192b6e3926" //unique rating id
+#define CHARACTERISTIC_UUID_S "d909a0e1-c07e-44bf-9e71-53028482688d" // unique service id
+#define CHARACTERISTIC_UUID_PS "c583a5c9-2d3c-4beb-97ea-0996d7a97493" //unique student password id
+#define CHARACTERISTIC_UUID_PI "979d3306-99d7-4084-9e50-79e0eae765f7" //unique Instructor password id
 
 #define DEVICE_NAME "Hub_1"
+
 //struct that holds recieved data as well as type of data it is (rating or question)
 struct DataReceived {
     std::string data;
-    std::string source; // "Q" or "R" or "S"
+    std::string source; // "Q" or "R" or "S" or "PS" or "PI"
 };
 
 // Entire class definition shouldn't really be in header file, but this is fine for now.
@@ -29,12 +32,12 @@ class BLEHandler {
     BLECharacteristic* pCharacteristicR = NULL;
     BLECharacteristic* pCharacteristicQ = NULL;
     BLECharacteristic* pCharacteristicS = NULL;
+    BLECharacteristic* pCharacteristicPS = NULL; //student password
+    BLECharacteristic* pCharacteristicPI = NULL; //instructor password
     BLEAdvertising *pAdvertising = NULL;
     
     bool deviceConnected = false;
-
     bool dataAvailable = false; // Whether data is available
-    //std::string dataReceived; // Actual data that was recieved 
     DataReceived dataReceived; // Store both data and source received 
     
     void startAdvertising() {
@@ -77,7 +80,11 @@ class BLEHandler {
         } else if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_R) {
             outer.dataReceived.source = "R"; // It's from characteristic R
         } else if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_S) {
-            outer.dataReceived.source = "S"; // It's from characteristic s
+            outer.dataReceived.source = "S"; // It's from characteristic S
+        }else if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_PS) {
+            outer.dataReceived.source = "PS"; // It's from characteristic PS
+        }else if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_PI) {
+            outer.dataReceived.source = "PI"; // It's from characteristic PI
         }
         outer.dataReceived.data = std::string(pCharacteristic->getValue().c_str());
         outer.dataAvailable = true;
@@ -111,7 +118,15 @@ class BLEHandler {
       pCharacteristicS->setValue(s.c_str());
       pCharacteristicS->notify();
     }
-    void init() {      
+    void notifyPS(std::string s) {
+      pCharacteristicPS->setValue(s.c_str());
+      pCharacteristicPS->notify();
+    }
+    void notifyPI(std::string s) {
+      pCharacteristicPI->setValue(s.c_str());
+      pCharacteristicPI->notify();
+    }
+    void init(int student_password[6], int instructor_password[6]) {      
       // Create device
       BLEDevice::init(DEVICE_NAME);
 
@@ -122,6 +137,7 @@ class BLEHandler {
       // Create service
       BLEService *pService = pServer->createService(SERVICE_UUID);
     
+      //Q setup
       pCharacteristicQ = pService->createCharacteristic(
                                  CHARACTERISTIC_UUID_Q,
                                  BLECharacteristic::PROPERTY_READ |
@@ -130,7 +146,7 @@ class BLEHandler {
                                  BLECharacteristic::PROPERTY_INDICATE
                                );
       pCharacteristicQ->setCallbacks(new CharacteristicCallbacks(*this));
-
+      //R Setup
       pCharacteristicR = pService->createCharacteristic(
                                  CHARACTERISTIC_UUID_R,
                                  BLECharacteristic::PROPERTY_READ |
@@ -139,7 +155,7 @@ class BLEHandler {
                                  BLECharacteristic::PROPERTY_INDICATE
                                );
       pCharacteristicR->setCallbacks(new CharacteristicCallbacks(*this));
-
+      //S Setup
       pCharacteristicS = pService->createCharacteristic(
                                  CHARACTERISTIC_UUID_S,
                                  BLECharacteristic::PROPERTY_READ |
@@ -148,11 +164,32 @@ class BLEHandler {
                                  BLECharacteristic::PROPERTY_INDICATE
                                );
       pCharacteristicS->setCallbacks(new CharacteristicCallbacks(*this));
+      //PS Setup
+      pCharacteristicPS = pService->createCharacteristic(
+                                 CHARACTERISTIC_UUID_PS,
+                                 BLECharacteristic::PROPERTY_READ |
+                                 BLECharacteristic::PROPERTY_WRITE |
+                                 BLECharacteristic::PROPERTY_NOTIFY |
+                                 BLECharacteristic::PROPERTY_INDICATE
+                               );
+      pCharacteristicPS->setCallbacks(new CharacteristicCallbacks(*this));
+      //PI Setup
+      pCharacteristicPI = pService->createCharacteristic(
+                                 CHARACTERISTIC_UUID_PI,
+                                 BLECharacteristic::PROPERTY_READ |
+                                 BLECharacteristic::PROPERTY_WRITE |
+                                 BLECharacteristic::PROPERTY_NOTIFY |
+                                 BLECharacteristic::PROPERTY_INDICATE
+                               );
+      pCharacteristicPI->setCallbacks(new CharacteristicCallbacks(*this));
+      
 
       // Create a BLE Descriptor
       pCharacteristicQ->addDescriptor(new BLE2902());
       pCharacteristicR->addDescriptor(new BLE2902());
       pCharacteristicS->addDescriptor(new BLE2902());
+      pCharacteristicPS->addDescriptor(new BLE2902());
+      pCharacteristicPI->addDescriptor(new BLE2902());
   
       pService->start();
       
