@@ -11,6 +11,9 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 
 
 void setup() {
+  // Optional: manually initialize SPI if needed
+  SPI.begin(10, 9, 11, 14); // SCLK, MISO, MOSI, CS
+
   //Setup Start Screen 
   tft.init();          // Initialize TFT
   tft.setRotation(1);  // Set screen rotation (0-3)
