@@ -94,7 +94,7 @@ class BLEHandler {
       return dataAvailable;
     }
 
-      DataReceived getData() {
+    DataReceived getData() {
       dataAvailable = false;
       return dataReceived;
     }

@@ -1,6 +1,6 @@
 #include <TFT_eSPI.h>
 #define LINE_SPACING 4
-void drawWrappedText(String str, int x, int y, int maxWidth, TFT_eSPI* tft) {
+void drawWrappedText(std::string str, int x, int y, int maxWidth, TFT_eSPI* tft) {
   int cursorX = x;
   int cursorY = y;
   String word = ""; // Stores each word

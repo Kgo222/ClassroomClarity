@@ -17,11 +17,13 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define ROT_B 27
 #define LED_NOTIF 21
 //Settings
-int fontSize = 3      // Set screen font size
+int fontSize = 3;     // Set screen font size
 bool silentMode = false; //set hub silent mode
 //Bluetooth 
 BLEHandler ble; //Create a bluetooth handler object 
 bool newData = false;
+DataReceived dataReceived;
+
 //Encoder 
 int counter = 0; //Tracks encoders current position
 int prevCounter = 0;
@@ -30,15 +32,17 @@ int aLastState; //Tracks the previous state of A
 int bState;
 int cwCount = 0;
 int ccwCount = 0;
+
+
 //LED math
 float N = 1.0; //Tracks the total number of students in the class, e.g. 1 for demo
 int L = 15; //Tracks number of LED pairs that should be lit (range 0-15)
 int prevR = 0; //helper splice var
 int currR = 0;  //helper splice var
 int ratingSum = 0; //tracks the total student engagement level
-float averageRating = 0; //tracks the average student engagement level 
+float avgRating = 0; //tracks the average student engagement level 
 
-std::vector<String> questions = {};  
+std::vector<std::string> questions = {};  
 int q_idx = 0;
 int next_idx = 0;
 bool encoderChange = false;
@@ -74,23 +78,37 @@ void setup() {
 void loop() {
   //BLUETOOTH DATA CHECK
   if(ble.isDataAvailable()) {
-    DataReceived data = ble.getData();
+    dataReceived = ble.getData();
     Serial.print("Received Data: ");
-    Serial.println(data.data.c_str());
+    Serial.println(dataReceived.data.c_str());
     Serial.print("Type of Received Data: ");
-    Serial.println(data.source.c_str());
+    Serial.println(dataReceived.source.c_str());
     newData = true;
   }
   if(newData){
-    if(newData.source == "S"){ //check if it is a setting change: data = fontSize.toString() + "/" + silentMode.toString() + "%";
-      silentMode = data.data.substring(data.data.indexOf("/")+1,data.data.indexOf("%")); //update silent mode
-      fontSize = data.data.substring(0,data.data.indexOf("/")); //Update fontsize
+    if(dataReceived.source == "S"){ //check if it is a setting change: data = fontSize.toString() + "/" + silentMode.toString() + "%";
+      int endModeIdx = dataReceived.data.find("%");
+      int endSizeIdx = dataReceived.data.find("/");
+      silentMode = (std::stoi((dataReceived.data.substr(endSizeIdx+1,endModeIdx))) != 0 ); //update silent mode (steo convert to number then != does bool)
+      fontSize = std::stoi(dataReceived.data.substr(0,endSizeIdx)); //Update fontsize (stoi converts string number to integer number)
       tft.setTextSize(fontSize);
-    } else if(newData.source == "Q"){  //String data = question + "%";
-      questions.append(data.data.substring(0,data.data.indexOf("%"))); // Add new question to the quesiton queue 
-    } else if(newData.source == "R"){ //String data = prevRating.toString() + "/" + currRating.toString() + "%";
-      prevR = data.data.substring(0,data.data.indexOf("/"));
-      currR = data.data.substring(data.data.indexOf("/")+1,data.data.indexOf("%")); 
+    } else if(dataReceived.source == "Q"){  //String data = question + "%";
+      int endQIdx = dataReceived.data.find("%");
+      if(questions.size() == 0){
+        questions.push_back(dataReceived.data.substr(0,endQIdx)); // Add new question to the quesiton queue 
+        tft.fillScreen(TFT_WHITE);
+        tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+        q_idx = 0;
+        drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft); // print to screen
+      } else{
+        questions.push_back(dataReceived.data.substr(0,endQIdx)); // Just add new question to the quesiton queue 
+      }
+      
+    } else if(dataReceived.source == "R"){ //String data = prevRating.toString() + "/" + currRating.toString() + "%";
+      int endprevIdx = dataReceived.data.find("/");
+      int endcurrIdx = dataReceived.data.find("%");
+      prevR = std::stoi(dataReceived.data.substr(0,endprevIdx));
+      currR = std::stoi(dataReceived.data.substr(endprevIdx + 1,endcurrIdx)); 
       //LED ARRAY CALCULATIONS
       ratingSum = (ratingSum - prevR) + currR;
       avgRating = ratingSum/N; //Calculate the updated average rating
