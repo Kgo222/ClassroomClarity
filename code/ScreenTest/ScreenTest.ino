@@ -20,6 +20,7 @@ void setup() {
 
   Serial.begin(9600);
   //Set initial Conditionns
+  tft.setCursor(0, 0);
   tft.print("WE DID IT!!!");
   
 }
@@ -28,6 +29,7 @@ void loop() {
     //CLEAR BUTTON
     delay(1000); // wait 1 second
     tft.fillScreen(TFT_WHITE); // Clear screen
+    tft.setCursor(0, 0);
     tft.print("WE DID IT!!!");
   
 }

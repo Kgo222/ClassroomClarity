@@ -15,14 +15,17 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define MOTOR 7
 
 void setup() {
-  pinMode(MOTOR, INPUT_PULLUP);    //Set clear button at input
+  pinMode(MOTOR, OUTPUT);    //Set clear button at input
   Serial.begin(9600);
   digitalWrite(LED_NOTIF,LOW);
   
 }
 
 void loop() {
-    //CLEAR BUTTON
+    digitalWrite(MOTOR,HIGH);
+    delay(30000) //wait 30s
+    digitalWrite(MOTOR,LOW);
+    delay(30000) //wait 30s
 }
 
 
