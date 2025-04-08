@@ -19,10 +19,23 @@
 - Determined procedure for processing class understanding data for LED arrays
 ## 4/1/2025
 - Began testing microcontroller on PCB V1
-- - Communicated with the chip using the programmer successfully
+  - Communicated with the chip using the programmer successfully
   - Failed running the Breadboard Demo code
-- Issue to be resolved: can't drive GPIOs
-
+- Issue: can't drive GPIOs
+## 4/5/2025
+- Resolved GPIO driving
+  - Cause: microcontroller was not taken out of programming mode
+  - Solution: press the enable button after code is done uploading
+- Continued testing microcontroller on PCB V1
+  - Used a blink program to confirm ability to drive GPIO outputs
+    - Tested GPIO3: indicator LED  
+  - Used a new program to confirm ability to read GPIO inputs
+    - Tested GPIO6: clear button
+ - Issue: Screen will not display, disables GPIOs when Breadboard Demo code is attempted
+## 4/7/2025
+- Resolved screen display and GPIO disabling
+  - Cause: apparent continuous screen reset bug in Espressif Arduino firmware
+  - Solution: #define USE_HSPI_PORT   in User_Setup.h  
 # Team Meetings
 ## Team Meeting 2/12/2025
 - Worked on team contract and proposal
@@ -38,4 +51,4 @@
 - Discussed physical design of the hub
 ## Team Meeting 3/11/2025
 - Set tasks to be achieved over spring break
-- - I will be determining the GPIO configurations
+  - I will be determining the GPIO configurations
