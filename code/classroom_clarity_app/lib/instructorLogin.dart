@@ -13,6 +13,9 @@ class InstructorLoginPage extends StatefulWidget {
   State<InstructorLoginPage> createState() => _InstructorLoginPageState();
 }
 class _InstructorLoginPageState extends State<InstructorLoginPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); //for the text submission box
+  final TextEditingController _controller = TextEditingController(); //for the text submission box
+
   //Bluetooth Methods
   void connectDevicePrompt() {
     // Show prompt for connecting a device
@@ -31,7 +34,10 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
       },
     ).then((_) {
       // After closing the modal, check if the device is connected and update the UI.
-      setState(() {});
+      if(bleHandler.connectedDevice != null){
+        connectionText = "Enter Instructor Password for ${bleHandler.connectedDevice!.name}";
+        setState(() {});
+      }
     });
   }
   void disconnectDevice() {
@@ -87,7 +93,50 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                 ),
               ),
             ], //end of if statement
-            if(bleHandler.connectedDevice != null)...[
+            if(bleHandler.connectedDevice != null && instructorAuthenticated == false)...[ //Authenticator
+              Text(
+                connectionText,
+                style: TextStyle(fontSize: 28,color: AppColors.black),
+              ),
+              Padding(
+                padding: EdgeInsets.all(30.0),
+                child: Form(
+                key: _formKey, //attach form key
+                child: TextFormField(
+                  controller: _controller,
+                  //attaches the controller
+                  style: TextStyle(color: Colors.black),
+                  // Set the text color to black
+                  minLines: 1,
+                  maxLines: 2,
+                  obscureText: false,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter the Instructor Password',
+                    hintStyle: TextStyle(color: AppColors.denim)
+                    ),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    bleHandler.bluetoothWritePI(_controller.text); //sends input
+                    //setState(() {
+                    //});
+                    _controller.clear(); //Reset TextField
+                  },
+                child: const Text('Submit'),
+                ),
+              ),
+            ],
+            if(bleHandler.connectedDevice != null && instructorAuthenticated == true)...[ //Authenticated
               Padding(
                   padding: EdgeInsets.only(top: 25),
                   child: Text(
@@ -134,7 +183,10 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  onPressed: disconnectDevice,
+                  onPressed: (){
+                    disconnectDevice;
+                    instructorAuthenticated = false;
+                  },
                   child: Text(
                     "Disconnect",
                     style: const TextStyle(fontSize: 20,color: AppColors.black),
@@ -144,7 +196,16 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
 
             ], //if not n
             //TEMPORARY to access next screen
+            ElevatedButton(
+              onPressed: () {
+                print(bleHandler.connectedDevice);
+                print(instructorAuthenticated);
+                print(connectionText);
+              },
+              child: const Text('Device Connected?'),
+            ),
           ],
+
         ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );

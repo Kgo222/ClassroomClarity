@@ -11,10 +11,16 @@ String entered_password = "";
 
 void setup() {
   //Set new access password
-  instructor_password = random(100000, 999999);  // Random 6 digit number
-  student_password = random(100000, 999999); // Random 6 digit number
+  instructor_password = 123456; //random(100000, 999999);  // Random 6 digit number
+  student_password = 123456;//random(100000, 999999); // Random 6 digit number
   Serial.begin(115200); // Printing for debugging/logging
-  ble.init();
+  ble.init(student_password, instructor_password);
+  /*
+  Serial.print("Instructor Password:");
+  Serial.println(instructor_password);
+  Serial.print("Student Password:");
+  Serial.println(student_password);
+  */
 }
 
 void loop() {
@@ -23,8 +29,13 @@ void loop() {
     DataReceived data = ble.getData();
     Serial.print("Received Data: ");
     Serial.println(data.data.c_str());
-    Serial.print("Type of Received Data: ");
+    Serial.print("Source: ");
     Serial.println(data.source.c_str());
+    //Check Password
+    if (data.source == "PI" && ble.isInstructorAuthenticated()) {
+      Serial.println("Instructor is authenticated, access granted.");
+    } else if (data.source == "PS" && ble.isStudentAuthenticated()) {
+      Serial.println("Student is authenticated, access granted.");
+    }
   }
-
 }

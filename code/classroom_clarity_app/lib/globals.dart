@@ -11,7 +11,12 @@ bool silent_mode = false;
 
 //other data
 String name = 'Student';
+bool anonymous = false;
 
+//password handling
+bool studentAuthenticated = false;
+bool instructorAuthenticated = false;
+String connectionText = "";
 //Sent Data
 String question = "";
 int curr_engagementLevel = 5;

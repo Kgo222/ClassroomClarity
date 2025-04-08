@@ -19,6 +19,7 @@
 
 #define DEVICE_NAME "Hub_1"
 
+
 //struct that holds recieved data as well as type of data it is (rating or question)
 struct DataReceived {
     std::string data;
@@ -35,6 +36,11 @@ class BLEHandler {
     BLECharacteristic* pCharacteristicPS = NULL; //student password
     BLECharacteristic* pCharacteristicPI = NULL; //instructor password
     BLEAdvertising *pAdvertising = NULL;
+
+    std::string currentStudentPassword;
+    std::string currentInstructorPassword;
+    bool studentAuthenticated = false;
+    bool instructorAuthenticated = false;
     
     bool deviceConnected = false;
     bool dataAvailable = false; // Whether data is available
@@ -74,6 +80,9 @@ class BLEHandler {
         
       void onWrite(BLECharacteristic *pCharacteristic) { 
         Serial.println("Some data was recieved");
+        std::string val = std::string(pCharacteristic->getValue().c_str());
+        Serial.print("val:");
+        Serial.println(val.c_str());
         // Determine which characteristic the data came from
         if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_Q) {
             outer.dataReceived.source = "Q"; // It's from characteristic Q
@@ -83,10 +92,34 @@ class BLEHandler {
             outer.dataReceived.source = "S"; // It's from characteristic S
         }else if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_PS) {
             outer.dataReceived.source = "PS"; // It's from characteristic PS
+            if(val == outer.currentStudentPassword){
+              outer.studentAuthenticated = true;
+              Serial.println("Correct password entered");
+              outer.pCharacteristicPS->setValue("Correct Student Password");
+              outer.pCharacteristicPS->notify();
+              delay(2050);  // Small pause to let the notification send
+            }else{
+              Serial.println("Incorrect Password Entered");
+              outer.pCharacteristicPS->setValue("Incorrect Student Password");
+              outer.pCharacteristicPS->notify();
+              delay(2050);  // Small pause to let the notification send
+              outer.pServer->disconnect(0);
+            }
         }else if (pCharacteristic->getUUID().toString() == CHARACTERISTIC_UUID_PI) {
             outer.dataReceived.source = "PI"; // It's from characteristic PI
+            if(val == outer.currentInstructorPassword){
+              outer.instructorAuthenticated = true;
+              Serial.println("Correct password entered");
+              outer.notifyPI("Correct Instructor Password");
+              delay(2050);  // Give time to send the BLE notification
+            }else{
+              Serial.println("Incorrect Password Entered");
+              outer.notifyPI("Incorrect Instructor Password");
+              delay(2050);  // Give time to send the BLE notification
+              outer.pServer->disconnect(0);
+            }
         }
-        outer.dataReceived.data = std::string(pCharacteristic->getValue().c_str());
+        outer.dataReceived.data = val;
         outer.dataAvailable = true;
         
       }
@@ -123,10 +156,26 @@ class BLEHandler {
       pCharacteristicPS->notify();
     }
     void notifyPI(std::string s) {
+      Serial.print("Sending PI notification:");
+      Serial.println(s.c_str());
       pCharacteristicPI->setValue(s.c_str());
       pCharacteristicPI->notify();
+      Serial.println("Finished Nofity");
     }
-    void init(int student_password[6], int instructor_password[6]) {      
+
+    //Password Functions
+    bool isStudentAuthenticated(){
+      return studentAuthenticated;
+    }
+    bool isInstructorAuthenticated(){
+      return instructorAuthenticated;
+    }
+    void init(int student_password, int instructor_password) { 
+      // password setup
+      currentStudentPassword = std::to_string(student_password);
+      currentInstructorPassword = std::to_string(instructor_password);  
+      Serial.print("currentInstructorPassword:");
+      Serial.println(currentInstructorPassword.c_str());
       // Create device
       BLEDevice::init(DEVICE_NAME);
 

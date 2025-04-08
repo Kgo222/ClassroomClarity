@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); //for the text submission box
   final TextEditingController _controller = TextEditingController(); //for the text submission box
+  bool switchVal = anonymous;
 
   @override
   Widget build(BuildContext context) {
@@ -137,23 +138,49 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        //Validate form
-                        if (_formKey.currentState!.validate()) {
-                          // save name from the controller
-                          setState(() {
-                            question = _controller.text; // Save the entered name
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //ANONYMOUS SWITCH
+                      Text(
+                        'Anonymous Submission:',
+                        textAlign: TextAlign.center,
+                        softWrap: true,
+                        style: TextStyle(color: AppColors.black, fontSize: 25),
+                      ),
+                      Switch(
+                        value: switchVal,
+                        activeColor: AppColors.darkRed,
+                        activeTrackColor: AppColors.red1,
+                        inactiveThumbColor: AppColors.black,
+                        inactiveTrackColor: AppColors.dullPurple,
+                        onChanged: (bool value){
+                          setState((){
+                            switchVal = value;
+                            anonymous = value;
                           });
-                          print("Question: $question"); //Debug Purposes
-                          bleHandler.bluetoothWriteQ(question);
-                          _controller.clear(); //Reset TextField
-                        }
-                      },
-                      child: const Text('Submit'),
-                    ),
+                        },
+                      ),
+                      //SUBMIT BUTTON
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 0.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            //Validate form
+                            if (_formKey.currentState!.validate()) {
+                              // save name from the controller
+                              setState(() {
+                                question = _controller.text; // Save the entered name
+                              });
+                              print("Question: $question"); //Debug Purposes
+                              bleHandler.bluetoothWriteQ(question, anonymous ? "Anonymous" : name);
+                              _controller.clear(); //Reset TextField
+                            }
+                          },
+                          child: const Text('Submit'),
+                        ),
+                      ),
+                    ],
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.start,

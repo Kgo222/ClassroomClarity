@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:classroom_clarity_app/globals.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'constants.dart';
@@ -9,7 +10,7 @@ class BLEHandler {
   late StreamSubscription notificationSubscription;
   late StreamSubscription connectionStateSubscription;
   List<BluetoothService> services = [];
-  Function setState;
+  final void Function() setState;
   BluetoothDevice? connectedDevice;
 
   // Constructor
@@ -29,7 +30,7 @@ class BLEHandler {
         // Accessing the deviceScreenHandler here is a little awkward, but it gets the job done
         // Equivalent to disconnectDevice in homepage.dart
         disconnect(); // Cancel subscription streams
-        setState(() {}); // Update UI when device disconnects
+        setState(); // Update UI when device disconnects
       }
     });
 
@@ -43,12 +44,12 @@ class BLEHandler {
 
   }
 
-  void bluetoothWriteQ(question) async {
+  void bluetoothWriteQ(question, name) async {
     for (BluetoothService service in services) {
       for (BluetoothCharacteristic characteristic in service.characteristics) {
         if (characteristic.uuid.toString() == Constants.question_uuid) {
           // Format data
-          String data = question + "%";
+          String data = "$name/$question%";
           print("Sending Data: $data"); //For debug purposes only
           //print("Characteristic Properties: ${characteristic.properties}"); // debug
           try {
@@ -118,7 +119,57 @@ class BLEHandler {
       }
     }
   }
-
+  //Student password
+  void bluetoothWritePS(password) async {
+    for (BluetoothService service in services) {
+      for (BluetoothCharacteristic characteristic in service.characteristics) {
+        if (characteristic.uuid.toString() == Constants.PS_uuid) {
+          // Format data
+          String data = "$password";
+          print("Sending Data: $data"); //For debug purposes only
+          try {
+            if(characteristic.properties.write){// Normal write mode
+              await characteristic.write(utf8.encode(data));
+            } else if (characteristic.properties.writeWithoutResponse) { // no response write mode
+              // Use write without response if supported
+              await characteristic.write(utf8.encode(data), withoutResponse: true);
+            } else {
+              print("Error: Characteristic does not support writing.");
+            }
+          } catch (e) {
+            print("Write Error: $e");
+          }
+          return;
+        }
+      }
+    }
+  }
+  //Student password
+  void bluetoothWritePI(password) async {
+    for (BluetoothService service in services) {
+      for (BluetoothCharacteristic characteristic in service.characteristics) {
+        if (characteristic.uuid.toString() == Constants.PI_uuid) {
+          // Format data
+          String data = "$password";
+          print("Sending Data: $data"); //For debug purposes only
+          try {
+            if(characteristic.properties.write){// Normal write mode
+              await characteristic.write(utf8.encode(data));
+            } else if (characteristic.properties.writeWithoutResponse) { // no response write mode
+              // Use write without response if supported
+              await characteristic.write(utf8.encode(data), withoutResponse: true);
+            } else {
+              print("Error: Characteristic does not support writing.");
+            }
+          } catch (e) {
+            print("Write Error: $e");
+          }
+          return;
+        }
+      }
+    }
+  }
+/*
   void subscribeNotifications() async { //notify when something returns from arduino
     for (BluetoothService service in services) {
       for (BluetoothCharacteristic characteristic in service.characteristics) {
@@ -126,9 +177,71 @@ class BLEHandler {
           await characteristic.setNotifyValue(true);
           notificationSubscription = characteristic.lastValueStream.listen((value) async {
             String s = String.fromCharCodes(value);
+            print("Received from ESP32: $s");
+            if(s == "Correct Student Password"){
+              studentAuthenticated = true;
+              connectionText = "Correct Password! Press Continue to Enter";
+            }else{
+              if(s == "Incorrect Student Password"){
+                studentAuthenticated = false;
+                connectionText = "Incorrect Password, Try Again";
+              } else{
+                if(s == "Correct Instructor Password"){
+                  instructorAuthenticated = true;
+                  connectionText = "Correct Password! Press Continue to Enter";
+                } else{
+                  if(s == "Incorrect Instructor Password"){
+                    instructorAuthenticated = false;
+                    connectionText = "Incorrect Password, Try Again";
+                  }
+                }
+              }
+            }
+            setState(); // ← Also important for UI refresh
+
           });
           await Future.delayed(const Duration(milliseconds: 500));
           return;
+        }
+      }
+    }
+  }
+*/
+
+  void subscribeNotifications() async {
+    for (BluetoothService service in services) {
+      for (BluetoothCharacteristic characteristic in service.characteristics) {
+        print('Checking characteristic: ${characteristic.uuid}');
+        if (characteristic.properties.notify) {
+          try {
+            await characteristic.setNotifyValue(true);
+            print("Subscribed to notifications for characteristic: ${characteristic.uuid}");
+
+            notificationSubscription = characteristic.lastValueStream.listen((value) async {
+              String receivedData = String.fromCharCodes(value);
+              print("Received from ESP32: $receivedData");
+
+              // Handle authentication messages and update UI
+              if (receivedData == "Correct Student Password") {
+                studentAuthenticated = true;
+                connectionText = "Correct Password! Press Continue to Enter";
+              } else if (receivedData == "Incorrect Student Password") {
+                studentAuthenticated = false;
+                connectionText = "Incorrect Password, Try Again";
+              } else if (receivedData == "Correct Instructor Password") {
+                instructorAuthenticated = true;
+                connectionText = "Correct Password! Press Continue to Enter";
+              } else if (receivedData == "Incorrect Instructor Password") {
+                instructorAuthenticated = false;
+                connectionText = "Incorrect Password, Try Again";
+              }
+
+              // Trigger the UI update
+              setState();
+            });
+          } catch (e) {
+            print("Error subscribing to characteristic notifications: $e");
+          }
         }
       }
     }

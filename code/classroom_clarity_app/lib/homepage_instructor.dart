@@ -57,6 +57,7 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      //SILENT MODE
                       Text(
                         'Silent Mode:',
                         textAlign: TextAlign.center,
@@ -82,6 +83,7 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children:[
+                        //SIGN OUT BUTTON
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.yellow1,
