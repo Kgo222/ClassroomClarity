@@ -35,7 +35,10 @@
 ## 4/7/2025
 - Resolved screen display and GPIO disabling
   - Cause: apparent continuous screen reset bug in Espressif Arduino firmware
-  - Solution: #define USE_HSPI_PORT   in User_Setup.h  
+  - Solution: #define USE_HSPI_PORT   in User_Setup.h
+- Recorded measurements of GPIO voltages
+  - LED indicator on and off voltages
+  - Clear button pressed and unpressed voltages
 # Team Meetings
 ## Team Meeting 2/12/2025
 - Worked on team contract and proposal
