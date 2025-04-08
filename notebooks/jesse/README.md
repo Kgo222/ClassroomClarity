@@ -1,6 +1,6 @@
 # Jesse Worklog
 ## 2/19/2025
-- Chose USB-to-UART programmer and VS Code editor
+- Choose USB-to-UART programmer and VS Code editor
 ## 2/22/2025
 - Began assigning pins for system functionality
 ## 2/26/2025
@@ -12,6 +12,16 @@
 - Worked on breadboard demo
 - Tested rotary encoder circuit
 - Assisted in debugging SPI communication with the LCD
+## 3/23/2025 
+- Created list of all signals
+- Specified necessary GPIO configurations for each signal
+## 3/31/2025
+- Determined procedure for processing class understanding data for LED arrays
+## 4/1/2025
+- Began testing microcontroller on PCB V1
+- - Communicated with the chip using the programmer successfully
+  - Failed running the Breadboard Demo code
+- Issue to be resolved: can't drive GPIOs
 
 # Team Meetings
 ## Team Meeting 2/12/2025
