@@ -139,27 +139,31 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       //ANONYMOUS SWITCH
-                      Text(
-                        'Anonymous Submission:',
-                        textAlign: TextAlign.center,
-                        softWrap: true,
-                        style: TextStyle(color: AppColors.black, fontSize: 25),
-                      ),
-                      Switch(
-                        value: switchVal,
-                        activeColor: AppColors.darkRed,
-                        activeTrackColor: AppColors.red1,
-                        inactiveThumbColor: AppColors.black,
-                        inactiveTrackColor: AppColors.dullPurple,
-                        onChanged: (bool value){
-                          setState((){
-                            switchVal = value;
-                            anonymous = value;
-                          });
-                        },
+                      Row(
+                        children: [
+                          Text(
+                            'Anonymous:',
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            style: TextStyle(color: AppColors.black, fontSize: 15),
+                          ),
+                          Switch(
+                            value: switchVal,
+                            activeColor: AppColors.green2,
+                            activeTrackColor: AppColors.green3,
+                            inactiveThumbColor: AppColors.black,
+                            inactiveTrackColor: AppColors.darkRed,
+                            onChanged: (bool value){
+                              setState((){
+                                switchVal = value;
+                                anonymous = value;
+                              });
+                            },
+                          ),
+                        ],
                       ),
                       //SUBMIT BUTTON
                       Padding(

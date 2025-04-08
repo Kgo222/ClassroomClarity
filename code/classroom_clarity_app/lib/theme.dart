@@ -29,6 +29,7 @@ class AppColors {
   static const Color yellow1 = Color(0xfff4e586);
   static const Color green1 = Color(0xffaef35b);
   static const Color green2 = Color(0xff8df347);
+  static const Color green3 = Color(0xff3c6123);
 
 }
 

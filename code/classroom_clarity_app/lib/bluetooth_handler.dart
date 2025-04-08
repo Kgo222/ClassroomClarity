@@ -175,7 +175,7 @@ class BLEHandler {
               }
 
               // Trigger the UI update
-              setState();
+              setState;
               print("setstate");
             });
           } catch (e) {

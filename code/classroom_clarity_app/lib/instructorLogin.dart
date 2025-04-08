@@ -43,6 +43,7 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
   void disconnectDevice() {
     setState(() {
       bleHandler.disconnect();
+      print("disconnect");
     });
   }
   @override
@@ -188,7 +189,7 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                     ),
                   ),
                   onPressed: (){
-                    disconnectDevice;
+                    disconnectDevice();
                     instructorAuthenticated = false;
                   },
                   child: Text(
@@ -205,6 +206,7 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                 print(bleHandler.connectedDevice);
                 print(instructorAuthenticated);
                 print(connectionText);
+                setState(() {});
               },
               child: const Text('Device Connected?'),
             ),

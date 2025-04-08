@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
   // Callback to trigger setState() from BLEHandler
   void setStateCallback() {
     setState(() {});
+    print("setStateCallback");
   }
 
   @override
