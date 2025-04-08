@@ -55,3 +55,7 @@
 ## Team Meeting 3/11/2025
 - Set tasks to be achieved over spring break
   - I will be determining the GPIO configurations
+## Team Meeting 3/25/2025
+- Mobile application working
+- GPIO configuration list completed
+- Next task: map class understanding level to LED lighting
