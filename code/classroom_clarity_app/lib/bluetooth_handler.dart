@@ -119,94 +119,32 @@ class BLEHandler {
       }
     }
   }
-  //Student password
-  void bluetoothWritePS(password) async {
-    for (BluetoothService service in services) {
-      for (BluetoothCharacteristic characteristic in service.characteristics) {
-        if (characteristic.uuid.toString() == Constants.PS_uuid) {
-          // Format data
-          String data = "$password";
-          print("Sending Data: $data"); //For debug purposes only
-          try {
-            if(characteristic.properties.write){// Normal write mode
-              await characteristic.write(utf8.encode(data));
-            } else if (characteristic.properties.writeWithoutResponse) { // no response write mode
-              // Use write without response if supported
-              await characteristic.write(utf8.encode(data), withoutResponse: true);
-            } else {
-              print("Error: Characteristic does not support writing.");
-            }
-          } catch (e) {
-            print("Write Error: $e");
-          }
-          return;
-        }
-      }
-    }
-  }
-  //Student password
-  void bluetoothWritePI(password) async {
-    for (BluetoothService service in services) {
-      for (BluetoothCharacteristic characteristic in service.characteristics) {
-        if (characteristic.uuid.toString() == Constants.PI_uuid) {
-          // Format data
-          String data = "$password";
-          print("Sending Data: $data"); //For debug purposes only
-          try {
-            if(characteristic.properties.write){// Normal write mode
-              await characteristic.write(utf8.encode(data));
-            } else if (characteristic.properties.writeWithoutResponse) { // no response write mode
-              // Use write without response if supported
-              await characteristic.write(utf8.encode(data), withoutResponse: true);
-            } else {
-              print("Error: Characteristic does not support writing.");
-            }
-          } catch (e) {
-            print("Write Error: $e");
-          }
-          return;
-        }
-      }
-    }
-  }
-/*
-  void subscribeNotifications() async { //notify when something returns from arduino
-    for (BluetoothService service in services) {
-      for (BluetoothCharacteristic characteristic in service.characteristics) {
-        if(characteristic.properties.notify) {
-          await characteristic.setNotifyValue(true);
-          notificationSubscription = characteristic.lastValueStream.listen((value) async {
-            String s = String.fromCharCodes(value);
-            print("Received from ESP32: $s");
-            if(s == "Correct Student Password"){
-              studentAuthenticated = true;
-              connectionText = "Correct Password! Press Continue to Enter";
-            }else{
-              if(s == "Incorrect Student Password"){
-                studentAuthenticated = false;
-                connectionText = "Incorrect Password, Try Again";
-              } else{
-                if(s == "Correct Instructor Password"){
-                  instructorAuthenticated = true;
-                  connectionText = "Correct Password! Press Continue to Enter";
-                } else{
-                  if(s == "Incorrect Instructor Password"){
-                    instructorAuthenticated = false;
-                    connectionText = "Incorrect Password, Try Again";
-                  }
-                }
-              }
-            }
-            setState(); // ← Also important for UI refresh
 
-          });
-          await Future.delayed(const Duration(milliseconds: 500));
+  //write password
+  void bluetoothWriteP(type, password) async {
+    for (BluetoothService service in services) {
+      for (BluetoothCharacteristic characteristic in service.characteristics) {
+        if (characteristic.uuid.toString() == Constants.P_uuid) {
+          // Format data
+          String data = "$type/$password";
+          print("Sending Data: $data"); //For debug purposes only
+          try {
+            if(characteristic.properties.write){// Normal write mode
+              await characteristic.write(utf8.encode(data));
+            } else if (characteristic.properties.writeWithoutResponse) { // no response write mode
+              // Use write without response if supported
+              await characteristic.write(utf8.encode(data), withoutResponse: true);
+            } else {
+              print("Error: Characteristic does not support writing.");
+            }
+          } catch (e) {
+            print("Write Error: $e");
+          }
           return;
         }
       }
     }
   }
-*/
 
   void subscribeNotifications() async {
     for (BluetoothService service in services) {
@@ -219,25 +157,26 @@ class BLEHandler {
 
             notificationSubscription = characteristic.lastValueStream.listen((value) async {
               String receivedData = String.fromCharCodes(value);
-              print("Received from ESP32: $receivedData");
+              print("Received from ${characteristic.uuid}: $receivedData");
 
               // Handle authentication messages and update UI
-              if (receivedData == "Correct Student Password") {
+              if (receivedData == Constants.correctPScode) {
                 studentAuthenticated = true;
                 connectionText = "Correct Password! Press Continue to Enter";
-              } else if (receivedData == "Incorrect Student Password") {
+              } else if (receivedData == Constants.incorrectPScode) {
                 studentAuthenticated = false;
-                connectionText = "Incorrect Password, Try Again";
-              } else if (receivedData == "Correct Instructor Password") {
+                connectionText = "Incorrect Password";
+              } else if (receivedData == Constants.correctPIcode) {
                 instructorAuthenticated = true;
                 connectionText = "Correct Password! Press Continue to Enter";
-              } else if (receivedData == "Incorrect Instructor Password") {
+              } else if (receivedData == Constants.incorrectPIcode) {
                 instructorAuthenticated = false;
-                connectionText = "Incorrect Password, Try Again";
+                connectionText = "Incorrect Password";
               }
 
               // Trigger the UI update
               setState();
+              print("setstate");
             });
           } catch (e) {
             print("Error subscribing to characteristic notifications: $e");

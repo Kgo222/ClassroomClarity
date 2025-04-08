@@ -56,16 +56,16 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-                padding: EdgeInsets.only(top: 25),
-                child: const Text(
-                  'Hello, Instructor!',
-                  textAlign: TextAlign.center,
-                  softWrap: true,
-                  style: TextStyle(color: AppColors.black, fontSize: 35),
-                )
-            ),
             if(bleHandler.connectedDevice == null)...[
+              Padding(
+                  padding: EdgeInsets.only(top: 25),
+                  child: const Text(
+                    'Hello, Instructor!',
+                    textAlign: TextAlign.center,
+                    softWrap: true,
+                    style: TextStyle(color: AppColors.black, fontSize: 35),
+                  )
+              ),
               Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(left:20),
@@ -94,9 +94,13 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
               ),
             ], //end of if statement
             if(bleHandler.connectedDevice != null && instructorAuthenticated == false)...[ //Authenticator
-              Text(
-                connectionText,
-                style: TextStyle(fontSize: 28,color: AppColors.black),
+              Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(left:20),
+                child: Text(
+                  connectionText,
+                  style: TextStyle(fontSize: 28,color: AppColors.black),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.all(30.0),
@@ -127,7 +131,7 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    bleHandler.bluetoothWritePI(_controller.text); //sends input
+                    bleHandler.bluetoothWriteP("I", _controller.text); //sends input
                     //setState(() {
                     //});
                     _controller.clear(); //Reset TextField
