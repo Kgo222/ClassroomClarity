@@ -174,9 +174,7 @@ class BLEHandler {
                 connectionText = "Incorrect Password";
               }
 
-              // Trigger the UI update
-              setState;
-              print("setstate");
+
             });
           } catch (e) {
             print("Error subscribing to characteristic notifications: $e");

@@ -132,10 +132,15 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    bleHandler.bluetoothWriteP("I", _controller.text); //sends input
-                    //setState(() {
-                    //});
-                    _controller.clear(); //Reset TextField
+                    if (_formKey.currentState!.validate()) {
+                      // save name from the controller
+                      bleHandler.bluetoothWriteP("I", _controller.text); //sends input
+                      _controller.clear(); //Reset TextField
+                      Future.delayed(const Duration(milliseconds: 200), () {
+                        setState(() {});
+                        print('submit button setstate.'); // Prints after 1 second.
+                      });
+                    }
                   },
                 child: const Text('Submit'),
                 ),
