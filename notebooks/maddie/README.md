@@ -150,3 +150,13 @@ Discussed how the physical deisign of the hub casing should look.
 ### 4/7/2025 TA Meeting 
 - updated TA on overall progress
 - She says we are on time, if even a bit ahead of schedule
+
+### 4/8/2025 Team Meeting 
+- Kait --> Working on hub password mechanism
+- Jesse --> Working on LED array code
+- Maddie:
+    - Soldered and tested red LED array
+    - Researched and ordered new power supply options
+        - Found a USB-C to DC cord that matches pcb's barrel jack and can connect to adapter block from pixel phone that provides 5V 3A
+        - This may fix the current spike issue and allows for flexibility to try different blocks if the one we try doesn't work
+        - Rated higher than required current --> good because then the circuit can draw as much as it needs 
