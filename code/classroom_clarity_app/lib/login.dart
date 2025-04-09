@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
         leading:null, //Remove back arrow
         automaticallyImplyLeading: false,
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

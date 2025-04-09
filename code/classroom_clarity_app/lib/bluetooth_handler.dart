@@ -162,16 +162,16 @@ class BLEHandler {
               // Handle authentication messages and update UI
               if (receivedData == Constants.correctPScode) {
                 studentAuthenticated = true;
-                connectionText = "Correct Password! Press Continue to Enter";
+                connectionText2 = "Correct Password! \nPress Continue to Enter";
               } else if (receivedData == Constants.incorrectPScode) {
                 studentAuthenticated = false;
-                connectionText = "Incorrect Password";
+                connectionText2 = "Incorrect Password. \nTry Again.";
               } else if (receivedData == Constants.correctPIcode) {
                 instructorAuthenticated = true;
-                connectionText = "Correct Password! Press Continue to Enter";
+                connectionText = "Correct Password! \nPress Continue to Enter";
               } else if (receivedData == Constants.incorrectPIcode) {
                 instructorAuthenticated = false;
-                connectionText = "Incorrect Password";
+                connectionText = "Incorrect Password. \nTry Again.";
               }
 
 

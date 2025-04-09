@@ -14,6 +14,14 @@ class HomePageInstructor extends StatefulWidget {
 class _HomePageInstructorState extends State<HomePageInstructor> {
   double _currentSliderVal = font_size;
   bool switchVal = silent_mode;
+
+  void disconnectDevice() {
+    setState(() {
+      bleHandler.disconnect();
+      print("disconnect");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,19 +88,24 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                       )
                     ],
                   ),
+                  Spacer(),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children:[
                         //SIGN OUT BUTTON
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.yellow1,
+                            backgroundColor: AppColors.dullPink,
                             alignment: Alignment.center,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                           onPressed:(){
+                            if(bleHandler.connectedDevice != null){
+                              disconnectDevice();
+                            }
+                            instructorAuthenticated = false;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {

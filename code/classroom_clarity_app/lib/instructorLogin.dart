@@ -36,6 +36,7 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
       // After closing the modal, check if the device is connected and update the UI.
       if(bleHandler.connectedDevice != null){
         connectionText = "Enter Instructor Password for ${bleHandler.connectedDevice!.name}";
+        connectionText2 = "Enter Student Password for ${bleHandler.connectedDevice!.name}";
         setState(() {});
       }
     });
@@ -52,6 +53,8 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
       appBar: AppBar(
         title: const Text("Instructor Login"),
         backgroundColor: AppColors.denim,
+        leading:null,
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -77,7 +80,7 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
               ),
               Container(
                 alignment: Alignment.center,
-                margin: const EdgeInsets.only(left:20),
+                margin: const EdgeInsets.only(left:20, top:15.0),
                 child:ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lightBlue,
@@ -97,14 +100,15 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
             if(bleHandler.connectedDevice != null && instructorAuthenticated == false)...[ //Authenticator
               Container(
                 alignment: Alignment.center,
-                margin: const EdgeInsets.only(left:20),
+                margin: const EdgeInsets.all(15),
                 child: Text(
                   connectionText,
                   style: TextStyle(fontSize: 28,color: AppColors.black),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.only(right:30.0, left:30.0, top:15.0),
                 child: Form(
                 key: _formKey, //attach form key
                 child: TextFormField(
@@ -117,11 +121,19 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                   obscureText: false,
                   decoration: const InputDecoration(
                     hintText: 'Enter the Instructor Password',
-                    hintStyle: TextStyle(color: AppColors.denim)
+                    hintStyle: TextStyle(color: AppColors.denim),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.denim, width:4)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.denim, width: 4), // Border color when focused
+                    ),
+                    filled: true,
+                    fillColor: AppColors.blueGrey,
                     ),
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Please enter a password';
                     }
                     return null;
                   },
@@ -129,20 +141,30 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.only(left:240.0),
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.lightPurple,
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       // save name from the controller
                       bleHandler.bluetoothWriteP("I", _controller.text); //sends input
                       _controller.clear(); //Reset TextField
-                      Future.delayed(const Duration(milliseconds: 200), () {
+                      Future.delayed(const Duration(milliseconds: 500), () {
                         setState(() {});
                         print('submit button setstate.'); // Prints after 1 second.
                       });
                     }
                   },
-                child: const Text('Submit'),
+                child: const Text(
+                  'Submit',
+                  style: TextStyle(color: AppColors.black),
+                ),
                 ),
               ),
             ],
@@ -150,7 +172,7 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
               Padding(
                   padding: EdgeInsets.only(top: 25),
                   child: Text(
-                    'Press Continue to Enter ${bleHandler.connectedDevice!.name} Hub or Disconnect',
+                    'Press Continue to Enter ${bleHandler.connectedDevice!.name} or Disconnect',
                     textAlign: TextAlign.center,
                     softWrap: true,
                     style: TextStyle(color: AppColors.black, fontSize: 25),
@@ -198,24 +220,46 @@ class _InstructorLoginPageState extends State<InstructorLoginPage> {
                     instructorAuthenticated = false;
                   },
                   child: Text(
-                    "Disconnect",
+                    "DISCONNECT",
                     style: const TextStyle(fontSize: 20,color: AppColors.black),
                   ),
                 ),
               ),
 
             ], //if not n
-            //TEMPORARY to access next screen
-            ElevatedButton(
-              onPressed: () {
-                print(bleHandler.connectedDevice);
-                print(instructorAuthenticated);
-                print(connectionText);
-                setState(() {});
-              },
-              child: const Text('Device Connected?'),
-            ),
-          ],
+            Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.dullPink,
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  onPressed: (){
+                    if(bleHandler.connectedDevice != null){
+                      disconnectDevice();
+                    }
+                    instructorAuthenticated = false;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const LoginPage();
+                      }),
+                    );
+                  },
+                  child: Text(
+                    "Back to Welcome",
+                    style: const TextStyle(fontSize: 20,color: AppColors.black),
+                  ),
+                ),
+              ],
+
+            )
+          ],// Column
 
         ), // This trailing comma makes auto-formatting nicer for build methods.
       ),

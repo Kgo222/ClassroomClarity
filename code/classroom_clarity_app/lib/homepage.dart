@@ -29,11 +29,11 @@ class _HomePageState extends State<HomePage> {
           automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
-            child: Column(
+          child:Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
                   Padding(
-                    padding: EdgeInsets.only(top: 50), // Moves Row 50 pixels down
+                    padding: EdgeInsets.only(top: 20), // Moves Row 10 pixels down
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children:[
@@ -105,8 +105,36 @@ class _HomePageState extends State<HomePage> {
                         ] // Engagement Row Children
                     ),
                   ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children:[
+                        //RAISE HAND BUTTON
+                        Expanded( //Fills whole row
+                            child: Padding(
+                              padding: EdgeInsets.only(right:30.0, left:30.0, top:45.0, bottom:5),
+                              child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.dullPink,
+                                alignment: Alignment.center,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                              onPressed:(){
+                                bleHandler.bluetoothWriteQ("Has a LIVE question", name);
+                              },
+                              child: const Text(
+                                  "Raise Hand",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: AppColors.darkRed, fontSize:15)
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]
+                  ),
                   Padding(
-                    padding: EdgeInsets.all(30.0),
+                    padding: EdgeInsets.only(right:30.0, left:30.0),
                     child: Form(
                       key: _formKey, //attach form key
                       child: TextFormField(
@@ -167,8 +195,15 @@ class _HomePageState extends State<HomePage> {
                       ),
                       //SUBMIT BUTTON
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 0.0),
+                        padding: const EdgeInsets.only(left:50.0),
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.lightPurple,
+                            alignment: Alignment.center,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
                           onPressed: () {
                             //Validate form
                             if (_formKey.currentState!.validate()) {
@@ -181,50 +216,57 @@ class _HomePageState extends State<HomePage> {
                               _controller.clear(); //Reset TextField
                             }
                           },
-                          child: const Text('Submit'),
+                          child: const Text(
+                            'Submit',
+                            style: TextStyle(color: AppColors.black),),
                         ),
                       ),
                     ],
                   ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children:[
-                        //SIGN OUT BUTTON
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.dullPink,
-                            alignment: Alignment.center,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
+                  Padding(
+                    padding: EdgeInsets.only(top:250),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children:[
+                          //SIGN OUT BUTTON
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.dullPink,
+                              alignment: Alignment.center,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            onPressed:(){
+                              //Reset variables
+                              name = 'Student';
+                              question = "";
+                              bleHandler.bluetoothWriteR(curr_engagementLevel, 0); // When sign out we want to remove their rating from the avg, 0 is the indicator of sign out
+                              curr_engagementLevel = 10;
+                              prev_engagementLevel = 10;
+                              bleHandler.disconnect();
+                              studentAuthenticated = false;
+                              //Go back to login page
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return const LoginPage();
+                                }),
+                              );
+                            },
+                            child: const Text(
+                                "Sign Out",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: AppColors.black, fontSize:20)
                             ),
                           ),
-                          onPressed:(){
-                            //Reset variables
-                            name = 'Student';
-                            question = "";
-                            bleHandler.bluetoothWriteR(curr_engagementLevel, -1); // When sign out we want to remove their rating from the avg, -1 is the indicator of sign out
-                            curr_engagementLevel = 10;
-                            prev_engagementLevel = 10;
-                            bleHandler.disconnect();
-                            //Go back to login page
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return const LoginPage();
-                              }),
-                            );
-                          },
-                          child: const Text(
-                              "Sign Out",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: AppColors.black, fontSize:20)
-                          ),
-                        ),
-                      ]
+                        ]
+                    ),
                   ),
                 ] // Column children
-            )
-        )
+            ),
+        ),
+        //)
     );
   }
 }

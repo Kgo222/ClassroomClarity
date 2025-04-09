@@ -17,6 +17,7 @@ bool anonymous = false;
 bool studentAuthenticated = false;
 bool instructorAuthenticated = false;
 String connectionText = "";
+String connectionText2 = "";
 //Sent Data
 String question = "";
 int curr_engagementLevel = 5;
