@@ -1,25 +1,41 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
 import 'constants.dart';
-import 'homepage.dart';
+import 'login.dart';
+import 'bluetooth.dart';
+import 'bluetooth_handler.dart';
+import 'globals.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+    bleHandler = BLEHandler(setStateCallback);  // Initialize BLEHandler
+  }
+
+  // Callback to trigger setState() from BLEHandler
+  void setStateCallback() {
+    setState(() {});
+    print("setStateCallback");
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // The app theme is defined in constants.dart
       title: Constants.appName,
-      // The app theme is defined in theme.dart
       theme: appTheme,
-      // This directs the app to start at the screen class called MyHomePage.
-      // Currently the main screen is the default from Flutter, but we will
-      // edit the screens and screen routes as needed.
-      home: const HomePage(title: Constants.appName),
+      home: LoginPage(), // Pass bleHandler down to LoginPage
+      navigatorKey: navigatorKey,
     );
   }
 }

@@ -1,6 +1,6 @@
 # classroom_clarity_app
 
-Senior Design Project
+A new Flutter project.
 
 ## Getting Started
 

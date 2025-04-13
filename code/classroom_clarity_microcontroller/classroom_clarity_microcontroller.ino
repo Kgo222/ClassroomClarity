@@ -19,10 +19,16 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 //Settings
 int fontSize = 3;     // Set screen font size
 bool silentMode = false; //set hub silent mode
+
 //Bluetooth 
 BLEHandler ble; //Create a bluetooth handler object 
 bool newData = false;
 DataReceived dataReceived;
+//Password
+int instructor_password;  //holds the randomly generated instructor password
+int student_password;   // holds the randomly generated student password
+bool studentAuthenticated; //True if correct student password inputted
+bool teacherAuthenticated; //True if correct instructor password inputted
 
 //Encoder 
 int counter = 0; //Tracks encoders current position
@@ -62,6 +68,7 @@ void setup() {
   pinMode(LED_NOTIF,OUTPUT);              //Set LED at output
   Serial.begin(115200);
   Serial.print("Basic Encoder Test:");
+
   //Set initial Conditionns
   bLastState = digitalRead(ROT_B);        //Get initial value of rot A pin
   if(questions.size() == 0){
@@ -71,8 +78,11 @@ void setup() {
     drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
     digitalWrite(LED_NOTIF,HIGH);
   }
-  ble.init();
-  
+  instructor_password = random(100000, 999999);  // Random 6 digit number
+  student_password = random(100000, 999999);  // Random 6 digit number
+  studentAuthenticated = false;
+  teacherAuthenticated= false;
+  ble.init(); //initialize bluetooth
 }
 
 void loop() {
@@ -86,7 +96,28 @@ void loop() {
     newData = true;
   }
   if(newData){
-    if(dataReceived.source == "S"){ //check if it is a setting change: data = fontSize.toString() + "/" + silentMode.toString() + "%";
+    if (dataReceived.source == "P") { // Check if password inputted 
+      int index = dataReceived.data.find("/");
+      std::string typeP = dataReceived.data.substr(0,index);
+      std::string entered_password = dataReceived.data.substr(index+1);
+      if(typeP == "I"){ // check if the password inputted was for instructor
+        if(std::stoi(entered_password) == instructor_password){
+          Serial.println("Instructor is authenticated, access granted.");
+          ble.notifyESP("1"); //tell app the password was accepted
+        }else{
+          Serial.println("Incorrect Instructor Password");
+          ble.notifyESP("2"); //tell app the password was denied
+        }
+      }else if (typeP == "S") { // check if the password inputted was for student
+        if(std::stoi(entered_password) == student_password){
+          Serial.println("Student is authenticated, access granted.");
+          ble.notifyESP("3"); //tell app password was accepted
+        }else{
+          Serial.println("Incorrect Student Password");
+          ble.notifyESP("4"); //tell app password was denied
+        }
+      }
+    } else if(dataReceived.source == "S"){ //check if it is a setting change: data = fontSize.toString() + "/" + silentMode.toString() + "%";
       int endModeIdx = dataReceived.data.find("%");
       int endSizeIdx = dataReceived.data.find("/");
       silentMode = (std::stoi((dataReceived.data.substr(endSizeIdx+1,endModeIdx))) != 0 ); //update silent mode (steo convert to number then != does bool)
