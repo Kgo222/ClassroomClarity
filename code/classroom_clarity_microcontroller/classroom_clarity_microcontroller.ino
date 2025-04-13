@@ -27,8 +27,6 @@ DataReceived dataReceived;
 //Password
 int instructor_password;  //holds the randomly generated instructor password
 int student_password;   // holds the randomly generated student password
-bool studentAuthenticated; //True if correct student password inputted
-bool teacherAuthenticated; //True if correct instructor password inputted
 
 //Encoder 
 int counter = 0; //Tracks encoders current position
@@ -70,18 +68,24 @@ void setup() {
   Serial.print("Basic Encoder Test:");
 
   //Set initial Conditionns
+  instructor_password = random(100000, 999999);  // Random 6 digit number
+  student_password = random(100000, 999999);  // Random 6 digit number
   bLastState = digitalRead(ROT_B);        //Get initial value of rot A pin
   if(questions.size() == 0){
+    std::string s_password_printout = "student password: " + std::to_string(student_password);
+    std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+    drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+    drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
     drawWrappedText("No Active Questions", TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
     digitalWrite(LED_NOTIF,LOW);
   }else{
+    std::string s_password_printout = "student password: " + std::to_string(student_password);
+    std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+    drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+    drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
     drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
     digitalWrite(LED_NOTIF,HIGH);
   }
-  instructor_password = random(100000, 999999);  // Random 6 digit number
-  student_password = random(100000, 999999);  // Random 6 digit number
-  studentAuthenticated = false;
-  teacherAuthenticated= false;
   ble.init(); //initialize bluetooth
 }
 
@@ -128,7 +132,10 @@ void loop() {
       if(questions.size() == 0){
         questions.push_back(dataReceived.data.substr(0,endQIdx)); // Add new question to the quesiton queue 
         tft.fillScreen(TFT_WHITE);
-        tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+        std::string s_password_printout = "student password: " + std::to_string(student_password);
+        std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+        drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+        drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
         q_idx = 0;
         drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft); // print to screen
       } else{
@@ -186,13 +193,19 @@ void loop() {
         next_idx = q_idx-1;
         if(next_idx >= 0 && next_idx < questions.size()){ //still without bounds 
           tft.fillScreen(TFT_WHITE);
-          tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+          std::string s_password_printout = "student password: " + std::to_string(student_password);
+          std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+          drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+          drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
           //tft.println(questions[next_idx]);
           q_idx = next_idx;
           drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
         } else{ //loop back around to last index
           tft.fillScreen(TFT_WHITE);
-          tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+          std::string s_password_printout = "student password: " + std::to_string(student_password);
+          std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+          drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+          drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
           q_idx = questions.size()-1;
           //tft.println(questions[q_idx]);
           drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
@@ -204,13 +217,19 @@ void loop() {
           next_idx = q_idx+1;
           if(next_idx >= 0 && next_idx < questions.size()){ //still without bounds 
             tft.fillScreen(TFT_WHITE);
-            tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+            std::string s_password_printout = "student password: " + std::to_string(student_password);
+            std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+            drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+            drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
             //tft.println(questions[next_idx]);
             q_idx = next_idx;
             drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
           } else{ //loop back around to 0 index
             tft.fillScreen(TFT_WHITE);
-            tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+            std::string s_password_printout = "student password: " + std::to_string(student_password);
+            std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+            drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+            drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
             q_idx = 0;
             //tft.println(questions[q_idx]);
             drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
@@ -223,20 +242,29 @@ void loop() {
         questions.erase(questions.begin()+q_idx);
         if(q_idx >=0 && q_idx <questions.size()){ // removed questions from middle of queue 
           tft.fillScreen(TFT_WHITE);
-          tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+          std::string s_password_printout = "student password: " + std::to_string(student_password);
+          std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+          drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+          drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
           drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
         }
         else{
           if(questions.size() == 0){ //removed all questions from queue
             tft.fillScreen(TFT_WHITE);
-            tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+            std::string s_password_printout = "student password: " + std::to_string(student_password);
+            std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+            drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+            drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
             drawWrappedText("No Active Questions", TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
           }
           else{ //removed last question in queue
             q_idx--;
             if(q_idx >=0 && q_idx <questions.size()){ 
               tft.fillScreen(TFT_WHITE);
-              tft.setCursor(SCREEN_WIDTH/3, SCREEN_HEIGHT/3);
+              std::string s_password_printout = "student password: " + std::to_string(student_password);
+              std::string i_password_printout = "instructor password: " + std::to_string(instructor_password);
+              drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+              drawWrappedText(i_password_printout, 0,tft.fontHeight()+5, SCREEN_WIDTH, &tft);
               drawWrappedText(questions[q_idx], TEXT_MARGIN, SCREEN_HEIGHT/3, SCREEN_WIDTH-TEXT_MARGIN, &tft);
             } 
           }
