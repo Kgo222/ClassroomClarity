@@ -16,9 +16,9 @@
 
 #### The Schematic 
 - started with the power management subsytem
-- 
 
 #### The Layout
+- Placed microcontroller central on the board then placed components around it 
 
 
 ### 3/8/2025: Breadboard Demo Preperations
@@ -85,6 +85,16 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - Tested voltage across motor, seemed a bit off
     - Programmed a test to have motor on for 30 seconds, off for 30s
     - was successful, strange voltage was from floating pin in the code
+ 
+### 4/14/2025 Version 2 Soldering 
+- Collected new board and parts
+- Focused on keeping components straight and soldering clean
+    - Want to have this be the final board
+- Since reflow oven did not work as desired last time, I used solder paste and hot air to solder on microcontroller and usb connector
+    - Note: this can be an easy point of failure due to the fact that the groound pads are under the microcontroller. Be aware of this if any errors occur when testing, solder paste may not have melted
+- Had to remove DC/DC converter from version 1 board since component has since gone into backorder
+- Finished soldering components, happy with the results
+- Will test functionality tomorrow at team meeting 
 
 
 
@@ -159,4 +169,12 @@ Discussed how the physical deisign of the hub casing should look.
     - Researched and ordered new power supply options
         - Found a USB-C to DC cord that matches pcb's barrel jack and can connect to adapter block from pixel phone that provides 5V 3A
         - This may fix the current spike issue and allows for flexibility to try different blocks if the one we try doesn't work
-        - Rated higher than required current --> good because then the circuit can draw as much as it needs 
+        - Rated higher than required current --> good because then the circuit can draw as much as it needs
+     
+### 4/14/2025 TA Meeting 
+- Tested new power adapter
+    - Works!!!
+    - determined issue that caused previous to not work: reversed polarity (negative on inside)
+    - current spike was not the problem 
+- Prepared for prototype casing print
+- Confirmed with Aishee that we are on schedule 
