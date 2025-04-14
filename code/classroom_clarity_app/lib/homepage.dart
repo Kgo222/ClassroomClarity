@@ -242,8 +242,8 @@ class _HomePageState extends State<HomePage> {
                               name = 'Student';
                               question = "";
                               bleHandler.bluetoothWriteR(curr_engagementLevel, 0); // When sign out we want to remove their rating from the avg, 0 is the indicator of sign out
-                              curr_engagementLevel = 10;
-                              prev_engagementLevel = 10;
+                              curr_engagementLevel = 5;
+                              prev_engagementLevel = 0;
                               bleHandler.disconnect();
                               studentAuthenticated = false;
                               //Go back to login page

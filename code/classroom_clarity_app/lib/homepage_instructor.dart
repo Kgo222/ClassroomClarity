@@ -38,7 +38,7 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                   Padding(
                       padding: EdgeInsets.only(top: 15),
                       child: Text(
-                        'Select Font Size: $font_size',
+                        'Select Font Mode: $font_size',
                         textAlign: TextAlign.center,
                         softWrap: true,
                         style: TextStyle(color: AppColors.black, fontSize: 25),
