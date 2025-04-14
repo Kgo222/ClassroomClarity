@@ -98,6 +98,7 @@ Microcontroller + rotary encoder + motor + Screen $= 800mA + 1mA + 80mA + 50mA =
 ## 3/28/2025: Bluetooth Dev Cont.
 - Confirmed through Serial monitor print outs that the ESP32 Dev board is correctly connecting and disconnecting from app when prompted by the app
 - Through Android Studio terminal, it looks like the question data is sending however on the Arduino side, the serial monitor isn't indicating any recieved data
+
 To do:
 1. Debug sending/recieving data: likely because of flutter side bluetooth_handler write method --> check UUIDs match correctly
 2. Debug the back arrow problem on the starting login screen: when user signs out a back arrow appears on login screen that goes back to homepage (not intended functionality)
@@ -108,6 +109,7 @@ To do:
 - Updated the LED buttons to be on a scale of 1-5 instead of 1-10. This allows for easier understanding on the student's part to quickly decide which relates to how they are following the lesson. It also allows for the responses to better show on the LEDs since we have 15 LEDs and 15 is easily divided by 5.
 - Decided that instead of just sending the new engagement level when a student selects a button, I will also send the previously selected level in order to make the math easier. Since the LEDs rely on the avg. we will need to track the sum of engagement levels therefore having the previous selected level sent from the app will allow up to do sum = sum-previous+current. This means the app will be responsible to remembering the previous data and not the microcontroller. This choice was also made because the app's device has more memory capability than the microcontroller so we want to maximize the microcontroller space available.
 - I solved the back arrow problem by removing the automatic back arrow and replacing it with a back button. This allows me to control where the back button takes the user and what happens when they press it including disconnecting from the BLE.
+
 To do:
 1. Debug sending/recieving data: the UUIDs do match so not the problem. Recheck the bluetoothWrite function in the app code and check if the correct services are setup for ESP
 
@@ -120,6 +122,7 @@ To do:
 - I added 2 new GPIOs: PI and PS so it is obvious whether the student password or instructor password was sent from the app to the ESP
 - Originally thought I could do all the password logic within the ESP, however realized I need to have ESP --> app communication in order to tell the user if the password worked or not.The other option is to force a diconnect from BLE if the password is wrong and then just continuously update the UI state, however that would likely be unstable and not very user friendly since getting the password wrong once would make you have to restart the connection process
 - I can recieve a password sent from the app and print out on the Ardunino Serial monitor if it is correct or not, but i can't get the ESP to tell the app if it was correct or not
+
 To do:
 1. Debug the ESP--> app communication. I have notify functionality turned on for PI and PS and have then notify the app once the ESP logic decides whether the accept or deny the password. From print statements I can tell the notify function is being called, but it is just not being recieved. Check the subscribeNotification function in the app
 2. Note: When I send a password to the ESP, it returns with a copy of what it recieved but from the question or rating UUIDs.l So maybe the subscribeNotification isn't the problem but how I am setting up the UUID characteristics
@@ -127,6 +130,7 @@ To do:
 ## 4/8/2025: Password Implementation Cont.
 - The ESP --> App communication works!
 - The problem was in the UUID characteristic setup. It seemed like there were too many notify UUIDs to listen for that the app couldn't process the responses fast enough, therefore I removed the notification characteristic from all the UUIDs I didn't need it for (question, engagement level, settings, password) and kept it only on the esp UUID that i added to handle ESP --> App communication. I also removed the BLE209 desciption from the other UUIDS since it is only necessary for notification and would help limit any potential confusion.
+
 To Do:
 1. Debug the password: I can successfully recieve on the app whether the submitted password was right or wrong, but it will not update the UI to accomidate for the change in password status. I want it to change the "incorrect password" or "correct, please press continue to enter the hub" depending on the response. Check the setStatus() call to see why it might not be working.
 
@@ -138,6 +142,7 @@ To Do:
 ## 4/13/2025: Bluetooth and microcontroller merge
 - I added the bluetooth communication I developed for ESP--> App to the code that also has the various input and output logic of the components.
 - The passwords should now be displayed at the top left of the screen along with the questions that are displayed in the center so that the professor can easily read the passwords.
+
 To do:
 1. Try uploading the code to the Dev board and see if the screen is formatted correctly. Check at different font size selection as well
 2. Try upload the code the the PCB microcontroller. 
