@@ -39,6 +39,11 @@
 - Recorded measurements of GPIO voltages
   - LED indicator on and off voltages
   - Clear button pressed and unpressed voltages
+## 4/9/2025
+- Reworked the process to light the LED arrays
+  - Want to light the arrays as a unit, like a progress bar
+## 4/12/2025
+- Completed initial 3D model for hub housing prototype
 # Team Meetings
 ## Team Meeting 2/12/2025
 - Worked on team contract and proposal
