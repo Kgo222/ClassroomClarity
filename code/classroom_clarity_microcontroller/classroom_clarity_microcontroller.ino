@@ -19,7 +19,7 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define LED_NOTIF 21
 #define MOTOR 12
 //Settings
-int fontSize = 3;     // Set screen font size
+int fontSize = 2;     // Set screen font size
 bool silentMode = false; //set hub silent mode
 
 //Bluetooth 
@@ -71,6 +71,7 @@ void setup() {
   pinMode(ROT_A, INPUT);                  // Set encoder A pin as input
   pinMode(ROT_B, INPUT);                  //Set encoder B pin as input
   pinMode(LED_NOTIF,OUTPUT);              //Set LED at output
+  pinMode(MOTOR,OUTPUT);  
   Serial.begin(115200);
   Serial.print("Basic Encoder Test:");
 
@@ -135,16 +136,23 @@ void loop() {
     } else if(dataReceived.source == "S"){ //check if it is a setting change: data = fontSize.toString() + "/" + silentMode.toString() + "%";
       int endModeIdx = dataReceived.data.find("%");
       int endSizeIdx = dataReceived.data.find("/");
-      silentMode = (std::stoi((dataReceived.data.substr(endSizeIdx+1,endModeIdx))) != 0 ); //update silent mode (steo convert to number then != does bool)
-      fontSize = std::stoi(dataReceived.data.substr(0,endSizeIdx)); //Update fontsize (stoi converts string number to integer number)
-      tft.setTextSize(fontSize);
-      tft.fillScreen(TFT_WHITE);
-      drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
-      drawWrappedText(i_password_printout, 0,tft.fontHeight()+4, SCREEN_WIDTH, &tft);
-      if(questions.size() == 0){
-        drawWrappedText("No Active Questions", TEXT_MARGIN, 2*tft.fontHeight()+15, SCREEN_WIDTH-TEXT_MARGIN, &tft);     
-      }else {
-        drawWrappedText(questionFormat(questions[q_idx]), TEXT_MARGIN, 2*tft.fontHeight()+15, SCREEN_WIDTH-TEXT_MARGIN, &tft);     
+      if(dataReceived.data.substr(endSizeIdx+1,endModeIdx-endSizeIdx-1) == "true"){ //update silentMode based on recieved message
+        silentMode = true;
+      } else{
+        silentMode = false;
+      }
+      int newFontSize = std::stoi(dataReceived.data.substr(0,endSizeIdx)); // converts string number to integer number
+      if(fontSize != newFontSize){
+        fontSize = newFontSize; //Update fontSize
+        tft.setTextSize(fontSize);
+        tft.fillScreen(TFT_WHITE); //Do print screen with new font size
+        drawWrappedText(s_password_printout, 0,0, SCREEN_WIDTH, &tft);
+        drawWrappedText(i_password_printout, 0,tft.fontHeight()+4, SCREEN_WIDTH, &tft);
+        if(questions.size() == 0){
+          drawWrappedText("No Active Questions", TEXT_MARGIN, 2*tft.fontHeight()+15, SCREEN_WIDTH-TEXT_MARGIN, &tft);     
+        }else {
+          drawWrappedText(questionFormat(questions[q_idx]), TEXT_MARGIN, 2*tft.fontHeight()+15, SCREEN_WIDTH-TEXT_MARGIN, &tft);     
+        }
       }
     } else if(dataReceived.source == "Q"){  //String data = "name/question%";
       int endQIdx = dataReceived.data.find("%");

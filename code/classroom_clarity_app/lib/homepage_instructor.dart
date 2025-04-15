@@ -44,23 +44,26 @@ class _HomePageInstructorState extends State<HomePageInstructor> {
                         style: TextStyle(color: AppColors.black, fontSize: 25),
                       )
                   ),
-                  Slider(
-                      value: _currentSliderVal,
-                      max:max_font_size,
-                      min:min_font_size,
-                      divisions: (max_font_size-min_font_size).toInt(),
-                      label:_currentSliderVal.round().toString(),
-                      activeColor: AppColors.darkRed,
-                      inactiveColor: AppColors.dullPurple,
-                      onChanged: (double value){
-                        setState((){
-                          _currentSliderVal = value;
-                          font_size = value;
-                        });
-                      },
-                      onChangeEnd: (double value){
-                        bleHandler.bluetoothWriteS(font_size, silent_mode);
-                      }
+                  SizedBox(
+                    width: 350,
+                    child: Slider(
+                        value: _currentSliderVal,
+                        max:max_font_size,
+                        min:min_font_size,
+                        divisions: (max_font_size-min_font_size).toInt(),
+                        label:_currentSliderVal.round().toString(),
+                        activeColor: AppColors.darkRed,
+                        inactiveColor: AppColors.dullPurple,
+                        onChanged: (double value){
+                          setState((){
+                            _currentSliderVal = value;
+                            font_size = value;
+                          });
+                        },
+                        onChangeEnd: (double value){
+                          bleHandler.bluetoothWriteS(font_size, silent_mode);
+                        }
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

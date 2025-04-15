@@ -27,7 +27,7 @@ class _EngagementButtonState extends State<EngagementButton> {
         //margin: EdgeInsets.all(1),
         alignment: Alignment.center,
         width: 5,
-        height: 80,
+        height: 100,
         decoration: BoxDecoration(
           border: widget.isSelected ? Border.all(color: AppColors.darkRed, width: 2) : null,
         ),

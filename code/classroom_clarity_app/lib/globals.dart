@@ -6,7 +6,7 @@ late final BLEHandler bleHandler;
 //settings
 double max_font_size = 3;
 double min_font_size = 1;
-double font_size = 15;
+double font_size = 2;
 bool silent_mode = false;
 
 //other data
