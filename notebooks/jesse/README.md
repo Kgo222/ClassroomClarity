@@ -44,6 +44,8 @@
   - Want to light the arrays as a unit, like a progress bar
 ## 4/12/2025
 - Completed initial 3D model for hub housing prototype
+## 4/15/2025
+- Began adjustments on the 3D model for device housing
 # Team Meetings
 ## Team Meeting 2/12/2025
 - Worked on team contract and proposal
