@@ -1,6 +1,6 @@
 # Jesse Worklog
 ## 2/19/2025
-- Choose USB-to-UART programmer and VS Code editor
+- Chose USB-to-UART programmer and VS Code editor
 ## 2/22/2025
 - Began assigning pins for system functionality
 ## 2/26/2025
