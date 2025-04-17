@@ -64,3 +64,10 @@
 - Mobile application working
 - GPIO configuration list completed
 - Next task: map class understanding level to LED lighting
+## Team Meetings 4/1/2025 & 4/8/2025
+- Tested custom PCB board version 1
+## Team Meeting 4/15/2025
+- Tested custom PCB board version 2
+  - Found +3V short
+- Tested component fit in the housing
+  - Most components need slight adjustments
