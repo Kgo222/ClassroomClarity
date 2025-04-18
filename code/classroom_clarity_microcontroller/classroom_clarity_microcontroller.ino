@@ -13,11 +13,30 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define TEXT_MARGIN 0
 #define TWO_MINUTES_MS 120000
 
-#define CLR_BUTTON_PIN 16 //Clear button pin 
-#define ROT_A 33
-#define ROT_B 27
-#define LED_NOTIF 21
-#define MOTOR 12
+#define CLR_BUTTON_PIN 6 //Clear button pin 
+#define ROT_A 4
+#define ROT_B 5
+#define LED_NOTIF 3
+#define MOTOR 7
+
+#define LED_R5 35
+#define LED_R4 36
+#define LED_R3 37
+#define LED_R2 38
+#define LED_R1 39
+
+#define LED_Y5 40
+#define LED_Y4 41
+#define LED_Y3 42
+#define LED_Y2 2
+#define LED_Y1 1
+
+#define LED_G5 8
+#define LED_G4 18
+#define LED_G3 17
+#define LED_G2 16
+#define LED_G1 15
+
 //Settings
 int fontSize = 2;     // Set screen font size
 bool silentMode = false; //set hub silent mode
@@ -72,6 +91,25 @@ void setup() {
   pinMode(ROT_B, INPUT);                  //Set encoder B pin as input
   pinMode(LED_NOTIF,OUTPUT);              //Set LED at output
   pinMode(MOTOR,OUTPUT);  
+
+  pinMode(LED_R1,OUTPUT);              //Set LED at output
+  pinMode(LED_R2,OUTPUT);              //Set LED at output
+  pinMode(LED_R3,OUTPUT);              //Set LED at output
+  pinMode(LED_R4,OUTPUT);              //Set LED at output
+  pinMode(LED_R5,OUTPUT);              //Set LED at output
+
+  pinMode(LED_Y1,OUTPUT);              //Set LED at output
+  pinMode(LED_Y2,OUTPUT);              //Set LED at output
+  pinMode(LED_Y3,OUTPUT);              //Set LED at output
+  pinMode(LED_Y4,OUTPUT);              //Set LED at output
+  pinMode(LED_Y5,OUTPUT);              //Set LED at output
+
+  pinMode(LED_G1,OUTPUT);              //Set LED at output
+  pinMode(LED_G2,OUTPUT);              //Set LED at output
+  pinMode(LED_G3,OUTPUT);              //Set LED at output
+  pinMode(LED_G4,OUTPUT);              //Set LED at output
+  pinMode(LED_G5,OUTPUT);              //Set LED at output
+
   Serial.begin(115200);
   Serial.print("Basic Encoder Test:");
 
@@ -98,6 +136,9 @@ void setup() {
       previousActivationTime = millis();
     }
   }
+  //Engagement Level
+  setEngagementLevel(L);
+
   ble.init(); //initialize bluetooth
 }
 
@@ -182,6 +223,7 @@ void loop() {
       ratingSum = (ratingSum - prevR) + currR;
       avgRating = ratingSum/N; //Calculate the updated average rating
       L = (int)((3*avgRating) + 0.5); //Calculate the amount of LED to light
+      setEngagementLevel(L);
       }
     }
   //CLEAR BUTTON
@@ -328,3 +370,247 @@ std::string questionFormat(std::string name_question){
   return outputFormat;
 } 
 
+void setEngagementLevel(int L){
+  if(L==1){
+    digitalWrite(LED_R1,HIGH);
+    digitalWrite(LED_R2,LOW);
+    digitalWrite(LED_R3,LOW);
+    digitalWrite(LED_R4,LOW);
+    digitalWrite(LED_R5,LOW);
+    digitalWrite(LED_Y1,LOW);
+    digitalWrite(LED_Y2,LOW);
+    digitalWrite(LED_Y3,LOW);
+    digitalWrite(LED_Y4,LOW);
+    digitalWrite(LED_Y5,LOW);
+    digitalWrite(LED_G1,LOW);
+    digitalWrite(LED_G2,LOW);
+    digitalWrite(LED_G3,LOW);
+    digitalWrite(LED_G4,LOW);
+    digitalWrite(LED_G5,LOW); 
+  }else if(L==2){
+    digitalWrite(LED_R1,HIGH);
+    digitalWrite(LED_R2,HIGH);
+    digitalWrite(LED_R3,LOW);
+    digitalWrite(LED_R4,LOW);
+    digitalWrite(LED_R5,LOW);
+    digitalWrite(LED_Y1,LOW);
+    digitalWrite(LED_Y2,LOW);
+    digitalWrite(LED_Y3,LOW);
+    digitalWrite(LED_Y4,LOW);
+    digitalWrite(LED_Y5,LOW);
+    digitalWrite(LED_G1,LOW);
+    digitalWrite(LED_G2,LOW);
+    digitalWrite(LED_G3,LOW);
+    digitalWrite(LED_G4,LOW);
+    digitalWrite(LED_G5,LOW);
+  }else if(L==3){
+    digitalWrite(LED_R1,HIGH);
+    digitalWrite(LED_R2,HIGH);
+    digitalWrite(LED_R3,HIGH);
+    digitalWrite(LED_R4,LOW);
+    digitalWrite(LED_R5,LOW);
+    digitalWrite(LED_Y1,LOW);
+    digitalWrite(LED_Y2,LOW);
+    digitalWrite(LED_Y3,LOW);
+    digitalWrite(LED_Y4,LOW);
+    digitalWrite(LED_Y5,LOW);
+    digitalWrite(LED_G1,LOW);
+    digitalWrite(LED_G2,LOW);
+    digitalWrite(LED_G3,LOW);
+    digitalWrite(LED_G4,LOW);
+    digitalWrite(LED_G5,LOW);
+  }else if(L==4){
+    digitalWrite(LED_R1,HIGH);
+    digitalWrite(LED_R2,HIGH);
+    digitalWrite(LED_R3,HIGH);
+    digitalWrite(LED_R4,HIGH);
+    digitalWrite(LED_R5,LOW);
+    digitalWrite(LED_Y1,LOW);
+    digitalWrite(LED_Y2,LOW);
+    digitalWrite(LED_Y3,LOW);
+    digitalWrite(LED_Y4,LOW);
+    digitalWrite(LED_Y5,LOW);
+    digitalWrite(LED_G1,LOW);
+    digitalWrite(LED_G2,LOW);
+    digitalWrite(LED_G3,LOW);
+    digitalWrite(LED_G4,LOW);
+    digitalWrite(LED_G5,LOW);
+  }else if(L==5){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,LOW);
+      digitalWrite(LED_Y2,LOW);
+      digitalWrite(LED_Y3,LOW);
+      digitalWrite(LED_Y4,LOW);
+      digitalWrite(LED_Y5,LOW);
+      digitalWrite(LED_G1,LOW);
+      digitalWrite(LED_G2,LOW);
+      digitalWrite(LED_G3,LOW);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==6){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,LOW);
+      digitalWrite(LED_Y3,LOW);
+      digitalWrite(LED_Y4,LOW);
+      digitalWrite(LED_Y5,LOW);
+      digitalWrite(LED_G1,LOW);
+      digitalWrite(LED_G2,LOW);
+      digitalWrite(LED_G3,LOW);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==7){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,LOW);
+      digitalWrite(LED_Y4,LOW);
+      digitalWrite(LED_Y5,LOW);
+      digitalWrite(LED_G1,LOW);
+      digitalWrite(LED_G2,LOW);
+      digitalWrite(LED_G3,LOW);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==8){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,HIGH);
+      digitalWrite(LED_Y4,LOW);
+      digitalWrite(LED_Y5,LOW);
+      digitalWrite(LED_G1,LOW);
+      digitalWrite(LED_G2,LOW);
+      digitalWrite(LED_G3,LOW);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==9){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,HIGH);
+      digitalWrite(LED_Y4,HIGH);
+      digitalWrite(LED_Y5,LOW);
+      digitalWrite(LED_G1,LOW);
+      digitalWrite(LED_G2,LOW);
+      digitalWrite(LED_G3,LOW);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==10){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,HIGH);
+      digitalWrite(LED_Y4,HIGH);
+      digitalWrite(LED_Y5,HIGH);
+      digitalWrite(LED_G1,LOW);
+      digitalWrite(LED_G2,LOW);
+      digitalWrite(LED_G3,LOW);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==11){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,HIGH);
+      digitalWrite(LED_Y4,HIGH);
+      digitalWrite(LED_Y5,HIGH);
+      digitalWrite(LED_G1,HIGH);
+      digitalWrite(LED_G2,LOW);
+      digitalWrite(LED_G3,LOW);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==12){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,HIGH);
+      digitalWrite(LED_Y4,HIGH);
+      digitalWrite(LED_Y5,HIGH);
+      digitalWrite(LED_G1,HIGH);
+      digitalWrite(LED_G2,HIGH);
+      digitalWrite(LED_G3,LOW);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==13){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,HIGH);
+      digitalWrite(LED_Y4,HIGH);
+      digitalWrite(LED_Y5,HIGH);
+      digitalWrite(LED_G1,HIGH);
+      digitalWrite(LED_G2,HIGH);
+      digitalWrite(LED_G3,HIGH);
+      digitalWrite(LED_G4,LOW);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==14){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,HIGH);
+      digitalWrite(LED_Y4,HIGH);
+      digitalWrite(LED_Y5,HIGH);
+      digitalWrite(LED_G1,HIGH);
+      digitalWrite(LED_G2,HIGH);
+      digitalWrite(LED_G3,HIGH);
+      digitalWrite(LED_G4,HIGH);
+      digitalWrite(LED_G5,LOW);
+  }else if(L==15){
+      digitalWrite(LED_R1,HIGH);
+      digitalWrite(LED_R2,HIGH);
+      digitalWrite(LED_R3,HIGH);
+      digitalWrite(LED_R4,HIGH);
+      digitalWrite(LED_R5,HIGH);
+      digitalWrite(LED_Y1,HIGH);
+      digitalWrite(LED_Y2,HIGH);
+      digitalWrite(LED_Y3,HIGH);
+      digitalWrite(LED_Y4,HIGH);
+      digitalWrite(LED_Y5,HIGH);
+      digitalWrite(LED_G1,HIGH);
+      digitalWrite(LED_G2,HIGH);
+      digitalWrite(LED_G3,HIGH);
+      digitalWrite(LED_G4,HIGH);
+      digitalWrite(LED_G5,HIGH);
+  }
+  
+}
