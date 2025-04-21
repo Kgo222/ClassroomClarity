@@ -114,7 +114,6 @@ void loop() {
       L = (int)((3*avgRating) + 0.5); //Calculate the amount of LED to light
       }
     }
-  }
   //CLEAR BUTTON
   int CLRbuttonState = digitalRead(CLR_BUTTON_PIN);  // Read the state of the button
   if (CLRbuttonState == LOW) {  // Button is pressed (because the internal pull-up resistor pulls it HIGH when not pressed)
