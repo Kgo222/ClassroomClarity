@@ -13,10 +13,10 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define TEXT_MARGIN 0
 #define TWO_MINUTES_MS 120000
 
-#define CLR_BUTTON_PIN 6 //Clear button pin 
-#define ROT_A 4
-#define ROT_B 5
-#define LED_NOTIF 3
+#define CLR_BUTTON_PIN 16 //6 //Clear button pin 
+#define ROT_A 33 //4
+#define ROT_B 27 //5
+#define LED_NOTIF 21 //3
 #define MOTOR 7
 
 #define LED_R5 35
@@ -140,9 +140,11 @@ void setup() {
   setEngagementLevel(L);
 
   ble.init(); //initialize bluetooth
+  Serial.println("finish setup");
 }
 
 void loop() {
+  Serial.println("loop start");
   //BLUETOOTH DATA CHECK
   if(ble.isDataAvailable()) {
     dataReceived = ble.getData();
