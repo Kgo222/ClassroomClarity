@@ -145,7 +145,11 @@ To Do:
 
 To do:
 1. Try uploading the code to the Dev board and see if the screen is formatted correctly. Check at different font size selection as well
-2. Try upload the code the the PCB microcontroller. 
+2. Try upload the code the the PCB microcontroller.
+
+## 4/21/2025: Mock Demo
+- Want to showcase the bluetooth + screen + notif LED + clear button
+- Debug: When I tried to load the code the ESP dev board kept resetting itself and giving an error message that indicated the ESP couldn't finish setup() or loop(). Upon further inspect I realized that in the setup() I was trying to assign pins that didn't exsist on the dev board and once I commented out that, it works!
 
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
@@ -169,3 +173,9 @@ To do:
 ## 2/25/2025 Team Meeting
 ### Important Decisions:
 - Swapped to a ESP32-S3-WROOM-1-N16: Has the correct amount of GPIO and SPI functionally pins for what we need + it is in the Electronic Services Shop
+
+## 4/22/2025 Team Meeting:
+Fixes
+- Motor, Clear btn, and Green LED pins of microcontroller likely shorted under the pin because they all turn on = need to resolder
+- Lid PCB holes are 10 mm too close together
+- 
