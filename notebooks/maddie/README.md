@@ -96,6 +96,15 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - Finished soldering components, happy with the results
 - Will test functionality tomorrow at team meeting 
 
+### 4/18/2025 Version 2 Testing 
+- Soldered an LED array for testing
+- desoldered some pins for screen connection
+    - Pad from PCB for screen connection came off & trace peeled back
+    - tried to soler wire directly to microcontroller pin but connection to screen didnt seem to be working
+    - Determined that a new board needed to be soldered
+- Began soldering components onto new board
+- DC/DC converter is now on backorder so we have to live with the 2 converters we have
+
 
 
 ## Team Meeting Notes
@@ -177,4 +186,14 @@ Discussed how the physical deisign of the hub casing should look.
     - determined issue that caused previous to not work: reversed polarity (negative on inside)
     - current spike was not the problem 
 - Prepared for prototype casing print
-- Confirmed with Aishee that we are on schedule 
+- Confirmed with Aishee that we are on schedule
+
+### 4/22/2025 Team Meeting
+- Testing newly soldered version 2 board
+- DC/DC conversion --> functional 
+- Indicator light --> functional
+- Red LED array --> functional
+- Yellow LED array --> functional
+- Green LED --> not functional
+    - suspected short between array and motor signal (close together on microcontroller)
+- Will fix microcontroller short later tonight 
