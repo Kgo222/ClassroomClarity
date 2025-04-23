@@ -4,7 +4,8 @@
 
 ### 2/13/2025: Power conversion research
 - looked into different LDOs and voltage regulators to step down 5V adapter input
-- did math to figure out resister values for LDO (power conversion considerations.pdf)
+- did math to figure out resistor values for LDO (power conversion considerations.pdf)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Resistor%20Math.png)
 
 
 ### 2/26/2025: Power Conversion Reconsiderations 
