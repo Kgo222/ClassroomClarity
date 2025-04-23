@@ -123,7 +123,10 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - All peripherals are now functional 
 - Now we are moving on to testing final code that brings everything together
     - First pass did not work --> having trouble with screen setup
-    - changed some user set up pin numbers 
+    - changed some user set up pin numbers
+    - solution: programmer was not supplying enough current --> switched to power adapter
+- Tested bluetooth --> functioning
+- Everything is working!!!
 
 
 
