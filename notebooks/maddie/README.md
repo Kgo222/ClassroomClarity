@@ -127,6 +127,7 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
     - solution: programmer was not supplying enough current --> switched to power adapter
 - Tested bluetooth --> functioning
 - Everything is working!!!
+- Now all we have is code debugging between the app and the hub
 
 
 
