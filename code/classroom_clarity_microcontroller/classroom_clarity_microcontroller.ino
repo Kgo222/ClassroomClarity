@@ -13,10 +13,10 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define TEXT_MARGIN 0
 #define TWO_MINUTES_MS 120000
 
-#define CLR_BUTTON_PIN 16 //6 //Clear button pin 
-#define ROT_A 33 //4
-#define ROT_B 27 //5
-#define LED_NOTIF 4 //3
+#define CLR_BUTTON_PIN 6 //Clear button pin 
+#define ROT_A 4
+#define ROT_B 5
+#define LED_NOTIF 3
 
 
 //Settings
