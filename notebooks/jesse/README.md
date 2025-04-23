@@ -51,6 +51,7 @@
 - Completed initial 3D model for device housing lid
 ## 4/22/2025
 - Made adjustments on the lid and main body 3D models for device housing
+- Made test program to test feedback peripherals
 # Team Meetings
 ## Team Meeting 2/12/2025
 - Worked on team contract and proposal
@@ -78,3 +79,9 @@
   - Found +3V short
 - Tested component fit in the housing
   - Most components need slight adjustments
+## Team Meeting 4/22/2025
+- Tested custom PCB board version 2
+  - Found and fixed short between GPIO pins
+- Test fit components in the housing version 2
+  - Adjustments needed on lid for PCB mounting
+  - Slight adjustment needed on main body charging hole for PCB
