@@ -13,10 +13,10 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define TEXT_MARGIN 0
 #define TWO_MINUTES_MS 120000
 
-#define CLR_BUTTON_PIN 16 //6 //Clear button pin 
-#define ROT_A 33 //4
-#define ROT_B 27 //5
-#define LED_NOTIF 21 //3
+#define CLR_BUTTON_PIN 16 //6 //Clear button pin  16
+#define ROT_A 4 // 33
+#define ROT_B 5 //27
+#define LED_NOTIF 3 //21
 #define MOTOR 7
 
 #define LED_R5 35
@@ -231,7 +231,7 @@ void loop() {
   //CLEAR BUTTON
   int CLRbuttonState = digitalRead(CLR_BUTTON_PIN);  // Read the state of the button
   if (CLRbuttonState == LOW) {  // Button is pressed (because the internal pull-up resistor pulls it HIGH when not pressed)
-      Serial.println("Button Pressed!");
+      Serial.println("Clear Button Pressed!");
       buttonPressed = true;
     } 
 
