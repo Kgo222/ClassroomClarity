@@ -4,7 +4,7 @@
 
 ### 2/13/2025: Power conversion research
 - looked into different LDOs and voltage regulators to step down 5V adapter input
-- did math to figure out resistor values for LDO (power conversion considerations.pdf)
+- did math to figure out resistor values for LDO
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Resistor%20Math.png)
 
 
@@ -12,6 +12,8 @@
 - regular regulators have to high voltage drop --> look for LDOs
 - looked for LDOs within the needs for our circuit --> could not find with high enough current
 - Looked for DC to DC conversion modules --> found the TPSM84203EAB
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/LDO%20considerations.png)
+
 
 ### 2/26/2025: PCB Version 1 Schematic and Layout
 
