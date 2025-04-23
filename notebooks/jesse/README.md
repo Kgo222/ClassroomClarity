@@ -46,6 +46,11 @@
 - Completed initial 3D model for hub housing prototype
 ## 4/15/2025
 - Began adjustments on the 3D model for device housing
+## 4/18/2025
+- Continued adjustments on the main body 3D model for device housing
+- Completed initial 3D model for device housing lid
+## 4/22/2025
+- Made adjustments on the lid and main body 3D models for device housing
 # Team Meetings
 ## Team Meeting 2/12/2025
 - Worked on team contract and proposal
