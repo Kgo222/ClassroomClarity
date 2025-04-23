@@ -51,7 +51,12 @@
 - Completed initial 3D model for device housing lid
 ## 4/22/2025
 - Made adjustments on the lid and main body 3D models for device housing
+  - Added vents on the main body
 - Made test program to test feedback peripherals
+## 4/23/2025
+- Tested peripherals after resoldering chip
+  - LEDs, rotary encoder, clear button, vibe motor, and screen worked without Bluetooth
+- Began 3D printing main body version 3 after printer ran out of filament
 # Team Meetings
 ## Team Meeting 2/12/2025
 - Worked on team contract and proposal
