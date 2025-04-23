@@ -13,10 +13,10 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define TEXT_MARGIN 0
 #define TWO_MINUTES_MS 120000
 
-#define CLR_BUTTON_PIN 16 //6 //Clear button pin  16
-#define ROT_A 4 // 33
-#define ROT_B 5 //27
-#define LED_NOTIF 3 //21
+#define CLR_BUTTON_PIN 6 //Clear button pin 
+#define ROT_A 4
+#define ROT_B 5
+#define LED_NOTIF 3
 #define MOTOR 7
 
 #define LED_R5 35
@@ -66,10 +66,10 @@ int currentActivationTime = 0;
 
 //LED math
 float N = 1.0; //Tracks the total number of students in the class, e.g. 1 for demo
-int L = 15; //Tracks number of LED pairs that should be lit (range 0-15)
+int L = 1; //Tracks number of LED pairs that should be lit (range 0-15)
 int prevR = 0; //helper splice var
 int currR = 0;  //helper splice var
-int ratingSum = 0; //tracks the total student engagement level
+int ratingSum = 5; //tracks the total student engagement level
 float avgRating = 0; //tracks the average student engagement level 
 
 std::vector<std::string> questions = {};  
@@ -133,7 +133,7 @@ void setup() {
       digitalWrite(MOTOR, HIGH);
       delay(300);
       digitalWrite(MOTOR,LOW);
-      previousActivationTime = millis();
+      previousActivationTime = 0;
     }
   }
   //Engagement Level
@@ -231,9 +231,9 @@ void loop() {
   //CLEAR BUTTON
   int CLRbuttonState = digitalRead(CLR_BUTTON_PIN);  // Read the state of the button
   if (CLRbuttonState == LOW) {  // Button is pressed (because the internal pull-up resistor pulls it HIGH when not pressed)
-      Serial.println("Clear Button Pressed!");
+      Serial.println("Button Pressed!");
       buttonPressed = true;
-    } 
+  } 
 
   // ROTARY ENCORDER
   aState = digitalRead(ROT_A); //Get current A state
@@ -331,6 +331,7 @@ void loop() {
           }
         }
       }
+      delay(200);
     }
     currentActivationTime = millis();
     if(silentMode == false && currentActivationTime-previousActivationTime >= TWO_MINUTES_MS){
