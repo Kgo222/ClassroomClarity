@@ -105,6 +105,23 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - Began soldering components onto new board
 - DC/DC converter is now on backorder so we have to live with the 2 converters we have
 
+### 4/23/2025 More Version 2 Testing 
+- Re-soldered the microcontroller
+- Retesting peripherals
+    - DC/DC conversion --> functional
+    - Indicator light --> functional
+    - Red LED array --> functional
+    - Yellow LED array --> functional
+    - Green LED --> functional!!
+    - Motor --> functional!!
+- Soldered on jumper wires for screen then tested functionality using breadboard demo code
+    - functional!!
+    - also tests rotary encoder --> functional
+- All peripherals are now functional 
+- Now we are moving on to testing final code that brings everything together
+    - First pass did not work --> having trouble with screen setup
+    - changed some user set up pin numbers 
+
 
 
 ## Team Meeting Notes
