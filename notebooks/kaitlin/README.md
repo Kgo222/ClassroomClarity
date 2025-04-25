@@ -151,6 +151,11 @@ To do:
 - Want to showcase the bluetooth + screen + notif LED + clear button
 - Debug: When I tried to load the code the ESP dev board kept resetting itself and giving an error message that indicated the ESP couldn't finish setup() or loop(). Upon further inspect I realized that in the setup() I was trying to assign pins that didn't exsist on the dev board and once I commented out that, it works!
 
+## 4/25/2025: Fixing the final bugs 
+- When testing the final project, we noticed certain senarios that when done caused a problem:
+1. When the student logs out and logs back in, the LED arrrays never light up again: this was caused by a problem in the math were when the student logged out the LED math would get the ratingSum to 0 and then the math wouldn't work anymore. I fixed this by changing how the app handles a signout where instead of senting a current rating of 0 and the last rating to remove the student from the total sum, now it sends a current rating of 5 and the last rating so the microcontroller is reset to full LEDs.
+2. If a student sends more that 200 character, there would be overflow on the screen. Therefore I added a character limit to the text field.
+
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
 - Worked on proposal and team contract
