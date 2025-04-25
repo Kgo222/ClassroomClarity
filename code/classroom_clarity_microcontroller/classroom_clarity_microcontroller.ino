@@ -66,7 +66,7 @@ int currentActivationTime = 0;
 
 //LED math
 float N = 1.0; //Tracks the total number of students in the class, e.g. 1 for demo
-int L = 1; //Tracks number of LED pairs that should be lit (range 0-15)
+int L = 15; //Tracks number of LED pairs that should be lit (range 0-15)
 int prevR = 0; //helper splice var
 int currR = 0;  //helper splice var
 int ratingSum = 5; //tracks the total student engagement level
