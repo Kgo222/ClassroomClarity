@@ -144,7 +144,19 @@ class _HomePageState extends State<HomePage> {
                         // Set the text color to black
                         minLines: 5, // Makes a larger textbox
                         maxLines: 7, // When user presses enter it will adapt to it
+                        maxLength: 200,
                         obscureText: false,
+                        buildCounter: (
+                            BuildContext context, {
+                              required int currentLength,
+                              required bool isFocused,
+                              required int? maxLength,
+                            }) {
+                          return Text(
+                            '$currentLength / $maxLength',
+                            style: TextStyle(color: Colors.grey),
+                          );
+                        },
                         decoration: const InputDecoration(
                             hintText: 'Type your Question Here',
                             hintStyle: TextStyle(color: AppColors.denim),
@@ -157,7 +169,8 @@ class _HomePageState extends State<HomePage> {
                             filled: true,
                             fillColor: AppColors.blueGrey,
                         ),
-                        validator: (String? value) {
+
+                          validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter a Question';
                           }
@@ -241,7 +254,7 @@ class _HomePageState extends State<HomePage> {
                               //Reset variables
                               name = 'Student';
                               question = "";
-                              bleHandler.bluetoothWriteR(curr_engagementLevel, 0); // When sign out we want to remove their rating from the avg, 0 is the indicator of sign out
+                              bleHandler.bluetoothWriteR(curr_engagementLevel, 5); // When sign out we want to remove their rating from the avg, 0 is the indicator of sign out
                               curr_engagementLevel = 5;
                               prev_engagementLevel = 0;
                               bleHandler.disconnect();
