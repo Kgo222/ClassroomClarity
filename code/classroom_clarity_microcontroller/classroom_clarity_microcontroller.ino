@@ -19,11 +19,11 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define LED_NOTIF 3
 #define MOTOR 7
 
-#define LED_R5 35
-#define LED_R4 36
+#define LED_R1 35
+#define LED_R2 36
 #define LED_R3 37
-#define LED_R2 38
-#define LED_R1 39
+#define LED_R4 38
+#define LED_R5 39
 
 #define LED_Y5 40
 #define LED_Y4 41
@@ -31,11 +31,11 @@ TFT_eSPI tft = TFT_eSPI();  // Create TFT object
 #define LED_Y2 2
 #define LED_Y1 1
 
-#define LED_G5 8
-#define LED_G4 18
+#define LED_G1 8
+#define LED_G2 18
 #define LED_G3 17
-#define LED_G2 16
-#define LED_G1 15
+#define LED_G4 16
+#define LED_G5 15
 
 //Settings
 int fontSize = 2;     // Set screen font size
@@ -81,7 +81,7 @@ bool buttonPressed = false;
 void setup() {
   //Setup Start Screen 
   tft.init();          // Initialize TFT
-  tft.setRotation(1);  // Set screen rotation (0-3)
+  tft.setRotation(3);  // Set screen rotation (0-3)
   tft.fillScreen(TFT_WHITE); // Clear screen
   tft.setTextColor(TFT_BLACK);  
   tft.setTextSize(fontSize);  
