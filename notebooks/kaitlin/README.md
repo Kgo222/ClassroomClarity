@@ -187,9 +187,9 @@ Fixes
 ## 4/25/2025 RV Test:
 Yellow = Rot A, Green = Rot B
 Clockwise:
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/IMG_0804.HEIC)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Clockwise.jpg)
 CounterClockwise:
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/IMG_0805.HEIC)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/CounterClockwise.jpg)
 
 Control and Feedback Signals:
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/image_2025-04-27_220542817.png) 
