@@ -142,7 +142,13 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - Everything is working!!!
 - Now all we have is code debugging between the app and the hub
 
-
+#### R&V Testing for the Power Management Subsystem 
+- Adapter & converter voltages were well within acceptable threshold
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Ver2%20Measurements.png)
+- Temperatures were well below safe human touch limit 
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/TemperatureTest.png)
+- Oscilloscope showed no concerning voltage variations
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/O%20scope%20pic%20(1).png)
 
 ## Team Meeting Notes
 
