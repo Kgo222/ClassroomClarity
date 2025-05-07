@@ -3,14 +3,14 @@
 ## Research and Progress
 
 ### 2/13/2025: Power conversion research
-- looked into different LDOs and voltage regulators to step down 5V adapter input
-- did math to figure out resistor values for LDO
+- Looked into different LDOs and voltage regulators to step down 5V adapter input
+- Did math to figure out resistor values for LDO
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Resistor%20Math.png)
 
 
 ### 2/26/2025: Power Conversion Reconsiderations 
-- regular regulators have to high voltage drop --> look for LDOs
-- looked for LDOs within the needs for our circuit --> could not find with high enough current
+- Regular regulators have to high voltage drop --> look for LDOs
+- Looked for LDOs within the needs for our circuit --> could not find with high enough current
 - Looked for DC to DC conversion modules --> found the TPSM84203EAB
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/LDO%20considerations.png)
 
@@ -18,10 +18,17 @@
 ### 2/26/2025: PCB Version 1 Schematic and Layout
 
 #### The Schematic 
-- started with the power management subsytem
+- Started with the power management subsytem
+- Moved on to microcontroller footprint and added all the IOs given to me by Jesse
+- Placed all relevant components on the board after that and sorted them into their respective subsystems
+- Added button and rotary debounce based on Jesse's calculations
+- Added in dividers and text to frame the dubsytems and increase readability of schematic 
 
 #### The Layout
-- Placed microcontroller central on the board then placed components around it 
+- Placed microcontroller central on the board then placed components around it
+- Made a box with the maximum size for the pcb ordering software and made sure to stay well within the guidelines
+- Placed headers in a way so that there were little to no overlapping signals
+- Added ground stitching vias 
 
 
 ### 3/8/2025: Breadboard Demo Preperations
