@@ -25,7 +25,7 @@ Features we want to include in the app design:
   - "sign in as teacher" will ask them to input a password for teacher specifically
   - Features on hub teacher could change: font size, allow anonymous questions or not
 ### Visual Aid of Student Only App - didn't add Teacher side yet
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/app%20Design%20flow.jpg)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/app%20Design%20flow.jpg)
 
 ## 2/28/2025: Circuit Design
 ### Research:
@@ -50,7 +50,7 @@ Good with things that need specific signals (ex. rotary encorder)
 #### 5) Current Measurements
 Based off of current measurements:  
 Microcontroller + rotary encoder + motor + Screen $= 800mA + 1mA + 80mA + 50mA = 931 mA$ --> 1.5A source works
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/current%20measures.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/current%20measures.png)
 
 ### Design Rough Drafts:
 *Note: GPIO numbers don't correlate to the actual ESP 32 connections, they are just used for differentiation between connections
@@ -58,32 +58,47 @@ Microcontroller + rotary encoder + motor + Screen $= 800mA + 1mA + 80mA + 50mA =
 - When contact is open = need pull ups (pink) to ensure GPIO reads HIGH
 - When contact is closed = need pull down to ensure GPIO reads LOW
 - Added capacitors for debounce
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Rotary_draft1.jpg)
+
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Rotary_draft1.jpg"
+   alt="Rotary Encoder Circuit Plan" width="300" height="200">,
 #### Push Button
 - When pressed = GPIO LOW
 - When pressed = GPIO HIGH
 - Debounce can be done in software or add a cap between button and GND
 #### Screen
 - Don't need to hook up the touch screen or SD since we aren't using those
-- Screen can run on 3.3V/5V --> run on 3.3V because microcontroller is 3.3V = signal consistency 
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Screen_draft1.jpg)
+- Screen can run on 3.3V/5V --> run on 3.3V because microcontroller is 3.3V = signal consistency
+
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Screen_draft1.jpg"
+   alt="Screen Circuit Plan" width="300" height="200">,
+  
 #### Vibration Motor
 - Requires more tham 20mA of current, so must pull directly from 3.3V, 1.5A source.
 - Use a MOSFET to control the signal and motor interaction: GPIO connects to gate so that when GPIO HIGH, FET closes and motor runs.
 - Need to add a flyback diode to protect MOSFET from the motors sudden start and stops (potential voltage spikes)
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Motor_draft1.jpg)
+
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/Motor_draft1.jpg"
+   alt="Vibration Motor Circuit Plan" width="300" height="200">,
+  
 #### LEDs
 ##### 1) Single LED for question notification:
 - Could add a current limiting resistor between the GPIO and LED, however that might limit current too much
 - LED needs 20mA to run at optimal conditions, and the peak current is 30mA. The GPIO only gives 20mA and any current spikes will likely be less than peak current
 - LED has forward voltage of ~3.3V, so we need the full 3.3V from microcontroller for LED to work, so best to leave resistor off
-  ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/LEDsingle_draft1.jpg)
+
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/LEDsingle_draft1.jpg"
+   alt="Single LED (Notification LED) Circuit Plan" width="300" height="200">,
+
 ##### 2) LED array for engagement rating display (x3):
 - Each individual LED array needs ~10mA to run at optimal conditions. We can run 2 LED in parellel with 1 GPIO.
 - LED peak current is 30mA so we don't need to current limiting resistor
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/LEDarray_draft1.jpg)
+
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/LEDarray_draft1.jpg"
+   alt="LED arrays Circuit Plan" width="300" height="200">,
+
 ### Full Design Draft
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/fullCircuit_draft1.jpg)
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/fullCircuit_draft1.jpg"
+   alt="Full Circuit Plan" width="900" height="500">,
 
 ## 3/8/2025: Breadboard Demo
 - Goals: Get screen to display questions, have rotary encoder flip through questions on the screen, have button clear the question on the screen, and an LED indicate if there are still questions in queue
@@ -157,12 +172,12 @@ To do:
 2. If a student sends more that 200 character, there would be overflow on the screen. Therefore I added a character limit to the text field.
 
 ## Requirement and Verification for Mobile App Subsystem:
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_mobileApp.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_data/RV_mobileApp.png)
 ### Requirement 1 Verification:
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/TImingTable.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_data/TImingTable.png)
 
 ### Requirement 2 Verification:
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DataAccuracy.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_data/DataAccuracy.png)
 
 ### Requirement 3 Verified with qualitative testing:
 - For LED functionality watch "LEDadjust.MOV"
@@ -185,7 +200,10 @@ To do:
 1. Divided up tasks
 2. Finalized Component Choice + got links for any we need to order
 4. Got rough estimate of minimum budget
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/ComponentList.png)
+
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DesignRefs/ComponentList.png"
+   alt="Budget Estimate" width="900" height="600">,
+
 ### For next meeting:
 1. Jesse →  control & physical casing, Look into what programmer we need for the microcontroller
 2. Kait → App and coding + Work on Schedule for Design Document
@@ -200,34 +218,39 @@ Fixes
 - Motor, Clear btn, and Green LED pins of microcontroller likely shorted under the pin because they all turn on = need to resolder
 - Lid PCB holes are 10 mm too close together
 
-## 4/25/2025 Team Meeting: RV Test
+## 4/25/2025 Team Meeting: Requirement and Verification testing for Control, Power, and Feedback Circuits
 Yellow = Rot A, Green = Rot B
 Clockwise:
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Clockwise.jpg)
-CounterClockwise:
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/CounterClockwise.jpg)
 
-Control and Feedback Signals:
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/image_2025-04-27_220542817.png) 
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_data/Clockwise.jpg"
+   alt="Budget Estimate" width="500" height="300">,
+
+CounterClockwise:
+
+<img src="https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_data/CounterClockwise.jpg"
+   alt="Budget Estimate" width="500" height="300">,
+
+Control, Feedback, and Power Measured Values:
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_data/control_power_feedback_RV.png) 
 
 #Final Design Information
 ## Physical Design
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/HubPicture.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/HubPicture.png)
 
 ## Internal Subcircuits
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/final_BlockDiagram.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/final_BlockDiagram.png)
 
 ## Microcontroller Control Flowchart
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/ControlsFlowchart_ESP.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/ControlsFlowchart_ESP.png)
 
 ## Mobile App Flowchart
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/MobileAppFlow.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/MobileAppFlow.png)
 
 ## App Layout
 ### Student
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/StudentAppLayout.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/StudentAppLayout.png)
 
 ### Instructor
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/InstructorAppLayout.png)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/InstructorAppLayout.png)
 
 
