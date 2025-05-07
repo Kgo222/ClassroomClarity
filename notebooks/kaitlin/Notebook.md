@@ -156,6 +156,9 @@ To do:
 1. When the student logs out and logs back in, the LED arrrays never light up again: this was caused by a problem in the math were when the student logged out the LED math would get the ratingSum to 0 and then the math wouldn't work anymore. I fixed this by changing how the app handles a signout where instead of senting a current rating of 0 and the last rating to remove the student from the total sum, now it sends a current rating of 5 and the last rating so the microcontroller is reset to full LEDs.
 2. If a student sends more that 200 character, there would be overflow on the screen. Therefore I added a character limit to the text field.
 
+## Requirement and Verification for Mobile App Subsystem:
+
+
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
 - Worked on proposal and team contract
@@ -184,7 +187,7 @@ Fixes
 - Motor, Clear btn, and Green LED pins of microcontroller likely shorted under the pin because they all turn on = need to resolder
 - Lid PCB holes are 10 mm too close together
 
-## 4/25/2025 RV Test:
+## 4/25/2025 Team Meeting: RV Test
 Yellow = Rot A, Green = Rot B
 Clockwise:
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Clockwise.jpg)
