@@ -6,6 +6,11 @@
    - [3/8/2025: Breadboard Demo](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#382025-breadboard-demo)
    - [3/25/2025: Bluetooth Dev](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#3252025-bluetooth-dev)
    - [3/28/2025: Bluetooth Dev Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#3282025-bluetooth-dev-cont)
+   - [3/31/2025: Bluetooth Dev Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#3312025-bluetooth-dev-cont)
+   - [4/1/2025: Bluetooth Dev Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#412025-bluetooth-dev-cont)
+   - [4/7/2025: Password Implementation](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#472025-password-implementation)
+   - [4/8/2025: Password Implementation Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#482025-password-implementation-cont)
+   - [4/9/2025: Password Implementation Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#482025-password-implementation-cont)
 2. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#team-meeting-notes)
 # Kaitlin Worklog
 ## 2/17/2025: App Design
@@ -149,7 +154,7 @@ To do:
 To Do:
 1. Debug the password: I can successfully recieve on the app whether the submitted password was right or wrong, but it will not update the UI to accomidate for the change in password status. I want it to change the "incorrect password" or "correct, please press continue to enter the hub" depending on the response. Check the setStatus() call to see why it might not be working.
 
-## 4/9/2025: Password Implementation
+## 4/9/2025: Password Implementation Cont.
 - UI update now works!
 - The Problem was the setState() was being called in subscribeNotifications since that is where the studentAuthenticated and instructorAuthenticated variables change depending on the password. This, however, doesn't call the correct setState() that is associated with the login screen. The necessary setState() is the once associated with the instuctorLogin page or the studentLogin page depending on which password input the user it at. Therefore, I added a small delay from when the submit button is pressed to when the setState() is called in order to allow the BLE time to respond to the submitted password.
 - App basic functionality is completed. Anything else add will be extra for this project's scope.
