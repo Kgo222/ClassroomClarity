@@ -7,3 +7,16 @@ Team Members:
 - Jesse Gruber
 
 Project Notes are found in the _Notebook_ folder under the _main_ branch.
+# Final Design Information
+## Physical Design
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/HubPicture.png)
+
+## Internal Subcircuits
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/final_BlockDiagram.png)
+
+## App Layout
+### Student
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/StudentAppLayout.png)
+
+### Instructor
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/InstructorAppLayout.png)
