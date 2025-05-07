@@ -10,8 +10,14 @@
    - [4/1/2025: Bluetooth Dev Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#412025-bluetooth-dev-cont)
    - [4/7/2025: Password Implementation](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#472025-password-implementation)
    - [4/8/2025: Password Implementation Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#482025-password-implementation-cont)
-   - [4/9/2025: Password Implementation Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#482025-password-implementation-cont)
-2. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#team-meeting-notes)
+   - [4/9/2025: Password Implementation Cont.](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#492025-password-implementation-cont)
+   - [4/13/2025: Bluetooth and Microcontroller Controls Merge](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#4132025-bluetooth-and-microcontroller-merge)
+   - [4/21/2025: Bluetooth and Microcontroller Controls Merge](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#4212025-mock-demo)
+   - [4/25/2025: Fix Final Bugs](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#4252025-fixing-the-final-bugs)
+2.  [R/V Mobile App](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#requirement-and-verification-for-mobile-app-subsystem)
+3. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#team-meeting-notes)
+   - [R/Vs for Control, Power, and Feedback Subcircuits](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#4252025-team-meeting-requirement-and-verification-testing-for-control-power-and-feedback-circuits)
+5. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#team-meeting-notes)
 # Kaitlin Worklog
 ## 2/17/2025: App Design
 Features we want to include in the app design:
@@ -238,7 +244,7 @@ CounterClockwise:
 Control, Feedback, and Power Measured Values:
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_data/control_power_feedback_RV.png) 
 
-#Final Design Information
+# Final Design Information
 ## Physical Design
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/finalResults/HubPicture.png)
 
