@@ -157,7 +157,20 @@ To do:
 2. If a student sends more that 200 character, there would be overflow on the screen. Therefore I added a character limit to the text field.
 
 ## Requirement and Verification for Mobile App Subsystem:
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_mobileApp.png)
+1. Requirement 1 Verification:
 
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/TImingTable.png)
+
+2. Requirement 2 Verification:
+
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DataAccuracy.png)
+
+3. Requirement 3 Verified with qualitative testing:
+
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DataAccuracy.png)
+
+4. Requirement 4 couldn't be verified due to lack of access to a second phone that could accept the code (no Mac for Xcode to upload to iPhone and no extra Android phone) 
 
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
