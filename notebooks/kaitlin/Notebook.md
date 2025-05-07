@@ -1,5 +1,5 @@
-#Kaitlin Notebook:
-#_Table of Contents:_
+# Kaitlin's Notebook:
+# _Table of Contents:_
 1. [Worklog](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#kaitlin-worklog)
    - [2/17/2025: App Design](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#2172025-app-design)
    - [2/28/2025: Circuit Design](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#2282025-circuit-design)
@@ -17,8 +17,13 @@
 2.  [R/V Mobile App](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#requirement-and-verification-for-mobile-app-subsystem)
 3. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#team-meeting-notes)
    - [R/Vs for Control, Power, and Feedback Subcircuits](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#4252025-team-meeting-requirement-and-verification-testing-for-control-power-and-feedback-circuits)
-5. [Team Meeting Notes](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#team-meeting-notes)
-# Kaitlin Worklog
+5. [Final Design Information](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#final-design-information)
+   - [Physical Design](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#physical-design)
+   - [Internal Subcircuits](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#internal-subcircuits)
+   - [Microcontroller Flowchart](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#microcontroller-control-flowchart)
+   - [Mobile App Flowchart](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#mobile-app-flowchart)
+   - [App Layout](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/Notebook.md#app-layout)
+# Worklog
 ## 2/17/2025: App Design
 Features we want to include in the app design:
 - scaled rating where students can input what level of understanding they have of the current topic
