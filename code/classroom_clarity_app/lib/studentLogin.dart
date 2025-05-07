@@ -50,9 +50,11 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
     ).then((_) {
       // After closing the modal, check if the device is connected and update the UI.
       if(bleHandler.connectedDevice != null){
+        print("'${DateTime.now().toIso8601String()} - FINISHED CONNECTION");
         connectionText = "Enter Instructor Password for ${bleHandler.connectedDevice!.name}";
         connectionText2 = "Enter Student Password for ${bleHandler.connectedDevice!.name}";
         setState(() {});
+
       }
     });
   }

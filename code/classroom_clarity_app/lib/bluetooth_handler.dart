@@ -35,10 +35,10 @@ class BLEHandler {
     });
 
     connectedDevice = device;
-    print("Connected Device: $connectedDevice");
+    //print("Connected Device: $connectedDevice");
 
     services = await device.discoverServices();
-    print("Discovered Services: $services");
+    //print("Discovered Services: $services");
 
     //setState(() {}); // Update UI when device disconnects
 

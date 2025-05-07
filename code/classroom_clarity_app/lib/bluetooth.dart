@@ -94,7 +94,10 @@ class _BluetoothConnectScreen extends State<BluetoothConnectScreen> {
                 title: Text(device.platformName + " (" + device.remoteId.toString() + ")"
                   ,style: TextStyle(fontSize: 15,color: Color.fromARGB(255, 4, 6, 4)),),
                 trailing: TextButton(
-                  onPressed: () => connectDevice(context, device),
+                  onPressed: () {
+                    print("'${DateTime.now().toIso8601String()} - START CONNECT");
+                    connectDevice(context, device);
+                  },
                   child: const Text("Connect"),
                 ),
               ),
