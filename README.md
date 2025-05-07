@@ -6,5 +6,4 @@ Team Members:
 - Kaitlin Gowens
 - Jesse Gruber
 
-  # Results
-  *TBD: Project still in progress*
+Project Notes are found in the _Notebook_ folder under the _main_ branch.
