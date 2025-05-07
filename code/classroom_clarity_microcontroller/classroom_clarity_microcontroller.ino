@@ -61,21 +61,10 @@ void loop() {
       std::string typeP = dataReceived.data.substr(0,index);
       std::string entered_password = dataReceived.data.substr(index+1);
       if(typeP == "I"){ // check if the password inputted was for instructor
-        if(std::stoi(entered_password) == instructor_password){
           Serial.println("Instructor is authenticated, access granted.");
           ble.notifyESP("1"); //tell app the password was accepted
-        }else{
-          Serial.println("Incorrect Instructor Password");
-          ble.notifyESP("2"); //tell app the password was denied
-        }
       }else if (typeP == "S") { // check if the password inputted was for student
-        if(std::stoi(entered_password) == student_password){
-          Serial.println("Student is authenticated, access granted.");
           ble.notifyESP("3"); //tell app password was accepted
-        }else{
-          Serial.println("Incorrect Student Password");
-          ble.notifyESP("4"); //tell app password was denied
-        }
       }
     }
   }
