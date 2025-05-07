@@ -165,12 +165,9 @@ To do:
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DataAccuracy.png)
 
 ### Requirement 3 Verified with qualitative testing:
-#### LEDS
-[![Watch the video](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/HubPicture.png)](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/LEDadjust.MOV)
-#### Type Question
-[![Watch the video](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/HubPicture.png)](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/TypeQuestion.MOV)
-#### Raise Hand Button
-[![Watch the video](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/HubPicture.png)](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RaiseHand.MOV)
+- For LED functionality watch "LEDadjust.MOV"
+- For Type Question functionality watch "TypeQuestion.MOV"
+- For Raise Hand Button functionality watch "RaiseHand.MOV"
 
 ## Requirement 4 
 - Couldn't be verified due to lack of access to a second phone that could accept the code (no Mac for Xcode to upload to iPhone and no extra Android phone) 
