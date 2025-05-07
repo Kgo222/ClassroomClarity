@@ -5,8 +5,10 @@
 ### 2/13/2025: Power conversion research
 - Looked into different LDOs and voltage regulators to step down 5V adapter input
 - Did math to figure out resistor values for LDO
+- Created block diagram for Power Management Subsystem 
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Resistor%20Math.png)
 
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Power%20Management%20Block%20Diagram%20%20(1).png)
 
 ### 2/26/2025: Power Conversion Reconsiderations 
 - Regular regulators have to high voltage drop --> look for LDOs
@@ -22,14 +24,15 @@
 - Moved on to microcontroller footprint and added all the IOs given to me by Jesse
 - Placed all relevant components on the board after that and sorted them into their respective subsystems
 - Added button and rotary debounce based on Jesse's calculations
-- Added in dividers and text to frame the dubsytems and increase readability of schematic 
+- Added in dividers and text to frame the dubsytems and increase readability of schematic
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Ver1%20Schematic.PNG)
 
 #### The Layout
 - Placed microcontroller central on the board then placed components around it
 - Made a box with the maximum size for the pcb ordering software and made sure to stay well within the guidelines
 - Placed headers in a way so that there were little to no overlapping signals
 - Added ground stitching vias 
-
+![Image]((https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Ver1%20PCB%20layout.PNG))
 
 ### 3/8/2025: Breadboard Demo Preperations
 Came into the lab with Jesse and Kait to prepare for the breadboard demo on Monday. My task was to construct the physical breadboard layout while Jesse tested the rotary encoder and LED indicators and Kait worked on the microcontroller code. Our goal is to display the functionality of the power conversion subsystem, and parts of the control and feedback sub systems. We will be powering the microcontroller and screen with the converter and displaying a message on the screen wich can be interacted with with a button. 
@@ -55,7 +58,8 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 ### 3/30/2025: PCB soldering & Testing 
 - soldered through hole components
 - programmed microcontroller with breadboard demo test code
-- ensured function and measured some important signals 
+- ensured function and measured some important signals
+- Created and sent in PCB Version 2 
 
 #### Changes for Next PCB Version
 - 5V on the rotary encoder circuit needs to become 3.3V
@@ -65,6 +69,8 @@ Came into the lab with Jesse and Kait to prepare for the breadboard demo on Mond
 - Remove extra 0.1uF cap on button debounce → unnecessary complexity
 - pull up clear button to be consistent with programming buttons
 - change clear button cap to 1uF
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Ver%202%20Schematic.PNG)
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Ver2%20Layout.PNG)
 
 ### 3/31/2025 PCB Debugging
 #### Power management system 
