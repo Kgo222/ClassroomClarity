@@ -158,19 +158,22 @@ To do:
 
 ## Requirement and Verification for Mobile App Subsystem:
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RV_mobileApp.png)
-1. Requirement 1 Verification:
-
+### Requirement 1 Verification:
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/TImingTable.png)
 
-2. Requirement 2 Verification:
-
+### Requirement 2 Verification:
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DataAccuracy.png)
 
-3. Requirement 3 Verified with qualitative testing:
+### Requirement 3 Verified with qualitative testing:
+#### LEDS
+[![Watch the video](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/HubPicture.png)](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/LEDadjust.MOV)
+#### Type Question
+[![Watch the video](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/HubPicture.png)](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/TypeQuestion.MOV)
+#### Raise Hand Button
+[![Watch the video](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/HubPicture.png)](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/RaiseHand.MOV)
 
-![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/DataAccuracy.png)
-
-4. Requirement 4 couldn't be verified due to lack of access to a second phone that could accept the code (no Mac for Xcode to upload to iPhone and no extra Android phone) 
+## Requirement 4 
+- Couldn't be verified due to lack of access to a second phone that could accept the code (no Mac for Xcode to upload to iPhone and no extra Android phone) 
 
 # Team Meeting Notes
 ## 2/12/2025 Team Meeting
@@ -209,3 +212,25 @@ CounterClockwise:
 
 Control and Feedback Signals:
 ![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/image_2025-04-27_220542817.png) 
+
+#Final Design Information
+## Physical Design
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/HubPicture.png)
+
+## Internal Subcircuits
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/final_BlockDiagram.png)
+
+## Microcontroller Control Flowchart
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/ControlsFlowchart_ESP.png)
+
+## Mobile App Flowchart
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/MobileAppFlow.png)
+
+## App Layout
+### Student
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/StudentAppLayout.png)
+
+### Instructor
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/kaitlin/InstructorAppLayout.png)
+
+
