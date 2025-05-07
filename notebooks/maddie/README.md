@@ -32,7 +32,7 @@
 - Made a box with the maximum size for the pcb ordering software and made sure to stay well within the guidelines
 - Placed headers in a way so that there were little to no overlapping signals
 - Added ground stitching vias 
-![Image]((https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Ver1%20PCB%20layout.PNG))
+![Image](https://github.com/Kgo222/ClassroomClarity/blob/main/notebooks/maddie/Ver1%20PCB%20layout.PNG)
 
 ### 3/8/2025: Breadboard Demo Preperations
 Came into the lab with Jesse and Kait to prepare for the breadboard demo on Monday. My task was to construct the physical breadboard layout while Jesse tested the rotary encoder and LED indicators and Kait worked on the microcontroller code. Our goal is to display the functionality of the power conversion subsystem, and parts of the control and feedback sub systems. We will be powering the microcontroller and screen with the converter and displaying a message on the screen wich can be interacted with with a button. 
