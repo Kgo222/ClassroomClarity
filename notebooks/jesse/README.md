@@ -57,6 +57,23 @@
 - Tested peripherals after resoldering chip
   - LEDs, rotary encoder, clear button, vibe motor, and screen worked without Bluetooth
 - Began 3D printing main body version 3 after printer ran out of filament
+## 4/25/2025
+- Took measurements to ensure requirements were being met
+- Conducted full test through the system to ensure everything worked
+- Began and finished assembly of the full hub
+## 4/28/2025
+- Final demo
+## 4/30/2025
+- Worked on presentation for mock presentation
+## 5/2/2025
+- Mock presentation
+## 5/5/2025
+- Final presentation
+## 5/6/2025
+- Worked on final report
+## 5/7/2025
+- Finished final report
+
 # Team Meetings
 ## Team Meeting 2/12/2025
 - Worked on team contract and proposal
@@ -90,3 +107,7 @@
 - Test fit components in the housing version 2
   - Adjustments needed on lid for PCB mounting
   - Slight adjustment needed on main body charging hole for PCB
+## Team Meeting 4/30/2025
+- Worked on project presentation
+## Team Meeting 5/1/2025
+- Practice run of presentation for mock presentation
